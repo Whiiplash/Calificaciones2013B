@@ -22,9 +22,45 @@
         <![endif]-->
 
         <!-- Add your site or application content here -->
-        <a href="listaalumnos.html">Alumnos</a>
-		<a href="listaciclos.html">Ciclos</a>
-		<a href="listacursos.html">Cursos</a>
+			<section>
+
+				<form action="index.php?accion=addal&hacer=agregarAlumno" method="post">
+
+				Ciclo Correspondiente:
+
+				<select name="carreras" Required onChange="combo(this, 'theinput')">
+				<option>1</option>
+				<option>2</option>
+				<option>3</option>
+				</select>
+
+
+				Nombre del Curso:<input type="text" Required name="nombreCurso" autofocus>
+				Sección: <input type="text" name="seccion">
+				NRC: <input type="text" name="nrc">
+
+				Academia Correspondiente:
+				<select name="academia" Required onChange="combo(this, 'theinput')">
+				<option>Ciencias Computacionales</option>
+				<option>Ciencias Básicas</option>
+				<option>Ciencias Quimicas</option>
+				</select>
+
+				Días de Clase:
+				<fieldset>
+				<input type = "checkbox" name = "lunes" value = "greenEggs" />Lunes
+				<input type = "checkbox" name = "martes" value = "ham" />Martes
+				<input type = "checkbox" name = "miercoles" value = "ham" />Miercoles
+				<input type = "checkbox" name = "jueves" value = "ham" />Jueves
+				<input type = "checkbox" name = "viernes" value = "ham" />Viernes
+				</fieldset>
+
+				Cantidad de Horas Diarias: <input type="number" name="horas">
+				Horario: <input type="time" name="horario">
+				<input type="submit">
+				</form>
+            </section>
+
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
