@@ -97,6 +97,25 @@ textarea {
    Author's custom styles
    ========================================================================== */
 
+html, body {
+    height: 100%;
+    margin: 0 auto;
+}
+#container,#header,#principal,#footer{border: solid 1px;}
+#container{width: 600px;}
+#header{height: 60px;}
+#principal{min-height: 79%;height: auto !important;height: 100%;margin: 0 auto 0px;}
+#footer{height: 60px;}
+#menu {
+list-style: none;
+float: left;
+width: 50%;
+}
+#menu a {
+float: left;
+margin: 0px 10px 0px 10px;
+}
+
 
 
 
