@@ -107,10 +107,7 @@ html, body {
 #principal{min-height: 79%;height: auto !important;height: 100%;margin: 0 auto 0px;}
 #footer{height: 60px;background-color: #CCCCCC;}
 #menu{list-style: none;float: left;width: 50%;}
-#menu a {
-float: left;
-margin: 0px 10px 0px 10px;
-}
+#menu a {float: left;margin: 0px 10px 0px 10px;}
 
 
 
