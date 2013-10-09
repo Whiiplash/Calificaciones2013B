@@ -22,7 +22,28 @@
         <![endif]-->
 
         <!-- Add your site or application content here -->
-			<section>
+			<header id="header">
+                    <ul id="menu">
+                        <a href="index.html"><li>index</li></a>
+                        <a href="altaalumno.html"><li>altaalumno</li></a>
+                        <a href="altaciclo.html"><li>altaciclo</li></a>
+                        <a href="altacurso.html"><li>altacurso</li></a>
+                        <a href="asistenciaalumnos.html"><li>asistenciaalumnos</li></a>
+                        <a href="califalumnos.html"><li>califalumnos</li></a>
+                        <a href="editaralumno.html"><li>editaralumno</li></a>
+                        <a href="editarciclo.html"><li>editarciclo</li></a>
+                        <a href="editarcurso.html"><li>editarcurso</li></a>
+                        <a href="importaralumnos.html"><li>importaralumnos</li></a>
+                        <a href="listaalumnos.html"><li>listaalumnos</li></a>
+                        <a href="listaciclos.html"><li>listaciclos</li></a>
+                        <a href="listacursos.html"><li>listacursos</li></a>
+                        <a href="login.html"><li>login</li></a>
+                        <a href="recuperar.html"><li>recuperar</li></a>
+                    </ul>
+            </header>
+            <section id="principal">
+
+                <section id="contenido">
 
 				<form action="index.php?accion=addal&hacer=agregarAlumno" method="post">
 
@@ -32,19 +53,19 @@
 				<option>1</option>
 				<option>2</option>
 				<option>3</option>
-				</select>
+				</select><br>
 
 
-				Nombre del Curso:<input type="text" Required name="nombreCurso" autofocus>
-				Sección: <input type="text" name="seccion">
-				NRC: <input type="text" name="nrc">
+				Nombre del Curso:<input type="text" Required name="nombreCurso" autofocus><br>
+				Sección: <input type="text" name="seccion"><br>
+				NRC: <input type="text" name="nrc"><br>
 
 				Academia Correspondiente:
 				<select name="academia" Required onChange="combo(this, 'theinput')">
 				<option>Ciencias Computacionales</option>
 				<option>Ciencias Básicas</option>
 				<option>Ciencias Quimicas</option>
-				</select>
+				</select><br>
 
 				Días de Clase:
 				<fieldset>
@@ -53,13 +74,16 @@
 				<input type = "checkbox" name = "miercoles" value = "ham" />Miercoles
 				<input type = "checkbox" name = "jueves" value = "ham" />Jueves
 				<input type = "checkbox" name = "viernes" value = "ham" />Viernes
-				</fieldset>
+				</fieldset><br>
 
-				Cantidad de Horas Diarias: <input type="number" name="horas">
-				Horario: <input type="time" name="horario">
-				<input type="submit">
+				Cantidad de Horas Diarias: <input type="number" name="horas"><br>
+				Horario: <input type="time" name="horario"><br>
+				<input type="submit"><br>
 				</form>
             </section>
+
+            </section>
+            <footer id="footer">pie de pagina</footer>
 
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>

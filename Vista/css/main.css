@@ -108,6 +108,10 @@ html, body {
 #footer{height: 60px;background-color: #CCCCCC;}
 #menu{list-style: none;float: left;width: 98%;}
 #menu a {float: left;margin: 0px 10px 0px 10px;color: #FFF;text-decoration: none;}
+#contenido {
+width: 300px;
+margin: 0 auto;
+}
 
 
 

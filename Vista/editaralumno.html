@@ -22,26 +22,50 @@
         <![endif]-->
 
         <!-- Add your site or application content here -->
-			<section>
+			 <header id="header">
+                    <ul id="menu">
+                        <a href="index.html"><li>index</li></a>
+                        <a href="altaalumno.html"><li>altaalumno</li></a>
+                        <a href="altaciclo.html"><li>altaciclo</li></a>
+                        <a href="altacurso.html"><li>altacurso</li></a>
+                        <a href="asistenciaalumnos.html"><li>asistenciaalumnos</li></a>
+                        <a href="califalumnos.html"><li>califalumnos</li></a>
+                        <a href="editaralumno.html"><li>editaralumno</li></a>
+                        <a href="editarciclo.html"><li>editarciclo</li></a>
+                        <a href="editarcurso.html"><li>editarcurso</li></a>
+                        <a href="importaralumnos.html"><li>importaralumnos</li></a>
+                        <a href="listaalumnos.html"><li>listaalumnos</li></a>
+                        <a href="listaciclos.html"><li>listaciclos</li></a>
+                        <a href="listacursos.html"><li>listacursos</li></a>
+                        <a href="login.html"><li>login</li></a>
+                        <a href="recuperar.html"><li>recuperar</li></a>
+                    </ul>
+            </header>
+            <section id="principal">
+
+                <section id="contenido">
                 <span class="info">
                 <form action="index.php?accion=addal&hacer=agregarAlumno" method="post">
-                    Nombre:<input type="text" Required name="nombre" autofocus>
-                    Apellido Paterno: <input type="text" Required name="apellidop">
-                    Apellido Materno: <input type="text" Required name="apellidom">
+                    Nombre:<input type="text" Required name="nombre" autofocus><br>
+                    Apellido Paterno: <input type="text" Required name="apellidop"><br>
+                    Apellido Materno: <input type="text" Required name="apellidom"><br>
                     Carrera:
                     <select name="carreras" Required onChange="combo(this, 'theinput')">
                         <option>Elige una carrera...</option>
                         <option>Computaci&oacute;n</option>
                         <option>Inform&aacute;tica</option>
                         <option>Electr&oacute;nica</option>
-                    </select>
-                    E-mail: <input type="email" name="email">
-                    Celular: <input type="tel" name="celular">
-                    Github: <input type="text" name="github">
-                    Web: <input type="text" name="web">
+                    </select><br>
+                    E-mail: <input type="email" name="email"><br>
+                    Celular: <input type="tel" name="celular"><br>
+                    Github: <input type="text" name="github"><br>
+                    Web: <input type="text" name="web"><br>
                         <input type="submit">
                 </form></span>
             </section>
+
+            </section>
+            <footer id="footer">pie de pagina</footer>
 
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
