@@ -103,11 +103,11 @@ html, body {
 }
 #container,#header,#principal,#footer{border: solid 1px;}
 #container{width: 600px;background-color: #C6D9E7;}
-#header{height: 60px;background-color: #515F84;}
+#header{height: 70px;background-color: #515F84;}
 #principal{min-height: 79%;height: auto !important;height: 100%;margin: 0 auto 0px;}
 #footer{height: 60px;background-color: #CCCCCC;}
-#menu{list-style: none;float: left;width: 50%;}
-#menu a {float: left;margin: 0px 10px 0px 10px;}
+#menu{list-style: none;float: left;width: 98%;}
+#menu a {float: left;margin: 0px 10px 0px 10px;color: #FFF;text-decoration: none;}
 
 
 
