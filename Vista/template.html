@@ -15,6 +15,7 @@
         <link rel="stylesheet" href="css/normalize.css">
         <link rel="stylesheet" href="css/main.css">
         <script src="js/vendor/modernizr-2.6.2.min.js"></script>
+        <script type="text/javascript" src="js/validacion.js"></script>
     </head>
     <body>
         <!--[if lt IE 7]>
@@ -25,32 +26,18 @@
 		
             <header id="header">
                     <ul id="menu">
-                        <a href="index.html"><li>index</li></a>
-                        <a href="altaalumno.html"><li>altaalumno</li></a>
-                        <a href="altaciclo.html"><li>altaciclo</li></a>
-                        <a href="altacurso.html"><li>altacurso</li></a>
-                        <a href="asistenciaalumnos.html"><li>asistenciaalumnos</li></a>
-                        <a href="califalumnos.html"><li>califalumnos</li></a>
-                        <a href="editaralumno.html"><li>editaralumno</li></a>
-                        <a href="editarciclo.html"><li>editarciclo</li></a>
-                        <a href="editarcurso.html"><li>editarcurso</li></a>
-                        <a href="importaralumnos.html"><li>importaralumnos</li></a>
-                        <a href="listaalumnos.html"><li>listaalumnos</li></a>
-                        <a href="listaciclos.html"><li>listaciclos</li></a>
-                        <a href="listacursos.html"><li>listacursos</li></a>
-                        <a href="login.html"><li>login</li></a>
-                        <a href="recuperar.html"><li>recuperar</li></a>
+                    {menu}
                     </ul>
             </header>
             <section id="principal">
 
                 <section id="contenido">
 
-                contenido principal
+                {cuerpo}
                 </section>
 
             </section>
-            <footer id="footer">pie de pagina</footer>
+            <footer id="footer">{footer}</footer>
     
 
 

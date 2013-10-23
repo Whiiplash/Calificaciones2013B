@@ -3,11 +3,11 @@ session_start();
 	class DefaultCtl{
 		function ejecutar(){
 			if(!isset($_SESSION['usuario'])){
-						$file = file_get_contents('../Vista/index.html');
+						$file = file_get_contents('../Vista/template.html');
 						$file = str_ireplace('{cuerpo}' ,'Mensaje de Bienvenida para invitados', $file);						
 						}
 					else{
-						$file = file_get_contents('../Vista/index.html');
+						$file = file_get_contents('../Vista/template.html');
 						$file = str_ireplace('Iniciar Sesion' ,'Cerrar Sesion', $file);
 						$file = str_ireplace('{cuerpo}' ,'Hola '.$_SESSION['usuario'], $file);	
 						}
