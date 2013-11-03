@@ -10,10 +10,10 @@
 	}else{
 	$accion=$_REQUEST['accion'];
  switch($_REQUEST['accion']){
-	case 'cicloalta':
-		include('../controlador/altacicloCtl.php');
-		$controlador = new altacicloCtl();
-        	break;
+	case 'log':
+		include('../controlador/loginCtl.php');
+		$controlador = new LogCtl();
+		break;
 	default:
 		include('../controlador/DefaultCtl.php');
 		$controlador = new DefaultCtl();
