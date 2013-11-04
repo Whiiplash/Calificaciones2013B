@@ -2,7 +2,8 @@
 session_start();
 
 $usuario = $_POST['user'];
-$password = md5($_POST['password']);
+//$password = md5($_POST['password']);
+$password = $_POST['password'];
 
 //include('db_data.inc');
  $host = 'localhost';
@@ -14,7 +15,7 @@ $conexion = new mysqli($host,$user,$pass,$db);
 		if($conexion -> connect_errno)
 			die('No hay conexion');
 
-$consulta = "SELECT * FROM usuarios WHERE idusuario = '$usuario' AND password = '$password'";
+$consulta = "SELECT * FROM login WHERE codigo = '$usuario' AND pass = '$password'";
 
 $result = $conexion -> query($consulta);
 
