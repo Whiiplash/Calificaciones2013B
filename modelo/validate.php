@@ -7,9 +7,9 @@ $password = $_POST['password'];
 
 //include('db_data.inc');
  $host = 'localhost';
- $user = 'cc409_califfpj';	 	
- $pass = 'R7HdsX2GkE';
- $db = 'sistema_calificaciones';
+ $user = ' cc409_user102';	 	
+ $pass = 'GFUm1m9m7I';
+ $db = ' cc409_user102';
 
 $conexion = new mysqli($host,$user,$pass,$db);		
 		if($conexion -> connect_errno)

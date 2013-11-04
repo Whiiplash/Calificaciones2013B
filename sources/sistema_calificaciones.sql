@@ -17,10 +17,10 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `sistema_calificaciones`
+-- Database: `cc409_user102`
 --
-CREATE DATABASE IF NOT EXISTS `sistema_calificaciones` DEFAULT CHARACTER SET utf8 COLLATE utf8_spanish2_ci;
-USE `sistema_calificaciones`;
+CREATE DATABASE IF NOT EXISTS `cc409_user102` DEFAULT CHARACTER SET utf8 COLLATE utf8_spanish2_ci;
+USE `cc409_user102`;
 
 -- --------------------------------------------------------
 
