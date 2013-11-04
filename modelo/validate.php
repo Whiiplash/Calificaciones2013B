@@ -21,8 +21,8 @@ $result = $conexion -> query($consulta);
 
 $row = $result -> fetch_assoc();
 
-if($row['idusuario']==$usuario){
-	$_SESSION['uid'] = $row['idusuario'];
+if($row['codigo']==$usuario){
+	$_SESSION['uid'] = $row['codigo'];
 	$_SESSION['tipo'] = $row['tipousuario'];
 	$_SESSION['usuario'] = $row['nombre'];
 	header('location: ../www/index.php');
