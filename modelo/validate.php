@@ -23,9 +23,11 @@ $row = $result -> fetch_assoc();
 
 if($row['codigo']==$usuario){
 	$_SESSION['uid'] = $row['codigo'];
-	$_SESSION['tipo'] = $row['tipousuario'];
-	$_SESSION['usuario'] = $row['nombre'];
+	//$_SESSION['tipo'] = $row['tipousuario'];
+	$_SESSION['usuario'] = $row['codigo'];
 	header('location: ../www/index.php');
 	}
-else{header('location: ../www/index.php?accion=msg&msgcode=3');}
+else{
+	header('location: ../www/index.php?accion=msg&msgcode=3');
+}
 ?>

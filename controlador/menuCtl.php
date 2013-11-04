@@ -2,7 +2,8 @@
 class menuCtl {
 
     function menu() {
-        if(!isset($_SESSION['tipo'])) $menu = 'Sistema Integral de Calificaciones en nuestro Centro Universitario se utiliza como una herramienta que permite a los profesores complementar sus actividades académicas presenciales.';
+        //if(!isset($_SESSION['tipo'])) $menu = 'Sistema Integral de Calificaciones en nuestro Centro Universitario se utiliza como una herramienta que permite a los profesores complementar sus actividades académicas presenciales.';
+        if(!isset($_SESSION['tipo'])) $menu = file_get_contents('../vista/menu.html');
         else
         {switch ($_SESSION['tipo']) {
                     case 'admin':
