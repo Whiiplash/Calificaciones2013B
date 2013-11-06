@@ -5,11 +5,11 @@ $usuario = $_POST['user'];
 //$password = md5($_POST['password']);
 $password = $_POST['password'];
 
-//include('db_data.inc');
- $host = 'localhost';
- $user = ' cc409_user102';	 	
- $pass = 'GFUm1m9m7I';
- $db = ' cc409_user102';
+include('db_data.inc');
+ // $host = 'localhost';
+ // $user = 'cc409_user102';	 	
+ // $pass = 'GFUm1m9m7I';
+ // $db = 'cc409_user102';
 
 $conexion = new mysqli($host,$user,$pass,$db);		
 		if($conexion -> connect_errno)
