@@ -14,6 +14,18 @@
 		include('../controlador/loginCtl.php');
 		$controlador = new LogCtl();
 		break;
+	case 'validarusuario':
+		include('../controlador/usuarioCtl.php');
+		$controlador = new usuarioCtl();
+		break;
+	case 'altaciclo':
+		include('../controlador/altacicloCtl.php');
+		$controlador = new altacicloCtl();
+		break;
+	case 'nuevociclo':
+		include('../controlador/nuevocicloCtl.php');
+		$controlador = new nuevocicloCtl();
+		break;
 	default:
 		include('../controlador/DefaultCtl.php');
 		$controlador = new DefaultCtl();

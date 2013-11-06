@@ -2,7 +2,7 @@
 session_start();
 	class DefaultCtl{
 		function ejecutar(){
-			if(!isset($_SESSION['usuario'])){
+			if(!isset($_SESSION['uid'])){
 						$file = file_get_contents('../vista/template.html');
 						$file = str_ireplace('{cuerpo}' ,'Mensaje de Bienvenida para invitados', $file);						
 						}
@@ -14,6 +14,7 @@ session_start();
 						include('../controlador/menuCtl.php');
    						$vista2 = new menuCtl(); 
     					$file = str_replace('{menu}', $vista2 -> menu() , $file);
+    					$file = str_replace('{footer}', $vista2 -> menu() , $file);
 						echo $file;
 		}
 
