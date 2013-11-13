@@ -26,6 +26,14 @@
 		include('../controlador/nuevocicloCtl.php');
 		$controlador = new nuevocicloCtl();
 		break;
+	case 'nuevocurso':
+		include('../controlador/nuevocursoCtl.php');
+		$controlador = new nuevocursoCtl();
+		break;
+	case 'listacursos':
+		include('../controlador/listacursosCtl.php');
+		$controlador = new listacursosCtl();
+		break;
 	default:
 		include('../controlador/DefaultCtl.php');
 		$controlador = new DefaultCtl();
