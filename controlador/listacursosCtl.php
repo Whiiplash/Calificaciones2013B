@@ -17,7 +17,11 @@ class listacursosCtl{
 					$file = str_ireplace('Iniciar Sesion' ,'Cerrar Sesion', $file);
 					if($_SESSION['rol']=='20'){
 							//$file = file_get_contents('../vista/altaciclo.html');
-							$file = str_ireplace('{cuerpo}' ,file_get_contents('../vista/listacursos.html'), $file);
+							include('../modelo/altacursoMod.php');
+							$validate = new altacursoMod(); 
+							$result = $validate->mostrarCiclo();
+							//$file = str_ireplace('{cuerpo}' ,file_get_contents('../vista/listacursos.html'), $file);
+							$file = str_ireplace('{cuerpo}' , $validate->tabla($result), $file);
 						} else{
 							$file = str_ireplace('{cuerpo}' ,'Usted no tiene privilegios suficientes para realizar esta acción', $file);
 						}
