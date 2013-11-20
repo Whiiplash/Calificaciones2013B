@@ -100,18 +100,73 @@ textarea {
 html, body {
     height: 100%;
     margin: 0 auto;
+    background:white;
 }
-#container,#header,#principal,#footer{border: solid 1px;}
-#container{width: 600px;background-color: #C6D9E7;}
-#header{height: 70px;background-color: #515F84;}
-#principal{min-height: 79%;height: auto !important;height: 100%;margin: 0 auto 0px;}
-#footer{height: 60px;background-color: #CCCCCC;}
-#menu{list-style: none;float: left;width: 98%;}
-#menu a {float: left;margin: 0px 10px 0px 10px;color: #FFF;text-decoration: none;}
+.wrapper{}
+.container{
+    margin: 0 auto;
+    width: 960px;
+}
+#header{
+    height: 100px;
+    width: 100%;
+    background: #0099CC;
+}
+.menu{
+    list-style: none;
+    float: left;
+    width: 100%;
+}
+.menu a {
+    color: #fff;
+    text-decoration: none;
+    float: left;
+    margin: 5px;
+}
+#principal{
+    text-align: center;      
+}
 #contenido {
-width: 300px;
-margin: 0 auto;
+    background: #d6d6d6;
+    min-height: 500px;
 }
+#footer{
+    height: 40px;
+    width: 100%;
+    list-style: none;
+    background: #0099CC;
+}
+#footer a{
+    color: #fff;
+    text-decoration: none;
+    float: left;
+    margin: 5px;   
+}
+.clear {
+    height: 30px;
+}
+/*************************************************
+formularios
+*************************************************/  
+.info {
+    padding: 40px 0px 0px 0px;
+}
+.etiqueta{
+    margin: 0px 0px 10px 0px;
+}
+/*login*/
+.nombre, .contrasena{
+    margin: 0px 0px 10px 0px;
+    width: 30%;
+}
+.contrasena{}
+.enviar{}
+/*alta curso*/
+.semana {
+    width: 7%;
+    text-align: left;
+}
+
 
 
 

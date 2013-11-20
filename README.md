@@ -14,7 +14,21 @@ El proyecto se puede visualizar en github https://github.com/robin2189/Calificac
 
 Asi como en la url http://alanturing.cucei.udg.mx/cc409/califfpj/calificacion/index.php
 
+#Accesos 
 
+Los usuarios del sistema son:
+
+Nivel:Administrador
+codigo: 100
+pass: 1234
+
+Nivel:Profesor
+codigo: 200
+pass: 1234
+
+Nivel:Alumno
+codigo: 300
+pass: 1234
 
 # Sistema de calificaciones en línea
 

@@ -1,18 +1,28 @@
-                <span class="info">
-                <form action="index.php?accion=addal&hacer=agregarAlumno" method="post">
-                    Nombre:<input type="text" Required name="nombre" autofocus><br>
-                    Apellido Paterno: <input type="text" Required name="apellidop"><br>
-                    Apellido Materno: <input type="text" Required name="apellidom"><br>
-                    Carrera:
-                    <select name="carreras" Required onChange="combo(this, 'theinput')">
-                        <option>Elige una carrera...</option>
-                        <option>Computaci&oacute;n</option>
-                        <option>Inform&aacute;tica</option>
-                        <option>Electr&oacute;nica</option>
-                    </select><br>
-                    E-mail: <input type="email" name="email"><br>
-                    Celular: <input type="tel" name="celular"><br>
-                    Github: <input type="text" name="github"><br>
-                    Web: <input type="text" name="web"><br>
-                        <input type="submit">
-                </form></span>
+<section class="info">
+    <form action="index.php?accion=addal&hacer=agregarAlumno" method="post">
+        <section class="etiqueta">Nombre:</section>
+        <input type="text" Required name="nombre" autofocus>
+        <section class="etiqueta">Apellido Paterno:</section>
+        <input type="text" Required name="apellidop">
+        <section class="etiqueta">Apellido Materno:</section>
+        <input type="text" Required name="apellidom">
+        <section class="etiqueta">Carrera:</section>
+        <select name="carreras" Required onChange="combo(this, 'theinput')">
+            <option>Elige una carrera...</option>
+            <option>Computaci&oacute;n</option>
+            <option>Inform&aacute;tica</option>
+            <option>Electr&oacute;nica</option>
+        </select>
+        <section class="etiqueta">E-mail:</section>
+        <input type="email" name="email">
+        <section class="etiqueta">Celular:</section>
+        <input type="tel" name="celular">
+        <section class="etiqueta">Github:</section>
+        <input type="text" name="github">
+        <section class="etiqueta">Web:</section>
+         <input type="text" name="web">
+        <section class="enviar">
+            <input type="submit" value="Finalizar"> 
+        </section>
+    </form>
+</section>

@@ -1,35 +1,47 @@
-				<form action="index.php?accion=addal&hacer=agregarAlumno" method="post">
-
-				Ciclo Correspondiente:
-
-				<select name="carreras" Required onChange="combo(this, 'theinput')">
-				<option>1</option>
-				<option>2</option>
-				<option>3</option>
-				</select><br>
-
-
-				Nombre del Curso:<input type="text" Required name="nombreCurso" autofocus><br>
-				Sección: <input type="text" name="seccion"><br>
-				NRC: <input type="text" name="nrc"><br>
-
-				Academia Correspondiente:
-				<select name="academia" Required onChange="combo(this, 'theinput')">
-				<option>Ciencias Computacionales</option>
-				<option>Ciencias Básicas</option>
-				<option>Ciencias Quimicas</option>
-				</select><br>
-
-				Días de Clase:
-				<fieldset>
-				<input type = "checkbox" name = "lunes" value = "greenEggs" />Lunes
-				<input type = "checkbox" name = "martes" value = "ham" />Martes
-				<input type = "checkbox" name = "miercoles" value = "ham" />Miercoles
-				<input type = "checkbox" name = "jueves" value = "ham" />Jueves
-				<input type = "checkbox" name = "viernes" value = "ham" />Viernes
-				</fieldset><br>
-
-				Cantidad de Horas Diarias: <input type="number" name="horas"><br>
-				Horario: <input type="time" name="horario"><br>
-				<input type="submit"><br>
-				</form>
+<section class="info">
+	<form action="index.php?accion=addal&hacer=agregarAlumno" method="post">
+		<section class="etiqueta">Ciclo Correspondiente:</section>
+		<select name="carreras" Required onChange="combo(this, 'theinput')">
+			<option>1</option>
+			<option>2</option>
+			<option>3</option>
+		</select>
+		<section class="etiqueta">Nombre del Curso:</section>
+		<input type="text" Required name="nombreCurso" autofocus>
+		<section class="etiqueta">Sección:</section>
+		<input type="text" name="seccion">
+		<section class="etiqueta">NRC:</section>
+		<input type="text" name="nrc">
+		<section class="etiqueta">Academia Correspondiente:</section>
+		<select name="academia" Required onChange="combo(this, 'theinput')">
+			<option>Ciencias Computacionales</option>
+			<option>Ciencias Básicas</option>
+			<option>Ciencias Quimicas</option>
+		</select>
+		<section class="etiqueta">Días de Clase:</section>
+		<fieldset class="semana">
+			<section>
+				<input type="checkbox" name="lunes" value="greenEggs" />Lunes
+			</section>
+			<section>
+				<input type="checkbox" name="martes" value="ham" />Martes
+			</section>
+			<section>
+				<input type="checkbox" name= "miercoles" value="ham" />Miercoles
+			</section>
+			<section>
+				<input type="checkbox" name= "jueves" value="ham" />Jueves
+			</section>
+			<section>
+				<input type="checkbox" name= "viernes" value="ham" />Viernes
+			</section>
+		</fieldset>
+		<section class="etiqueta">Cantidad de Horas Diarias:</section>
+		<input type="number" name="horas">	
+		<section class="etiqueta">Horario:</section>
+		<input type="time" name="horario">
+		<section class="enviar">
+            <input type="submit" value="Finalizar"> 
+        </section>
+	</form>	
+</section>

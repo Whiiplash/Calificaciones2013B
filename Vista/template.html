@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 7]>      p   <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
     <head>
@@ -23,21 +23,25 @@
         <![endif]-->
 
         <!-- Add your site or application content here -->
-		
-            <header id="header">
-                    <ul id="menu">
-                    {menu}
+		<section class="wrapper">
+            <section class="container">
+                <header id="header">
+                    <ul class="menu">
+                        {menu}
                     </ul>
-            </header>
-            <section id="principal">
-
-                <section id="contenido">
-
-                {cuerpo}
+                </header>
+                <section id="principal">
+                    <section id="contenido">
+                        {cuerpo}
+                    </section>
                 </section>
-
+                <footer id="footer">
+                    {footer}
+                </footer>    
             </section>
-            <footer id="footer">{footer}</footer>
+
+        </section>
+            
 
     
 
