@@ -38,6 +38,10 @@
 		include('../controlador/insertarcicloCtl.php');
 		$controlador = new insertarcicloCtl();
 		break;
+	case 'insertarcurso':
+		include('../controlador/insertarcursoCtl.php');
+		$controlador = new insertarcursoCtl();
+		break;
 	default:
 		include('../controlador/DefaultCtl.php');
 		$controlador = new DefaultCtl();

@@ -1,5 +1,5 @@
 <section class="info">
-	<form action="index.php?accion=addal&hacer=agregarAlumno" method="post">
+	<form action="index.php?accion=insertarcurso" method="post">
 		<section class="etiqueta">Ciclo Correspondiente:</section>
 		<select name="carreras" Required onChange="combo(this, 'theinput')">
 			<option>1</option>
@@ -21,19 +21,19 @@
 		<section class="etiqueta">Días de Clase:</section>
 		<fieldset class="semana">
 			<section>
-				<input type="checkbox" name="lunes" value="greenEggs" />Lunes
+				<input type="checkbox" name="lunes" value="lunes" />Lunes
 			</section>
 			<section>
-				<input type="checkbox" name="martes" value="ham" />Martes
+				<input type="checkbox" name="martes" value="martes" />Martes
 			</section>
 			<section>
-				<input type="checkbox" name= "miercoles" value="ham" />Miercoles
+				<input type="checkbox" name= "miercoles" value="miercoles" />Miercoles
 			</section>
 			<section>
-				<input type="checkbox" name= "jueves" value="ham" />Jueves
+				<input type="checkbox" name= "jueves" value="jueves" />Jueves
 			</section>
 			<section>
-				<input type="checkbox" name= "viernes" value="ham" />Viernes
+				<input type="checkbox" name= "viernes" value="viernes" />Viernes
 			</section>
 		</fieldset>
 		<section class="etiqueta">Cantidad de Horas Diarias:</section>
