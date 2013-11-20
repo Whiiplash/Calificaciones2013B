@@ -86,9 +86,9 @@ class altacursoMod{
   			$table .= "<tbody>";
   			$table .= "<tr>";
   			$table .= "<td><a href=" . "../www/index.php?accion=curso&cescolar=". $row['nrc'] . ">" . $row['nrc'] . "</a></td>";
-  			$table .= "<td>" . $row['nrc'] . "</td>";
-  			$table .= "<td>" . $row['nrc'] . "</td>";
-  			$table .= "<td><a href=../www/index.php?accion=ciclodel&id=".$row['nrc'] ."> X</td>";
+  			$table .= "<td>" . $row['idCiclo'] . "</td>";
+  			$table .= "<td>" . $row['idCurso'] . "</td>";
+  			$table .= "<td><a href=../www/index.php?accion=ciclodel&id=".$row['seccionCurso'] ."> X</td>";
   			$table .= "</tr>";
   			$table .= "</tbody>";
   		}
