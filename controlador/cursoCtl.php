@@ -31,6 +31,10 @@ class cursoCtl{
 							case 'insertar':
 								$validate->insertar();
 								break;
+							case 'borrar':
+								$validate->borrar();
+								header('location: ../www/index.php?accion=curso&opcion=listar');
+								break;
 							default:
 								header('location: ../www/index.php');
 								break;

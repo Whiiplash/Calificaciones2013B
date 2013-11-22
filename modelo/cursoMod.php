@@ -101,5 +101,31 @@ class cursoMod{
 
 	}
 
+	function borrar(){
+		$nrc = $_REQUEST['nrc'];
+
+		//cargo los datos para la conexion
+		include('db_data.inc');		
+		$conexion = new mysqli($host,$user,$pass,$db);	
+		if($conexion -> connect_errno)
+			die('No hay conexion');
+
+		//Creo mi querry
+		$consulta = "DELETE FROM nrc WHERE nrc = '$nrc'";
+
+		//Ejecuto la consulta
+		$result = $conexion -> query($consulta);
+		//var_dump($conexion);
+		if($conexion->errno){
+			$conexion -> close();
+			die('No se pudo establacer el borrado '.$conexion->error);
+		}
+		else
+			echo "registro(s) borrado(s)";
+			
+		$conexion -> close();
+		
+	}
+
 }
 ?>
