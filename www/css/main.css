@@ -148,7 +148,7 @@ html, body {
 /*************************************************
 formularios
 *************************************************/  
-.info {
+.info, .lista {
     padding: 40px 0px 0px 0px;
 }
 .etiqueta{
@@ -166,8 +166,10 @@ formularios
     width: 7%;
     text-align: left;
 }
+/*Lista cursos*/
+.lista{
 
-
+}
 
 
 
