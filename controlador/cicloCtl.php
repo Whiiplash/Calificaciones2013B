@@ -1,6 +1,6 @@
 <?php
 session_start();
-class nuevocicloCtl{
+class cicloCtl{
 
 	public $modelo;
 	
@@ -10,14 +10,28 @@ class nuevocicloCtl{
 
 	function ejecutar(){
 			$file = file_get_contents('../vista/template.html');
+			$opcion = $_REQUEST['opcion'];
 			if(!isset($_SESSION['uid'])){
 						$file = str_ireplace('{cuerpo}' ,'Usted no ha iniciado sesion', $file);						
 						}
 					else{
 					$file = str_ireplace('Iniciar Sesion' ,'Cerrar Sesion', $file);
 					if($_SESSION['rol']=='10'){
-							//$file = file_get_contents('../vista/altaciclo.html');
-							$file = str_ireplace('{cuerpo}' ,file_get_contents('../vista/altaciclo.html'), $file);
+							/// Funciones del admin para ciclo
+						switch ($opcion) {
+							case 'formulario':
+								$file = str_ireplace('{cuerpo}' ,file_get_contents('../vista/altaciclo.html'), $file);
+								break;
+							case 'insertar':
+								include('../modelo/cicloMod.php');
+								$validate = new cicloMod(); 
+								$validate->insertar();
+								header('location: ../www/index.php?accion=msg&msgcode=2');
+								break;
+							default:
+								include('../controlador/DefaultCtl.php');
+								break;
+						}
 						} else{
 							$file = str_ireplace('{cuerpo}' ,'Usted no tiene privilegios suficientes para realizar esta acción', $file);
 						}

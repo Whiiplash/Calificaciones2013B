@@ -5,7 +5,7 @@ session_start();
 			include('../modelo/altacursoMod.php');
 			$validate = new altacursoMod(); 
 			$validate->cursoInsert();
-			header('location: ../www/index.php');
+			
 		}
 
 	}

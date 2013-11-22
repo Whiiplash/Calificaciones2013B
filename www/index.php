@@ -18,13 +18,9 @@
 		include('../controlador/usuarioCtl.php');
 		$controlador = new usuarioCtl();
 		break;
-	case 'altaciclo':
-		include('../controlador/altacicloCtl.php');
-		$controlador = new altacicloCtl();
-		break;
-	case 'nuevociclo':
-		include('../controlador/nuevocicloCtl.php');
-		$controlador = new nuevocicloCtl();
+	case 'ciclo':
+		include('../controlador/cicloCtl.php');
+		$controlador = new cicloCtl();
 		break;
 	case 'nuevocurso':
 		include('../controlador/nuevocursoCtl.php');
@@ -34,13 +30,13 @@
 		include('../controlador/listacursosCtl.php');
 		$controlador = new listacursosCtl();
 		break;
-	case 'insertarciclo':
-		include('../controlador/insertarcicloCtl.php');
-		$controlador = new insertarcicloCtl();
-		break;
 	case 'insertarcurso':
 		include('../controlador/insertarcursoCtl.php');
 		$controlador = new insertarcursoCtl();
+		break;
+	case 'msg':
+		include('../controlador/msgCtl.php');
+		$controlador = new msgCtl();
 		break;
 	default:
 		include('../controlador/DefaultCtl.php');

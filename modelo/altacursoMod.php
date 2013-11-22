@@ -28,8 +28,11 @@ class altacursoMod{
 			$conexion -> close();
 			die('No se pudo establacer la insercion '.$conexion->error);
 		}
-		else
-			echo "1 registro agregado";
+		else{
+			//echo "1 registro agregado"
+			$conexion -> close();
+			header('location: ../www/index.php?accion=msg&msgcode=1');
+		}
 			
 		$conexion -> close();
 		

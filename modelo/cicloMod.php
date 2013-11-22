@@ -1,15 +1,15 @@
 <?php
-class altacicloMod{
+class cicloMod{
 	
 	/**
 	* @return mixed, array $alumno
 	* 
 	*/	
 
-	function cicloInsert(){
-		$idciclo = $_REQUEST['ciclo'];
-		$indate = $_REQUEST['f_inicio'];
-		$endate = $_REQUEST['f_fin'];
+	function insertar(){
+		$idciclo = $_REQUEST['nombre'];
+		$indate = $_REQUEST['fechainicio'];
+		$endate = $_REQUEST['fechafin'];
 		
 		//cargo los datos para la conexion
 		include('db_data.inc');		
@@ -18,7 +18,7 @@ class altacicloMod{
 			die('No hay conexion');
 
 		//Creo mi querry
-		$consulta = "INSERT INTO cicloescolar(idCicloEscolar,fechaInicio,fechaTermino) VALUES
+		$consulta = "INSERT INTO cicloescolar(idCiclo,fechaInicio,fechaFin) VALUES
 			('$idciclo',
 				'$indate',
 				'$endate')";
@@ -37,7 +37,7 @@ class altacicloMod{
 		
 	}
 
-	function alumnoDelete(){
+	function borrar(){
 		$id = $_REQUEST['id'];
 
 		//cargo los datos para la conexion
