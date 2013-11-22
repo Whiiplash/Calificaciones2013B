@@ -1,23 +1,41 @@
 <?php
 session_start();
-class nuevocursoCtl{
+class cursoCtl{
 
 	public $modelo;
 	
 	function __construct(){
-
+		
 	}
 
 	function ejecutar(){
 			$file = file_get_contents('../vista/template.html');
+			include('../modelo/cursoMod.php');
+			$validate = new cursoMod(); 
+			$opcion = $_REQUEST['opcion'];
 			if(!isset($_SESSION['uid'])){
 						$file = str_ireplace('{cuerpo}' ,'Usted no ha iniciado sesion', $file);						
 						}
 					else{
 					$file = str_ireplace('Iniciar Sesion' ,'Cerrar Sesion', $file);
 					if($_SESSION['rol']=='20'){
-							//$file = file_get_contents('../vista/altaciclo.html');
-							$file = str_ireplace('{cuerpo}' ,file_get_contents('../vista/altacurso.html'), $file);
+							// Funciones para cursos
+						switch ($opcion) {
+							case 'formulario':
+								$file = str_ireplace('{cuerpo}' ,file_get_contents('../vista/altacurso.html'), $file);
+								break;
+							case 'listar':
+								$result = $validate->mostrar();
+								$file = str_ireplace('{cuerpo}' , $validate->tabla($result), $file);
+								break;
+							case 'insertar':
+								$validate->insertar();
+								break;
+							default:
+								# code...
+								break;
+						}
+							
 						} else{
 							$file = str_ireplace('{cuerpo}' ,'Usted no tiene privilegios suficientes para realizar esta acción', $file);
 						}

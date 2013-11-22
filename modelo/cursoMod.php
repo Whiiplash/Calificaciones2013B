@@ -1,12 +1,12 @@
 <?php
-class altacursoMod{
+class cursoMod{
 	
 	/**
 	* @return mixed, array $alumno
 	* 
 	*/	
 
-	function cursoInsert(){
+	function insertar(){
 		$nrc = $_REQUEST['nrc'];
 		$seccion = $_REQUEST['seccion'];
 		
@@ -39,7 +39,7 @@ class altacursoMod{
 	}
 
 
-	function mostrarCiclo(){
+	function mostrar(){
 			
 		include('db_data.inc');
 		$conexion = new mysqli($host,$user,$pass,$db);	

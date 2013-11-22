@@ -22,17 +22,9 @@
 		include('../controlador/cicloCtl.php');
 		$controlador = new cicloCtl();
 		break;
-	case 'nuevocurso':
-		include('../controlador/nuevocursoCtl.php');
-		$controlador = new nuevocursoCtl();
-		break;
-	case 'listacursos':
-		include('../controlador/listacursosCtl.php');
-		$controlador = new listacursosCtl();
-		break;
-	case 'insertarcurso':
-		include('../controlador/insertarcursoCtl.php');
-		$controlador = new insertarcursoCtl();
+	case 'curso':
+		include('../controlador/cursoCtl.php');
+		$controlador = new cursoCtl();
 		break;
 	case 'msg':
 		include('../controlador/msgCtl.php');
