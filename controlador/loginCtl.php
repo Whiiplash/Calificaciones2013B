@@ -15,8 +15,8 @@ session_start();
 						break;
 					case 'validar':
 						include('../modelo/usuarioMod.php');
-						$validate = new usuarioMod(); 
-						$validate->autentificar();
+						$modelo = new usuarioMod(); 
+						$modelo->autentificar();
 						break;
 					default:
 						session_destroy();

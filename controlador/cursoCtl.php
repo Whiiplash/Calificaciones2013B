@@ -11,7 +11,7 @@ class cursoCtl{
 	function ejecutar(){
 			$file = file_get_contents('../vista/template.html');
 			include('../modelo/cursoMod.php');
-			$validate = new cursoMod(); 
+			$modelo = new cursoMod(); 
 			$opcion = $_REQUEST['opcion'];
 			if(!isset($_SESSION['uid'])){
 						$file = str_ireplace('{cuerpo}' ,'Usted no ha iniciado sesion', $file);						
@@ -25,14 +25,14 @@ class cursoCtl{
 								$file = str_ireplace('{cuerpo}' ,file_get_contents('../vista/altacurso.html'), $file);
 								break;
 							case 'listar':
-								$result = $validate->mostrar();
-								$file = str_ireplace('{cuerpo}' , $validate->tabla($result), $file);
+								$result = $modelo->mostrar();
+								$file = str_ireplace('{cuerpo}' , $modelo->tabla($result), $file);
 								break;
 							case 'insertar':
-								$validate->insertar();
+								$modelo->insertar();
 								break;
 							case 'borrar':
-								$validate->borrar();
+								$modelo->borrar();
 								header('location: ../www/index.php?accion=curso&opcion=listar');
 								break;
 							default:

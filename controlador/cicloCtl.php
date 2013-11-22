@@ -1,8 +1,6 @@
 <?php
 session_start();
 class cicloCtl{
-
-	public $modelo;
 	
 	function __construct(){
 
@@ -10,6 +8,8 @@ class cicloCtl{
 
 	function ejecutar(){
 			$file = file_get_contents('../vista/template.html');
+			include('../modelo/cicloMod.php');
+			$modelo = new cicloMod(); 
 			$opcion = $_REQUEST['opcion'];
 			if(!isset($_SESSION['uid'])){
 						$file = str_ireplace('{cuerpo}' ,'Usted no ha iniciado sesion', $file);						
@@ -23,10 +23,16 @@ class cicloCtl{
 								$file = str_ireplace('{cuerpo}' ,file_get_contents('../vista/altaciclo.html'), $file);
 								break;
 							case 'insertar':
-								include('../modelo/cicloMod.php');
-								$validate = new cicloMod(); 
-								$validate->insertar();
+								$modelo->insertar();
 								header('location: ../www/index.php?accion=msg&msgcode=2');
+								break;
+							case 'listar':
+								$result = $modelo->mostrar();
+								$table = '';
+								while($row = mysqli_fetch_array($result)){
+									$table .= $row['idCiclo'];
+								}
+								$file = str_ireplace('{cuerpo}' , $table, $file);
 								break;
 							default:
 								header('location: ../www/index.php');
