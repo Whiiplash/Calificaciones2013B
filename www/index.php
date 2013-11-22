@@ -14,10 +14,6 @@
 		include('../controlador/loginCtl.php');
 		$controlador = new LogCtl();
 		break;
-	case 'validarusuario':
-		include('../controlador/usuarioCtl.php');
-		$controlador = new usuarioCtl();
-		break;
 	case 'ciclo':
 		include('../controlador/cicloCtl.php');
 		$controlador = new cicloCtl();

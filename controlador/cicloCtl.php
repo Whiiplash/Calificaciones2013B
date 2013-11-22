@@ -29,7 +29,7 @@ class cicloCtl{
 								header('location: ../www/index.php?accion=msg&msgcode=2');
 								break;
 							default:
-								include('../controlador/DefaultCtl.php');
+								header('location: ../www/index.php');
 								break;
 						}
 						} else{

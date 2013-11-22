@@ -32,7 +32,7 @@ class cursoCtl{
 								$validate->insertar();
 								break;
 							default:
-								# code...
+								header('location: ../www/index.php');
 								break;
 						}
 							

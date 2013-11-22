@@ -14,7 +14,7 @@ class usuarioMod{
 	}
 	
 	
-	function loginUsuario(){
+	function autentificar(){
 		if((!isset($_SESSION)))
                 {
                         session_start();
