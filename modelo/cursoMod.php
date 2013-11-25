@@ -75,7 +75,7 @@ class cursoMod{
 
 	function tabla($result){
 		$table = '';
-		$table .= "<table border='1'>
+		$table .= "<table border='1' class=\"tablaCursos\">
 		<thead>
 		<tr>
 		<th>Ciclo Escolar</th>
