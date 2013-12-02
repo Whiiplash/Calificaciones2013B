@@ -1,0 +1,4 @@
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteRule www/(.*)/(.*)$ www/index.php?accion=$1&opcion=$2
+</IfModule>

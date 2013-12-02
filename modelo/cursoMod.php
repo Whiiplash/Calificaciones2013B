@@ -204,7 +204,6 @@ class cursoMod{
 	function listarmateriasalumno(){
 			
 		include('db_data.inc');
-		$idalumno = $_REQUEST['idalumno'];
 		$conexion = new mysqli($host,$user,$pass,$db);	
 		if($conexion -> connect_errno)
 			die('No hay conexion');
@@ -214,7 +213,7 @@ class cursoMod{
 		$consulta = "SELECT  codigo , materiasalumno.nrc, idCiclo, nrc.idCurso, seccionCurso, nombreCurso, idAcademia
 						FROM materiasalumno 
 						INNER JOIN nrc ON materiasalumno.nrc = nrc.nrc
-						AND  codigo ='$idalumno'
+						AND  codigo ='$iduser'
 						INNER JOIN curso ON nrc.idCurso = curso.idCurso";
 		$result = $conexion -> query($consulta);	
 
