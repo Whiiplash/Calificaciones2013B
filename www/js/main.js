@@ -21,18 +21,50 @@ alta usuario
 /*****************************
 alta curso
 *****************************/
-$('#carreras')
-$('#nombreCurso')
-$('#seccion')
-$('#nrc')
-$('#academia')
-$('#lunes')
-$('#martes')
-$('#miercoles')
-$('#jueves')
-$('#viernes')
-$('#horas')
-$('#horario')
+
+if ($('#carreras').val()=='') {
+	$('.zonaValidacion').css('display', 'block');
+	$('.valiCiclo').css('display', 'block');
+};
+if ($('#nombreCurso').val()=='') {
+	$('.zonaValidacion').css('display', 'block');
+	$('.valiCiclo').css('display', 'block');
+};
+if ($('#seccion').val()=='') {
+	$('.zonaValidacion').css('display', 'block');
+	$('.valiCiclo').css('display', 'block');
+};
+if ($('#nrc').val()=='') {
+	$('.zonaValidacion').css('display', 'block');
+	$('.valiCiclo').css('display', 'block');
+};
+if ($('#academia').val()=='') {
+	$('.zonaValidacion').css('display', 'block');
+	$('.valiCiclo').css('display', 'block');
+};
+if ($('#lunes').val()=='') {
+	$('.zonaValidacion').css('display', 'block');
+	$('.valiCiclo').css('display', 'block');
+};
+if ($('#martes').val()=='') {
+	$('.zonaValidacion').css('display', 'block');
+	$('#martes')
+};
+if ($('#miercoles').val()=='') {
+	$('#miercoles')
+};
+if ($('#jueves').val()=='') {
+	$('#jueves')
+};
+if ($('#viernes').val()=='') {
+	$('#viernes')
+};
+if ($('#horas').val()=='') {
+	$('#horas')
+};
+if ($('#horario').val()=='') {
+	$('#horario')
+};
 
 
 

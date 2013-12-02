@@ -181,6 +181,7 @@ formularios
     width: 30%;
     margin: 0 auto;
     border: dashed 1px red;
+    display: none;
 }
 .valiCiclo,.valiCurso,.valiSeccion,.valiNrc,.valiAcademia,.valiHoras,.valiHorario{
     color: red;
