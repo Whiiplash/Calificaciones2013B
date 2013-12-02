@@ -50,7 +50,7 @@ class cursoCtl{
 										$result = $modelo->listarhorario();
 										$table = '';
 										while($row = mysqli_fetch_array($result)){
-											$table .= $row['horaInicio']." ".$row['horaFin']."<br>";
+											$table .= $row['nombreDia']." ".$row['horaInicio']." ".$row['horaFin']."<br>";
 										}
 										$file = str_ireplace('{cuerpo}' , $table, $file);
 										break;
@@ -65,7 +65,7 @@ class cursoCtl{
 										$result = $modelo->listarmateriasalumno();
 										$table = '';
 										while($row = mysqli_fetch_array($result)){
-											$table .= $row['nrc']."<br>";
+											$table .= $row['idCurso']." ".$row['nombreCurso']."<br>";
 										}
 										$file = str_ireplace('{cuerpo}' , $table, $file);
 										break;

@@ -136,7 +136,8 @@ class cursoMod{
 			die('No hay conexion');
 		$iduser = $_SESSION['uid'];
 		//Creo mi querry
-		$consulta = "SELECT * FROM diasclase WHERE  nrc = '$nrc'";
+		$consulta = "SELECT * FROM diasclase 
+						WHERE nrc ='$nrc'";
 		//Ejecuto la consulta
 		$result = $conexion -> query($consulta);	
 
@@ -171,7 +172,10 @@ class cursoMod{
 			die('No hay conexion');
 		$iduser = $_SESSION['uid'];
 		//Creo mi querry
-		$consulta = "SELECT * FROM horarios WHERE  nrc = '$nrc'";
+		$consulta = "SELECT * 
+						FROM horarios
+						INNER JOIN diasemana ON diaSemana = idDia
+						AND nrc ='$nrc'";
 		//Ejecuto la consulta
 		$result = $conexion -> query($consulta);	
 
@@ -206,8 +210,12 @@ class cursoMod{
 			die('No hay conexion');
 		$iduser = $_SESSION['uid'];
 		//Creo mi querry
-		$consulta = "SELECT * FROM materiasalumno WHERE  codigo = '$idalumno'";
-		//Ejecuto la consulta
+		//$consulta = "SELECT * FROM materiasalumno WHERE  codigo = ";
+		$consulta = "SELECT  codigo , materiasalumno.nrc, idCiclo, nrc.idCurso, seccionCurso, nombreCurso, idAcademia
+						FROM materiasalumno 
+						INNER JOIN nrc ON materiasalumno.nrc = nrc.nrc
+						AND  codigo ='$idalumno'
+						INNER JOIN curso ON nrc.idCurso = curso.idCurso";
 		$result = $conexion -> query($consulta);	
 
 

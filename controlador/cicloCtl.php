@@ -30,7 +30,7 @@ class cicloCtl{
 									$result = $modelo->mostrar();
 									$table = '';
 									while($row = mysqli_fetch_array($result)){
-										$table .= $row['idCiclo']."<br>";
+										$table .= $row['idCiclo']." ".$row['fechaInicio']." ".$row['fechaFin']."<br>";
 									}
 									$file = str_ireplace('{cuerpo}' , $table, $file);
 									break;
