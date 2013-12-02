@@ -127,5 +127,110 @@ class cursoMod{
 		
 	}
 
+	function listardiasclase(){
+			
+		include('db_data.inc');
+		$nrc = $_REQUEST['nrc'];
+		$conexion = new mysqli($host,$user,$pass,$db);	
+		if($conexion -> connect_errno)
+			die('No hay conexion');
+		$iduser = $_SESSION['uid'];
+		//Creo mi querry
+		$consulta = "SELECT * FROM diasclase WHERE  nrc = '$nrc'";
+		//Ejecuto la consulta
+		$result = $conexion -> query($consulta);	
+
+
+		if($conexion->errno){
+			$conexion -> close();
+			
+			return FALSE;
+		}
+		
+		if(!$result->num_rows > 0)
+			return FALSE;
+
+		//regreso mi objeto de alumno
+		return $result;
+
+		//Procesamos el resultado para convertirlo en un array
+		while ( $fila = $result -> fetch_assoc() )
+			$dias[] = $fila;
+
+		//regreso mi arreglo de alumno
+		
+		return $dias;
+	}
+
+	function listarhorario(){
+			
+		include('db_data.inc');
+		$nrc = $_REQUEST['nrc'];
+		$conexion = new mysqli($host,$user,$pass,$db);	
+		if($conexion -> connect_errno)
+			die('No hay conexion');
+		$iduser = $_SESSION['uid'];
+		//Creo mi querry
+		$consulta = "SELECT * FROM horarios WHERE  nrc = '$nrc'";
+		//Ejecuto la consulta
+		$result = $conexion -> query($consulta);	
+
+
+		if($conexion->errno){
+			$conexion -> close();
+			
+			return FALSE;
+		}
+		
+		if(!$result->num_rows > 0)
+			return FALSE;
+
+		//regreso mi objeto de alumno
+		return $result;
+
+		//Procesamos el resultado para convertirlo en un array
+		while ( $fila = $result -> fetch_assoc() )
+			$dias[] = $fila;
+
+		//regreso mi arreglo de alumno
+		
+		return $dias;
+	}
+
+	function listarmateriasalumno(){
+			
+		include('db_data.inc');
+		$idalumno = $_REQUEST['idalumno'];
+		$conexion = new mysqli($host,$user,$pass,$db);	
+		if($conexion -> connect_errno)
+			die('No hay conexion');
+		$iduser = $_SESSION['uid'];
+		//Creo mi querry
+		$consulta = "SELECT * FROM materiasalumno WHERE  codigo = '$idalumno'";
+		//Ejecuto la consulta
+		$result = $conexion -> query($consulta);	
+
+
+		if($conexion->errno){
+			$conexion -> close();
+			
+			return FALSE;
+		}
+		
+		if(!$result->num_rows > 0)
+			return FALSE;
+
+		//regreso mi objeto de alumno
+		return $result;
+
+		//Procesamos el resultado para convertirlo en un array
+		while ( $fila = $result -> fetch_assoc() )
+			$dias[] = $fila;
+
+		//regreso mi arreglo de alumno
+		
+		return $dias;
+	}
+
 }
 ?>
