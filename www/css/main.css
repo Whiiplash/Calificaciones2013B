@@ -152,7 +152,7 @@ formularios
     padding: 40px 0px 0px 0px;
 }
 .etiqueta{
-    margin: 0px 0px 10px 0px;
+    margin: 10px 0px 10px 0px;
 }
 /*login*/
 .nombre, .contrasena{
@@ -160,11 +160,18 @@ formularios
     width: 30%;
 }
 .contrasena{}
-.enviar{}
+.enviar{
+    padding-bottom: 15px;
+}
 /*alta curso*/
 .semana {
-    width: 7%;
-    text-align: left;
+    width: 50%;
+    text-align: left;  
+    margin: 0 auto;
+}
+.semana section {
+    width: 20%;
+    float: left;
 }
 .tablaCursos{
     margin: 0 auto;

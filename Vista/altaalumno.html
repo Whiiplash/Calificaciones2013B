@@ -1,26 +1,34 @@
+<script type="text/javascript" src="../www/js/main.js"></script>
+<script type="text/javascript" src="../www/js/jquery-1.10.2.min.js"></script>
+
+<script type="text/javascript">
+    $( document ).ready(function() {
+        alert("tas bien pendejo");
+    });    
+</script>
 <section class="info">
     <form action="index.php?accion=addal&hacer=agregarAlumno" method="post">
         <section class="etiqueta">Nombre:</section>
-        <input type="text" Required name="nombre" autofocus>
+        <input type="text" Required name="nombre" autofocus id="nombre">
         <section class="etiqueta">Apellido Paterno:</section>
-        <input type="text" Required name="apellidop">
+        <input type="text" Required name="apellidop" id="apellidop">
         <section class="etiqueta">Apellido Materno:</section>
-        <input type="text" Required name="apellidom">
+        <input type="text" Required name="apellidom" id="apellidom">
         <section class="etiqueta">Carrera:</section>
-        <select name="carreras" Required onChange="combo(this, 'theinput')">
+        <select name="carreras" Required onChange="combo(this, 'theinput')" id="carreras">
             <option>Elige una carrera...</option>
             <option>Computaci&oacute;n</option>
             <option>Inform&aacute;tica</option>
             <option>Electr&oacute;nica</option>
         </select>
         <section class="etiqueta">E-mail:</section>
-        <input type="email" name="email">
+        <input type="email" name="email" id="email">
         <section class="etiqueta">Celular:</section>
-        <input type="tel" name="celular">
+        <input type="tel" name="celular" id="celular">
         <section class="etiqueta">Github:</section>
-        <input type="text" name="github">
+        <input type="text" name="github" id="github">
         <section class="etiqueta">Web:</section>
-         <input type="text" name="web">
+         <input type="text" name="web" id="web">
         <section class="enviar">
             <input type="submit" value="Finalizar"> 
         </section>

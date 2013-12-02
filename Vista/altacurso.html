@@ -2,23 +2,25 @@
 	<form action="index.php?accion=curso&opcion=insertar" method="post">
 		<section class="etiqueta">Ciclo Correspondiente:</section>
 		<select name="carreras" Required onChange="combo(this, 'theinput')">
-			<option>1</option>
-			<option>2</option>
-			<option>3</option>
+			<option>Selecciona tu el Ciclo</option>
+			<option>2013A</option>
+			<option>2013B</option>
+			<option>2014A</option>
 		</select>
 		<section class="etiqueta">Nombre del Curso:</section>
-		<input type="text" Required name="nombreCurso" autofocus>
-		<section class="etiqueta">SecciÛn:</section>
-		<input type="text" name="seccion">
+		<input type="text" Required name="nombreCurso" id="nombreCurso" autofocus>
+		<section class="etiqueta">Secci√≥n:</section>
+		<input type="text" name="seccion" id="seccion">
 		<section class="etiqueta">NRC:</section>
-		<input type="text" name="nrc">
+		<input type="text" name="nrc" id="nrc">
 		<section class="etiqueta">Academia Correspondiente:</section>
-		<select name="academia" Required onChange="combo(this, 'theinput')">
+		<select name="academia" Required onChange="combo(this, 'theinput')" id="academia">
+			<option>Selecciona la academia correspondiente</option>
 			<option>Ciencias Computacionales</option>
-			<option>Ciencias B·sicas</option>
+			<option>Ciencias B√°sicas</option>
 			<option>Ciencias Quimicas</option>
 		</select>
-		<section class="etiqueta">DÌas de Clase:</section>
+		<section class="etiqueta">D√≠as de Clase:</section>
 		<fieldset class="semana">
 			<section>
 				<input type="checkbox" name="lunes" value="lunes" />Lunes
@@ -27,19 +29,29 @@
 				<input type="checkbox" name="martes" value="martes" />Martes
 			</section>
 			<section>
-				<input type="checkbox" name= "miercoles" value="miercoles" />Miercoles
+				<input type="checkbox" name="miercoles" value="miercoles" />Miercoles
 			</section>
 			<section>
-				<input type="checkbox" name= "jueves" value="jueves" />Jueves
+				<input type="checkbox" name="jueves" value="jueves" />Jueves
 			</section>
 			<section>
-				<input type="checkbox" name= "viernes" value="viernes" />Viernes
+				<input type="checkbox" name="viernes" value="viernes" />Viernes
 			</section>
 		</fieldset>
 		<section class="etiqueta">Cantidad de Horas Diarias:</section>
-		<input type="number" name="horas">	
+		<input type="number" name="horas" id="horas">	
 		<section class="etiqueta">Horario:</section>
-		<input type="time" name="horario">
+		<input type="time" name="horario" id="horario">
+		<section class="zonaValidacion">
+			<section class="valiCiclo">Selecciona el ciclo</section>
+			<section class="valiCurso">Escribe el nombre del curso</section>
+			<section class="valiSeccion">Escribe el nombre de la secci√≥n</section>
+			<section class="valiNrc">Escribe el NRC</section>
+			<section class="valiAcademia">Selecciona la academia</section>
+			<section class="valiDias"></section>
+			<section class="valiHoras">Escribe la cantidad de horas diarias</section>
+			<section class="valiHorario">Escribe la hora de inicio de curso</section>
+		</section>
 		<section class="enviar">
             <input type="submit" value="Finalizar"> 
         </section>
