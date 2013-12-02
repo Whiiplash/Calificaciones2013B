@@ -177,8 +177,14 @@ formularios
     margin: 0 auto;
     padding-top: 40px;
 }
-
-
+.zonaValidacion {
+    width: 30%;
+    margin: 0 auto;
+    border: dashed 1px red;
+}
+.valiCiclo,.valiCurso,.valiSeccion,.valiNrc,.valiAcademia,.valiHoras,.valiHorario{
+    color: red;
+}
 
 
 
