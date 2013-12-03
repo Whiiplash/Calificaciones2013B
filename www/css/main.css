@@ -209,7 +209,21 @@ formularios
 }
 
 
+/*tabla ciclos*/
 
+.tablaCiclos {
+    width: 430px;
+    margin: 0 auto;
+}
+.tablaCiclos tbody tr th {
+    background-color: #0099CC;
+    color: #fff;
+    border: none;
+}
+.tablaCiclos tbody tr td {
+    background: #fff;
+    border: none;
+}
 
 
 
