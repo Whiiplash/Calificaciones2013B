@@ -37,7 +37,7 @@ class cicloCtl{
 										$table .= str_ireplace('{festivos}' ,$row['idCiclo'], $table2);
 										// $table .= $row['idCiclo']." ".$row['fechaInicio']." ".$row['fechaFin'].
 										// "<a href=\"index.php?accion=ciclo&opcion=listarfestivos&idciclo=".$row['idCiclo']."\">Festivos</a> "."<br>";
-									}
+									}$table .= '</table> ';
 									$file = str_ireplace('{cuerpo}' , $table, $file);
 									break;
 								case 'listarfestivos':

@@ -32,15 +32,29 @@ class cursoCtl{
 										// $file = str_ireplace('{cuerpo}' , $modelo->tabla($result), $file);
 										// break;
 										$result = $modelo->mostrar();
-										$table = '';
+										// $table = '';
+										// while($row = mysqli_fetch_array($result)){
+										// 	$table .= $row['nrc'].
+										// 				"<a href=\"index.php?accion=curso&opcion=listarhorario&nrc=".$row['nrc']."\">Horario</a> ".
+										// 				"<a href=\"index.php?accion=curso&opcion=listapormateria&nrc=".$row['nrc']."\">Lista</a> ".
+										// 				"<a href=\"index.php?accion=curso&opcion=listardiasclase&nrc=".$row['nrc']."\">DiasClase</a> "
+										// 				.$row['idCiclo']." "
+										// 				.$row['idCurso']."<br>";
+										// 	}
+
+
+										$table = file_get_contents('../vista/listacursosheader.html');
+										$table2 = file_get_contents('../vista/listacursosrow.html');
 										while($row = mysqli_fetch_array($result)){
-											$table .= $row['nrc'].
-														"<a href=\"index.php?accion=curso&opcion=listarhorario&nrc=".$row['nrc']."\">Horario</a> ".
-														"<a href=\"index.php?accion=curso&opcion=listapormateria&nrc=".$row['nrc']."\">Lista</a> ".
-														"<a href=\"index.php?accion=curso&opcion=listardiasclase&nrc=".$row['nrc']."\">DiasClase</a> "
-														.$row['idCiclo']." "
-														.$row['idCurso']."<br>";
-											}
+											$table2 = str_ireplace('{nrc}' ,$row['nrc'], $table2);
+											//$table2 = str_ireplace('{nombre}' ,$row['idCiclo'], $table2);
+											$table2 = str_ireplace('{seccion}' ,$row['seccionCurso'], $table2);
+											$table .= str_ireplace('{idcurso}' ,$row['idCurso'], $table2);
+										}$table .= '<td><a href="altacurso.html">Agregar</a></td>
+	</tr></table> ';
+
+
+
 										$file = str_ireplace('{cuerpo}' , $table, $file);
 										break;
 									case 'insertar':
