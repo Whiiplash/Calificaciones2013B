@@ -28,8 +28,20 @@ class cursoCtl{
 										$file = str_ireplace('{cuerpo}' ,file_get_contents('../vista/altacurso.html'), $file);
 										break;
 									case 'listar':
+										// $result = $modelo->mostrar();
+										// $file = str_ireplace('{cuerpo}' , $modelo->tabla($result), $file);
+										// break;
 										$result = $modelo->mostrar();
-										$file = str_ireplace('{cuerpo}' , $modelo->tabla($result), $file);
+										$table = '';
+										while($row = mysqli_fetch_array($result)){
+											$table .= $row['nrc'].
+														"<a href=\"index.php?accion=curso&opcion=listarhorario&nrc=".$row['nrc']."\">Horario</a> ".
+														"<a href=\"index.php?accion=curso&opcion=listapormateria&nrc=".$row['nrc']."\">Lista</a> ".
+														"<a href=\"index.php?accion=curso&opcion=listardiasclase&nrc=".$row['nrc']."\">DiasClase</a> "
+														.$row['idCiclo']." "
+														.$row['idCurso']."<br>";
+											}
+										$file = str_ireplace('{cuerpo}' , $table, $file);
 										break;
 									case 'insertar':
 										$modelo->insertar();
@@ -51,6 +63,14 @@ class cursoCtl{
 										$table = '';
 										while($row = mysqli_fetch_array($result)){
 											$table .= $row['nombreDia']." ".$row['horaInicio']." ".$row['horaFin']."<br>";
+										}
+										$file = str_ireplace('{cuerpo}' , $table, $file);
+										break;
+									case 'listapormateria':
+										$result = $modelo->listapormateria();
+										$table = '';
+										while($row = mysqli_fetch_array($result)){
+											$table .= $row['codigo']." ".$row['nombreCompleto']."<br>";
 										}
 										$file = str_ireplace('{cuerpo}' , $table, $file);
 										break;
