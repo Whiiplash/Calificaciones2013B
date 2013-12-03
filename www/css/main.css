@@ -225,6 +225,21 @@ formularios
     border: none;
 }
 
+/*tabla cursos*/
+
+.tablaCursos {
+    width: 430px;
+    margin: 0 auto;
+}
+.tablaCursos tbody tr th {
+    background-color: #0099CC;
+    color: #fff;
+    border: none;
+}
+.tablaCursos tbody tr td {
+    background: #fff;
+    border: none;
+}
 
 
 /* ==========================================================================
