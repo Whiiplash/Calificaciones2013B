@@ -241,6 +241,22 @@ formularios
     border: none;
 }
 
+/*tabla Calificacion*/
+
+.tablaCalificacion {
+    width: 430px;
+    margin: 0 auto;
+}
+.tablaCalificacion tbody tr th {
+    background-color: #0099CC;
+    color: #fff;
+    border: none;
+}
+.tablaCalificacion tbody tr td {
+    background: #fff;
+    border: none;
+}
+
 
 /* ==========================================================================
    Helper classes
