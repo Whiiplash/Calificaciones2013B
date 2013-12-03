@@ -30,7 +30,16 @@ class cicloCtl{
 									$result = $modelo->mostrar();
 									$table = '';
 									while($row = mysqli_fetch_array($result)){
-										$table .= $row['idCiclo']." ".$row['fechaInicio']." ".$row['fechaFin']."<br>";
+										$table .= $row['idCiclo']." ".$row['fechaInicio']." ".$row['fechaFin'].
+										"<a href=\"index.php?accion=ciclo&opcion=listarfestivos&idciclo=".$row['idCiclo']."\">Festivos</a> "."<br>";
+									}
+									$file = str_ireplace('{cuerpo}' , $table, $file);
+									break;
+								case 'listarfestivos':
+									$result = $modelo->listarfestivos();
+									$table = '';
+									while($row = mysqli_fetch_array($result)){
+										$table .= $row['idCiclo']." ".$row['diaFestivo']."<br>";
 									}
 									$file = str_ireplace('{cuerpo}' , $table, $file);
 									break;

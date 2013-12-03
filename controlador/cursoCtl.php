@@ -66,6 +66,18 @@ class cursoCtl{
 										}
 										$file = str_ireplace('{cuerpo}' , $table, $file);
 										break;
+									case 'tabla':
+										$result = $modelo->listarhorario();
+										$table = '';
+										while($row = mysqli_fetch_array($result)){
+											$table .= $row['nombreDia']." ";
+										}
+										$result = $modelo->listapormateria();
+										while($row = mysqli_fetch_array($result)){
+											$table .= "<br>".$row['codigo']." ".$row['nombreCompleto'];
+										}
+										$file = str_ireplace('{cuerpo}' , $table, $file);
+										break;
 									case 'listapormateria':
 										$result = $modelo->listapormateria();
 										$table = '';
