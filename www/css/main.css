@@ -164,6 +164,15 @@ formularios
     padding-bottom: 15px;
 }
 /*alta curso*/
+#horas{
+    width: 5%;
+    margin: 0 auto;
+}
+#horario{
+    width: 10%;
+    margin: 0 auto;
+}
+
 .semana {
     width: 50%;
     text-align: left;  

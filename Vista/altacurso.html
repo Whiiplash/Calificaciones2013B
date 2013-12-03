@@ -1,8 +1,8 @@
 <section class="info">
 	<form action="index.php?accion=curso&opcion=insertar" method="post">
 		<section class="etiqueta">Ciclo Correspondiente:</section>
-		<select name="carreras" Required onChange="combo(this, 'theinput')">
-			<option>Selecciona tu el Ciclo</option>
+		<select name="ciclo" Required id="ciclo">
+			<option>Selecciona el Ciclo</option>
 			<option>2013A</option>
 			<option>2013B</option>
 			<option>2014A</option>
@@ -14,7 +14,7 @@
 		<section class="etiqueta">NRC:</section>
 		<input type="text" name="nrc" id="nrc">
 		<section class="etiqueta">Academia Correspondiente:</section>
-		<select name="academia" Required onChange="combo(this, 'theinput')" id="academia">
+		<select name="academia" Required id="academia">
 			<option>Selecciona la academia correspondiente</option>
 			<option>Ciencias Computacionales</option>
 			<option>Ciencias Básicas</option>
@@ -52,7 +52,7 @@
 			<section class="valiHorario">Escribe la hora de inicio de curso</section>
 		</section>
 		<section class="enviar">
-            <input type="submit" value="Finalizar"> 
+            <input type="submit" value="Finalizar" onClick="return validaAltaCurso()"> 
         </section>
 	</form>	
 </section>
