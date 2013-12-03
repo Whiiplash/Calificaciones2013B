@@ -47,7 +47,9 @@ class cursoMod{
 			die('No hay conexion');
 		$iduser = $_SESSION['uid'];
 		//Creo mi querry
-		$consulta = "SELECT * FROM nrc ";
+		$consulta = "SELECT * FROM nrc 
+						INNER JOIN curso ON nrc.idCurso = curso.idCurso
+						INNER JOIN academia ON academia.idAcademia = curso.idAcademia";
 		//Ejecuto la consulta
 		$result = $conexion -> query($consulta);	
 
@@ -73,33 +75,33 @@ class cursoMod{
 		return $ciclo;
 	}
 
-	function tabla($result){
-		$table = '';
-		$table .= "<table border='1' class=\"tablaCursos\">
-		<thead>
-		<tr>
-		<th>Ciclo Escolar</th>
-		<th>Fecha Inicio</th>
-		<th>Fecha Final</th>
-		<th>Eliminar</th>
-		</tr>
-		</thead>";
-		while($row = mysqli_fetch_array($result))
-  		{
-  			$table .= "<tbody>";
-  			$table .= "<tr>";
-  			$table .= "<td><a href=" . "../www/index.php?accion=curso&cescolar=". $row['nrc'] . ">" . $row['nrc'] . "</a></td>";
-  			$table .= "<td>" . $row['idCiclo'] . "</td>";
-  			$table .= "<td>" . $row['idCurso'] . "</td>";
-  			$table .= "<td><a href=../www/index.php?accion=ciclodel&id=".$row['seccionCurso'] ."> X</td>";
-  			$table .= "</tr>";
-  			$table .= "</tbody>";
-  		}
-		$table .= "</table>";
-		$table .= "<br><a href=../www/index.php?accion=cicloalta>Insertar Ciclo";
-		return $table;
+	// function tabla($result){
+	// 	$table = '';
+	// 	$table .= "<table border='1' class=\"tablaCursos\">
+	// 	<thead>
+	// 	<tr>
+	// 	<th>Ciclo Escolar</th>
+	// 	<th>Fecha Inicio</th>
+	// 	<th>Fecha Final</th>
+	// 	<th>Eliminar</th>
+	// 	</tr>
+	// 	</thead>";
+	// 	while($row = mysqli_fetch_array($result))
+ //  		{
+ //  			$table .= "<tbody>";
+ //  			$table .= "<tr>";
+ //  			$table .= "<td><a href=" . "../www/index.php?accion=curso&cescolar=". $row['nrc'] . ">" . $row['nrc'] . "</a></td>";
+ //  			$table .= "<td>" . $row['idCiclo'] . "</td>";
+ //  			$table .= "<td>" . $row['idCurso'] . "</td>";
+ //  			$table .= "<td><a href=../www/index.php?accion=ciclodel&id=".$row['seccionCurso'] ."> X</td>";
+ //  			$table .= "</tr>";
+ //  			$table .= "</tbody>";
+ //  		}
+	// 	$table .= "</table>";
+	// 	$table .= "<br><a href=../www/index.php?accion=cicloalta>Insertar Ciclo";
+	// 	return $table;
 
-	}
+	// }
 
 	function borrar(){
 		$nrc = $_REQUEST['nrc'];
