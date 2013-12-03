@@ -28,10 +28,15 @@ class cicloCtl{
 									break;
 								case 'listar':
 									$result = $modelo->mostrar();
-									$table = '';
+									$table = file_get_contents('../vista/listacicloshead.html');
+									$table2 = file_get_contents('../vista/listaciclosrow.html');
 									while($row = mysqli_fetch_array($result)){
-										$table .= $row['idCiclo']." ".$row['fechaInicio']." ".$row['fechaFin'].
-										"<a href=\"index.php?accion=ciclo&opcion=listarfestivos&idciclo=".$row['idCiclo']."\">Festivos</a> "."<br>";
+										$table2 = str_ireplace('{ciclo}' ,$row['idCiclo'], $table2);
+										$table2 = str_ireplace('{fechainicio}' ,$row['fechaInicio'], $table2);
+										$table2 = str_ireplace('{fechafin}' ,$row['fechaFin'], $table2);
+										$table .= str_ireplace('{festivos}' ,$row['idCiclo'], $table2);
+										// $table .= $row['idCiclo']." ".$row['fechaInicio']." ".$row['fechaFin'].
+										// "<a href=\"index.php?accion=ciclo&opcion=listarfestivos&idciclo=".$row['idCiclo']."\">Festivos</a> "."<br>";
 									}
 									$file = str_ireplace('{cuerpo}' , $table, $file);
 									break;
