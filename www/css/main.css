@@ -192,11 +192,21 @@ formularios
     border: dashed 1px red;
     display: none;
 }
-.valiCiclo,.valiCurso,.valiSeccion,.valiNrc,.valiAcademia,.valiHoras,.valiHorario{
+.valiCiclo,.valiCurso,.valiSeccion,.valiNrc,.valiAcademia,.valiHoras,.valiHorario,.valiNombre,.valiFeInicio,.valiFeFin,.valiDiaFestivo{
     color: red;
 }
+#agregaDia{
+    font-size: 30px;
+    border: solid 1px #000;
+    width: 5%;
+    margin: 0 auto;
+    background: #fff;
+    cursor: pointer;
+}
 
-
+#zonaDiasFestivos section{
+    margin: 5px 0px;
+}
 
 
 

@@ -21,16 +21,20 @@ function validacion(){
 	
 }
 
-$('#ciclo').click(function() {
-		$( "#ciclo option" ).remove( ":contains('Selecciona')" );
-});
+function ciclos(){
+	$('#ciclo').click(function() {
+			$( "#ciclo option" ).remove( ":contains('Selecciona')" );
+	});
 
-$('#academia').click(function() {
-		$( "#academia option" ).remove( ":contains('Selecciona')" );
-});
-
-function desaparece(){
-
+	$('#academia').click(function() {
+			$( "#academia option" ).remove( ":contains('Selecciona')" );
+	});
+	contadorDias = 0;
+	$('#agregaDia').click(function() {
+		contadorDias++;
+		$('#numeroDiasFestivos').val(contadorDias);
+		$('#zonaDiasFestivos').append('<section><input type="date" Required name="diaf'+contadorDias+'" class="diaf"></section>');
+	});	
 }
 
 function validaAltaCurso(){
@@ -83,6 +87,49 @@ function validaAltaCurso(){
 		$('.valiHorario').css('display', 'block');
 		eval++;
 	};
+
+	if(eval==0){
+		return true;
+	}else return false
+}
+function validaAltaCiclo(){
+	/*****************************
+	alta ciclo
+	*****************************/
+	$('.zonaValidacion').css('display', 'none');
+	$('.valiNombre').css('display', 'none');
+	$('.valiFeInicio').css('display', 'none');
+	$('.valiFeFin').css('display', 'none');
+	$('.valiDiaFestivo').css('display', 'none');
+	eval=0;
+
+	if ($('#nombre').val()=='') {
+		$('.zonaValidacion').css('display', 'block');
+		$('.valiNombre').css('display', 'block');
+		eval++;
+	} 
+
+	if ($('#fechainicio').val()=='') {
+		$('.zonaValidacion').css('display', 'block');
+		$('.valiFeInicio').css('display', 'block');
+		eval++;
+	};
+	if ($('#fechafin').val()=='') {
+		$('.zonaValidacion').css('display', 'block');
+		$('.valiFeFin').css('display', 'block');
+		eval++;
+	};
+
+	for (var i = 1; i <= contadorDias; i++) {
+		enT = 'diasf'+i;
+		if ($(enT).val()=='') {
+			$('.zonaValidacion').css('display', 'block');
+			$('.valiDiaFestivo').css('display', 'block');
+			eval++;
+	};
+
+	};
+	
 
 	if(eval==0){
 		return true;

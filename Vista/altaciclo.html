@@ -1,17 +1,31 @@
+<script type="text/javascript">
+	$( document ).ready(function() {
+    	ciclos();
+	});
+</script>
+
 <section class="info">
 	<form action="index.php?accion=ciclo&opcion=insertar" method="post">
 	    <section class="etiqueta">Nombre:</section>
-	    <input type="text" Required name="nombre" autofocus>
+	    <input type="text" Required name="nombre" autofocus id="nombre">
 	    <section class="etiqueta">Fecha de inicio:</section>
-	    <input type="date" Required name="fechainicio">
+	    <input type="date" Required name="fechainicio" id="fechainicio">
 	    <section class="etiqueta">Fecha de fin:</section>
-	    <input type="date" Required name="fechafin">
-		<section class="etiqueta">Dias festivo:</section>
+	    <input type="date" Required name="fechafin" id="fechafin">
+		<section class="etiqueta">Dias festivos:</section>
+		<section id="agregaDia">+</section>
 		<section class="clear"></section>
-		<section class="etiqueta">Dia:</section>
-		<input type="date" Required name="diaf">
+		<section id="zonaDiasFestivos">
+		</section>
+		<input type="hidden" name="numeroDiasFestivos" value="0" id="numeroDiasFestivos">
+	    <section class="zonaValidacion">
+			<section class="valiNombre">Escribe el nombre del ciclo</section>
+			<section class="valiFeInicio">Selecciona la fecha de inicio</section>
+			<section class="valiFeFin">Selecciona la fecha final</section>
+			<section class="valiDiaFestivo">Selecciona los dias festivos</section>
+		</section>
 	    <section class="enviar">
-            <input type="submit" value="Crear"> 
+            <input type="submit" value="Crear" onclick="return validaAltaCiclo()"> 
         </section>
 	</form>
 </section>
