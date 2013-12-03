@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Dec 02, 2013 at 02:53 AM
+-- Generation Time: Dec 03, 2013 at 08:58 AM
 -- Server version: 5.6.12-log
 -- PHP Version: 5.4.12
 
@@ -295,10 +295,10 @@ INSERT INTO `diasclase` (`idDia`, `nrc`, `fechaClase`) VALUES
 (118, 101, '2013-08-29'),
 (119, 101, '2013-08-30'),
 (120, 101, '2013-09-02'),
-(121, 101, '2013-09-02'),
-(122, 101, '2013-09-02'),
-(123, 101, '2013-09-02'),
-(124, 101, '2013-09-02'),
+(121, 101, '2013-09-03'),
+(122, 101, '2013-09-04'),
+(123, 101, '2013-09-05'),
+(124, 101, '2013-09-06'),
 (125, 102, '2013-08-26'),
 (126, 102, '2013-08-28'),
 (127, 102, '2013-08-30'),
@@ -325,13 +325,47 @@ INSERT INTO `diasclase` (`idDia`, `nrc`, `fechaClase`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `diasemana`
+--
+
+CREATE TABLE IF NOT EXISTS `diasemana` (
+  `idDia` int(11) NOT NULL,
+  `nombreDia` varchar(10) COLLATE utf8_spanish2_ci NOT NULL,
+  PRIMARY KEY (`idDia`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+
+--
+-- Dumping data for table `diasemana`
+--
+
+INSERT INTO `diasemana` (`idDia`, `nombreDia`) VALUES
+(1, 'Lunes'),
+(2, 'Martes'),
+(3, 'Miercoles'),
+(4, 'Jueves'),
+(5, 'Viernes');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `diasfestivos`
 --
 
 CREATE TABLE IF NOT EXISTS `diasfestivos` (
-  `idCiclo` int(11) NOT NULL,
+  `idCiclo` varchar(11) COLLATE utf8_spanish2_ci NOT NULL,
   `diaFestivo` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+
+--
+-- Dumping data for table `diasfestivos`
+--
+
+INSERT INTO `diasfestivos` (`idCiclo`, `diaFestivo`) VALUES
+('2013B', '2013-08-29'),
+('2013B', '2013-09-06'),
+('2014A', '2014-01-01'),
+('2014A', '2014-12-12'),
+('2014B', '2014-12-12');
 
 -- --------------------------------------------------------
 
@@ -359,22 +393,36 @@ CREATE TABLE IF NOT EXISTS `horarios` (
   `diaSemana` int(11) NOT NULL,
   `numeroHoras` int(11) NOT NULL,
   `horaInicio` time NOT NULL,
-  `horaFin` time NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+  `horaFin` time NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci AUTO_INCREMENT=21 ;
 
 --
 -- Dumping data for table `horarios`
 --
 
-INSERT INTO `horarios` (`nrc`, `diaSemana`, `numeroHoras`, `horaInicio`, `horaFin`) VALUES
-(100, 1, 2, '07:00:00', '09:00:00'),
-(100, 2, 1, '08:00:00', '09:00:00'),
-(100, 3, 2, '07:00:00', '09:00:00'),
-(100, 4, 1, '08:00:00', '09:00:00'),
-(100, 5, 2, '07:00:00', '09:00:00'),
-(102, 1, 2, '07:00:00', '09:00:00'),
-(102, 3, 2, '07:00:00', '09:00:00'),
-(102, 5, 1, '08:00:00', '09:00:00');
+INSERT INTO `horarios` (`nrc`, `diaSemana`, `numeroHoras`, `horaInicio`, `horaFin`, `id`) VALUES
+(100, 1, 2, '07:00:00', '09:00:00', 1),
+(100, 2, 1, '08:00:00', '09:00:00', 2),
+(100, 3, 2, '07:00:00', '09:00:00', 3),
+(100, 4, 1, '08:00:00', '09:00:00', 4),
+(100, 5, 2, '07:00:00', '09:00:00', 5),
+(102, 1, 2, '07:00:00', '09:00:00', 6),
+(102, 3, 2, '07:00:00', '09:00:00', 7),
+(102, 5, 1, '08:00:00', '09:00:00', 8),
+(101, 1, 2, '19:00:00', '21:00:00', 9),
+(101, 2, 2, '19:00:00', '21:00:00', 10),
+(101, 3, 2, '19:00:00', '21:00:00', 11),
+(101, 4, 2, '19:00:00', '21:00:00', 12),
+(101, 5, 2, '19:00:00', '21:00:00', 13),
+(103, 2, 2, '17:00:00', '19:00:00', 14),
+(103, 4, 2, '17:00:00', '19:00:00', 15),
+(104, 1, 2, '12:00:00', '14:00:00', 16),
+(104, 2, 2, '12:00:00', '14:00:00', 17),
+(104, 3, 2, '12:00:00', '14:00:00', 18),
+(104, 4, 2, '12:00:00', '14:00:00', 19),
+(104, 5, 2, '12:00:00', '14:00:00', 20);
 
 -- --------------------------------------------------------
 
@@ -397,7 +445,10 @@ INSERT INTO `login` (`codigo`, `pass`) VALUES
 (200, '1234'),
 (300, '1234'),
 (301, '1234'),
-(302, '1234');
+(302, '1234'),
+(303, '1234'),
+(304, '1234'),
+(305, '1234');
 
 -- --------------------------------------------------------
 
@@ -409,6 +460,29 @@ CREATE TABLE IF NOT EXISTS `materiasalumno` (
   `codigo` int(11) NOT NULL,
   `nrc` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+
+--
+-- Dumping data for table `materiasalumno`
+--
+
+INSERT INTO `materiasalumno` (`codigo`, `nrc`) VALUES
+(300, 101),
+(300, 102),
+(103, 300),
+(300, 103),
+(301, 101),
+(301, 102),
+(304, 100),
+(305, 100),
+(302, 103),
+(300, 104),
+(301, 104),
+(302, 104),
+(303, 101),
+(303, 102),
+(303, 103),
+(303, 104),
+(303, 105);
 
 -- --------------------------------------------------------
 
@@ -484,7 +558,10 @@ INSERT INTO `usuario` (`codigo`, `nombreCompleto`, `idCarrera`, `correo`, `estat
 (200, 'Nancy Michelle', 10, 'michelle@udg.mx', 1, 20, 333101901, '', ''),
 (300, 'Omar Valencia', 10, 'omar.val2189@gmail.com', 1, 30, 304734505, 'robin2189', NULL),
 (301, 'Juan Perez', 20, 'correo@a.com', 1, 30, 331122354, 'juanillo', 'tuweb.com'),
-(302, 'Pepe Pecas', 10, 'email@baca.com', 1, 30, 333111102, 'pepillo', 'miweb.com');
+(302, 'Pepe Pecas', 10, 'email@baca.com', 1, 30, 333111102, 'pepillo', 'miweb.com'),
+(303, 'Lola Lela', 10, 'lola@baca.com', 1, 30, 333311102, 'lolitayala', 'notengo.com'),
+(304, 'Matt Herias', 20, 'mimail@a.com', 1, 30, 2147483647, '', ''),
+(305, 'Armando Slam', 20, '', 1, 30, 333122354, 'mandillo', 'armando.yy.com');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
