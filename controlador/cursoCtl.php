@@ -47,8 +47,9 @@ class cursoCtl{
 										$table2 = file_get_contents('../vista/listacursosrow.html');
 										while($row = mysqli_fetch_array($result)){
 											$table2 = str_ireplace('{nrc}' ,$row['nrc'], $table2);
-											//$table2 = str_ireplace('{nombre}' ,$row['idCiclo'], $table2);
+											$table2 = str_ireplace('{nombre}' ,$row['nombreCurso'], $table2);
 											$table2 = str_ireplace('{seccion}' ,$row['seccionCurso'], $table2);
+											$table2 = str_ireplace('{academia}' ,$row['nombreAcademia'], $table2);
 											$table .= str_ireplace('{idcurso}' ,$row['idCurso'], $table2);
 										}$table .= '<td><a href="altacurso.html">Agregar</a></td>
 	</tr></table> ';
