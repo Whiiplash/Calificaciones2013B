@@ -124,23 +124,42 @@ class cicloMod{
 			die('No hay conexion');
 		$iduser = $_SESSION['uid'];
 		$idCiclo = $_REQUEST['idciclo'];
+		$nrc = $_REQUEST['nrc'];
 		//Creo mi querry
-		$consulta = "SELECT * FROM cicloescolar WHERE idCiclo = '$idCiclo' ";
-		//Ejecuto la consulta
-		$result1 = $conexion -> query($consulta);	
+		// $consulta = "SELECT * FROM cicloescolar WHERE idCiclo = '$idCiclo' ";
+		// //Ejecuto la consulta
+		// $result1 = $conexion -> query($consulta);	
 
-		while ( $fila = $result1 -> fetch_assoc() )
-		$datosDelCiclo = $fila;
+		// while ( $fila = $result1 -> fetch_assoc() )
+		// $datosDelCiclo = $fila;
 
 
-		$inicio = $datosDelCiclo['fechaInicio'];
-		$fin = $datosDelCiclo['fechaFin'];
+		// $inicio = $datosDelCiclo['fechaInicio'];
+		// $fin = $datosDelCiclo['fechaFin'];
 
 
 		//Creo mi querry
-		$consulta = "SELECT DAYOFWEEK(Dia),Dia FROM fechas 
+	/*	$consulta = "SELECT DAYOFWEEK(Dia),Dia FROM fechas 
 						WHERE Habil = '1' AND 
-						Dia >= '$inicio' AND Dia <= '$fin'  ";
+						Dia >= (SELECT fechaInicio FROM cicloescolar WHERE idCiclo = '$idCiclo') AND 
+						Dia <= (SELECT (fechafin) FROM cicloescolar WHERE idCiclo = '$idCiclo') AND  
+						DAYOFWEEK(Dia) IN ((SELECT diaSemana FROM horarios WHERE nrc='101')+1) */
+
+$consulta = "SELECT fechas.id, DAYOFWEEK(Dia) , Dia, DAYOFMONTH(Dia), MONTH(Dia)
+				FROM fechas
+				INNER JOIN horarios ON diaSemana +1 = DAYOFWEEK( Dia ) 
+				WHERE Habil =  '1'
+				AND Dia >= ( 
+				SELECT fechaInicio
+				FROM cicloescolar
+				WHERE idCiclo =  '$idCiclo' ) 
+				AND Dia <= ( 
+				SELECT (
+				fechafin
+				)
+				FROM cicloescolar
+				WHERE idCiclo =  '$idCiclo' ) 
+				AND nrc ='$nrc'";
 		//Ejecuto la consulta
 
 		$result = $conexion -> query($consulta);
