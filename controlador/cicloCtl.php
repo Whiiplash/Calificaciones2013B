@@ -41,7 +41,7 @@ class cicloCtl{
 								case 'listarfestivos':
 									$result = $modelo->mostrardiashabiles();
 									$table = '';
-									//var_dump($result);
+									
 									while($row = mysqli_fetch_array($result)){
 										//var_dump($row);
 										$table .= $row['DAYOFMONTH(Dia)']."/".$row['MONTH(Dia)']."<br>";
