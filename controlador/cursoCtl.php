@@ -52,7 +52,7 @@ class cursoCtl{
 											$ids[] = $row['id'];
 										}
 										$nrc = $_REQUEST['nrc'];
-										var_dump($nrc);
+										//var_dump($nrc);
 										$table .= '</tr>';
 										$table2 = '<tr><td>{alumno}</td>';
 										for ($i=0; $i < $result->num_rows; $i++) { 
