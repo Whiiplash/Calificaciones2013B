@@ -4,7 +4,7 @@ session_start();
 		function ejecutar(){
 			if(!isset($_SESSION['uid'])){
 						$file = file_get_contents('../vista/template.html');
-						$file = str_ireplace('{cuerpo}' ,'Mensaje de Bienvenida para invitados', $file);						
+						$file = str_ireplace('{cuerpo}' ,'!Revoluciona, expresate y construye!<br><section><img src="../vista/img/EUniversitarios.jpg"></section><br>', $file);						
 						}
 					else{
 						$file = file_get_contents('../vista/template.html');
