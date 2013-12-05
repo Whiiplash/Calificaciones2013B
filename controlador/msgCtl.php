@@ -16,6 +16,9 @@ class msgCtl {
         case '3':
             $file = str_ireplace('{cuerpo}' ,'<strong style="color:red;">El Usuario o Password son incorrectos</strong>', $file);
             break;
+        case '4':
+            $file = str_ireplace('{cuerpo}' ,'<strong style="color:green;">El Usuario fue agregado con exito</strong>', $file);
+            break;
         default:
             header('location: ../www/index.php');
             break;
