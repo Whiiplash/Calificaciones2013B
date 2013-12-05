@@ -93,6 +93,34 @@ textarea {
     padding: 0.2em 0;
 }
 
+
+/***************************
+Fuentes
+***************************/
+@font-face {
+    font-family: 'futuralightregular';
+    src: url('../fonts/futuralight-webfont.eot');
+    src: url('../fonts/futuralight-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/futuralight-webfont.woff') format('woff'),
+         url('../fonts/futuralight-webfont.ttf') format('truetype'),
+         url('../fonts/futuralight-webfont.svg#futuralightregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'futura_md_btbold';
+    src: url('../fonts/futura_bold_bt-webfont.eot');
+    src: url('../fonts/futura_bold_bt-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/futura_bold_bt-webfont.woff') format('woff'),
+         url('../fonts/futura_bold_bt-webfont.ttf') format('truetype'),
+         url('../fonts/futura_bold_bt-webfont.svg#futura_md_btbold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
 /* ==========================================================================
    Author's custom styles
    ========================================================================== */
@@ -100,7 +128,8 @@ textarea {
 html, body {
     height: 100%;
     margin: 0 auto;
-    background:white;
+    background:#d6d6d6;
+    font-family: 'futuralightregular';
 }
 .wrapper{}
 .container{
@@ -108,51 +137,70 @@ html, body {
     width: 960px;
 }
 #header{
-    height: 100px;
+    height: 150px;
     width: 100%;
-    background: #0099CC;
+    background: #2E3742;
+}
+#header img {
+    float: right;
 }
 .menu{
     list-style: none;
     float: left;
-    width: 100%;
 }
 .menu a {
-    color: #fff;
+    color: #1c75b6;
     text-decoration: none;
     float: left;
+    font-size: 30px;
     margin: 5px;
+}
+.menu a :hover{
+    color: #00a8e9;
 }
 #principal{
     text-align: center;      
 }
 #contenido {
-    background: #d6d6d6;
+    background: #fff;
     min-height: 500px;
+    font-size: 25px;
+    color: #1c75b6;
 }
 #footer{
-    height: 40px;
+    height:100px;
     width: 100%;
     list-style: none;
-    background: #0099CC;
+    background: #2E3742;
 }
 #footer a{
-    color: #fff;
+    color: #1c75b6;
     text-decoration: none;
     float: left;
     margin: 5px;   
 }
-.clear {
-    height: 30px;
+.clear {    height: 30px;;
 }
-/*************************************************
-formularios
-*************************************************/  
+
+input[type="submit"] {
+    background: #1c75b6;
+    border: none;
+    color: #fff;
+    width: 200px;
+    height: 40px;
+    margin-top: 15px;
+}
+
+input[type="text"],input[type="password"] {
+    padding-left: 10px;
+}
+/*********************************************/  
 .info {
     padding: 40px 0px 0px 0px;
 }
 .etiqueta{
     margin: 10px 0px 10px 0px;
+    font-size: 30px;
 }
 /*login*/
 .nombre, .contrasena{
@@ -212,7 +260,7 @@ formularios
 /*tabla ciclos*/
 
 .tablaCiclos {
-    width: 430px;
+    width: 600px;
     margin: 0 auto;
 }
 .tablaCiclos tbody tr th {
@@ -228,7 +276,7 @@ formularios
 /*tabla cursos*/
 
 .tablaCursos {
-    width: 430px;
+    width: 600px;
     margin: 0 auto;
 }
 .tablaCursos tbody tr th {
@@ -244,7 +292,7 @@ formularios
 /*tabla Calificacion*/
 
 .tablaCalificacion {
-    width: 430px;
+    width: 600px;
     margin: 0 auto;
 }
 .tablaCalificacion tbody tr th {
