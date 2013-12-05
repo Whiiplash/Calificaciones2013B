@@ -501,3 +501,27 @@ tr{
     }   
 }
 
+@media screen and (min-width: 100px) and (max-width: 320px) {
+    .container{
+        width: 430px;
+    } 
+    #header img {
+        height: 95%;
+        width: 39%;
+        float: right;
+        margin-right: 10px;
+        display: none;
+    }
+    #header{
+        height: 60px;
+    }
+
+    .menu{
+        width: 45%;
+    }
+
+    .menu a{
+        font-size: 17px;
+    }   
+}
+
