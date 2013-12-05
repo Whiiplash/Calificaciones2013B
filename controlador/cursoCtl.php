@@ -64,7 +64,7 @@ class cursoCtl{
 											//$table3 = $row['idciclo']." ".$row['idCiclo']."<br>";
 											$table3 .= str_ireplace('{alumno}' ,$row['nombreCompleto'], $table2);
 										}
-										$table3 .= '</table>';
+										$table3 .= '</table><section>';
 										$table .=$table3;
 										$file = str_ireplace('{cuerpo}' , $table, $file);
 										break;
