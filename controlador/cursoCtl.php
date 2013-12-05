@@ -28,21 +28,7 @@ class cursoCtl{
 										$file = str_ireplace('{cuerpo}' ,file_get_contents('../vista/altacurso.html'), $file);
 										break;
 									case 'listar':
-										// $result = $modelo->mostrar();
-										// $file = str_ireplace('{cuerpo}' , $modelo->tabla($result), $file);
-										// break;
 										$result = $modelo->mostrar();
-										// $table = '';
-										// while($row = mysqli_fetch_array($result)){
-										// 	$table .= $row['nrc'].
-										// 				"<a href=\"index.php?accion=curso&opcion=listarhorario&nrc=".$row['nrc']."\">Horario</a> ".
-										// 				"<a href=\"index.php?accion=curso&opcion=listapormateria&nrc=".$row['nrc']."\">Lista</a> ".
-										// 				"<a href=\"index.php?accion=curso&opcion=listardiasclase&nrc=".$row['nrc']."\">DiasClase</a> "
-										// 				.$row['idCiclo']." "
-										// 				.$row['idCurso']."<br>";
-										// 	}
-
-
 										$table = file_get_contents('../vista/listacursosheader.html');
 										$table2 = file_get_contents('../vista/listacursosrow.html');
 										while($row = mysqli_fetch_array($result)){
@@ -51,21 +37,35 @@ class cursoCtl{
 											$table2 = str_ireplace('{nombre}' ,$row['nombreCurso'], $table2);
 											$table2 = str_ireplace('{seccion}' ,$row['seccionCurso'], $table2);
 											$table2 = str_ireplace('{academia}' ,$row['nombreAcademia'], $table2);
+											$table2 = str_ireplace('{idciclo}' ,$row['idCiclo'], $table2);
 											$table .= str_ireplace('{idcurso}' ,$row['idCurso'], $table2);
 										}$table .= '</tr></table> ';
-
-										//var_dump($table);
-
 										$file = str_ireplace('{cuerpo}' , $table, $file);
 										break;
 									case 'verlistaalumnos':
 										$result = $modelo->verlistaalumnos();
-										$table = '';
-										//var_dump($result);
+										$table = file_get_contents('../vista/listaAsistenciaheader.html');
+										//var_dump($result->num_rows);
 										while($row = mysqli_fetch_array($result)){
 											//var_dump($row);
 											$table .= "<th>".$row['DAYOFMONTH(Dia)']."/".$row['MONTH(Dia)']."</th>";
 										}
+										$table .= '</tr>';
+										$table2 = '<tr><td>{alumno}</td>';
+										for ($i=0; $i < $result->num_rows; $i++) { 
+											$table2 .= file_get_contents('../vista/listaAsistenciarow.html');
+										}
+										$table2 .= '</tr>';
+										$result = $modelo->listapormateria();
+										//var_dump($result);
+										$table3 = '';
+										while($row = mysqli_fetch_array($result)){
+											//$table3 = $row['nrc']." ".$row['nrc']."<br>";
+											//$table3 = $row['idciclo']." ".$row['idCiclo']."<br>";
+											$table3 .= str_ireplace('{alumno}' ,$row['nombreCompleto'], $table2);
+										}
+										$table3 .= '</table>';
+										$table .=$table3;
 										$file = str_ireplace('{cuerpo}' , $table, $file);
 										break;
 									case 'insertar':
