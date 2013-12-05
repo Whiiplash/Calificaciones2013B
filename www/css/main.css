@@ -192,7 +192,9 @@ input[type="submit"] {
     margin-top: 15px;
 }
 .auxiliar{
-
+    width: 90%;
+    margin: 0 auto;
+    overflow-x: scroll;
 }
 input[type="text"],input[type="password"], input[type="select"]{
     padding-left: 10px;
@@ -322,8 +324,6 @@ input[type="time"]{
 /*tabla Asistencia*/
 
 .tablaAsistencia {
-    width: 90%;
-    margin: 0 auto;
 }
 .tablaAsistencia tbody tr th {
     background-color: #0099CC;
