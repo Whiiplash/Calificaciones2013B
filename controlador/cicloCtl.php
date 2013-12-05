@@ -27,24 +27,24 @@ class cicloCtl{
 									header('location: ../www/index.php?accion=msg&msgcode=2');
 									break;
 								case 'listar':
-									$result = $modelo->mostrar();
+									$result = $modelo->mostrarciclos();
 									$table = file_get_contents('../vista/listacicloshead.html');
-									$table2 = file_get_contents('../vista/listaciclosrow.html');
 									while($row = mysqli_fetch_array($result)){
+										$table2 = file_get_contents('../vista/listaciclosrow.html');
 										$table2 = str_ireplace('{ciclo}' ,$row['idCiclo'], $table2);
 										$table2 = str_ireplace('{fechainicio}' ,$row['fechaInicio'], $table2);
 										$table2 = str_ireplace('{fechafin}' ,$row['fechaFin'], $table2);
 										$table .= str_ireplace('{festivos}' ,$row['idCiclo'], $table2);
-										// $table .= $row['idCiclo']." ".$row['fechaInicio']." ".$row['fechaFin'].
-										// "<a href=\"index.php?accion=ciclo&opcion=listarfestivos&idciclo=".$row['idCiclo']."\">Festivos</a> "."<br>";
 									}$table .= '</table> ';
 									$file = str_ireplace('{cuerpo}' , $table, $file);
 									break;
 								case 'listarfestivos':
-									$result = $modelo->listarfestivos();
+									$result = $modelo->mostrardiashabiles();
 									$table = '';
+
 									while($row = mysqli_fetch_array($result)){
-										$table .= $row['idCiclo']." ".$row['diaFestivo']."<br>";
+										//var_dump($row);
+										$table .= $row['DAYOFWEEK(Dia)']." ".$row['Dia']."<br>";
 									}
 									$file = str_ireplace('{cuerpo}' , $table, $file);
 									break;

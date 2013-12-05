@@ -10,6 +10,10 @@ class cicloMod{
 		$idciclo = $_REQUEST['nombre'];
 		$indate = $_REQUEST['fechainicio'];
 		$endate = $_REQUEST['fechafin'];
+		$diasfestivos =array();
+		$numeroDiasFestivos = $_REQUEST['numeroDiasFestivos'];
+
+		
 		
 		//cargo los datos para la conexion
 		include('db_data.inc');		
@@ -24,7 +28,20 @@ class cicloMod{
 				'$endate')";
 
 		//Ejecuto la consulta
-		$result = $conexion -> query($consulta);
+		$conexion -> query($consulta);
+		for ($i=0; $i < $numeroDiasFestivos; $i++) { 
+			$diafestivo = $_REQUEST['diaf'.($i+1)];
+			$consulta = "UPDATE fechas
+							SET Habil = '0'
+							WHERE Dia = '$diafestivo'";
+		//Ejecuto la consulta
+		$conexion -> query($consulta);
+
+		}
+		
+
+		
+
 		//var_dump($conexion);
 		if($conexion->errno){
 			$conexion -> close();
@@ -63,7 +80,7 @@ class cicloMod{
 		
 	}
 
-	function mostrar(){
+	function mostrarciclos(){
 			
 		include('db_data.inc');
 		$conexion = new mysqli($host,$user,$pass,$db);	
@@ -96,6 +113,108 @@ class cicloMod{
 		
 		return $ciclo;
 	}
+
+
+
+	function mostrardiashabiles(){
+			
+		include('db_data.inc');
+		$conexion = new mysqli($host,$user,$pass,$db);	
+		if($conexion -> connect_errno)
+			die('No hay conexion');
+		$iduser = $_SESSION['uid'];
+		$idCiclo = $_REQUEST['idciclo'];
+		//Creo mi querry
+		$consulta = "SELECT * FROM cicloescolar WHERE idCiclo = '$idCiclo' ";
+		//Ejecuto la consulta
+		$result1 = $conexion -> query($consulta);	
+
+		while ( $fila = $result1 -> fetch_assoc() )
+		$datosDelCiclo = $fila;
+
+
+		$inicio = $datosDelCiclo['fechaInicio'];
+		$fin = $datosDelCiclo['fechaFin'];
+
+
+		//Creo mi querry
+		$consulta = "SELECT DAYOFWEEK(Dia),Dia FROM fechas 
+						WHERE Habil = '1' AND 
+						Dia >= '$inicio' AND Dia <= '$fin'  ";
+		//Ejecuto la consulta
+
+		$result = $conexion -> query($consulta);
+
+
+		if($conexion->errno){
+			$conexion -> close();
+			
+			return FALSE;
+		}
+		
+		if(!$result->num_rows > 0)
+			return FALSE;
+
+		//regreso mi objeto de alumno
+		
+
+		return $result;
+
+		//Procesamos el resultado para convertirlo en un array
+		while ( $fila = $result -> fetch_assoc() )
+			$ciclo[] = $fila;
+
+		//regreso mi arreglo de alumno
+		
+		return $ciclo;
+	}
+
+	// function mostrardiashabiles(){
+			
+	// 	include('db_data.inc');
+	// 	$conexion = new mysqli($host,$user,$pass,$db);	
+	// 	if($conexion -> connect_errno)
+	// 		die('No hay conexion');
+	// 	$iduser = $_SESSION['uid'];
+	// 	$idCiclo = $_REQUEST['idciclo'];
+		
+	// 	$consulta = "SELECT * FROM cicloescolar WHERE idCiclo = '$idCiclo' ";
+	// 	//Ejecuto la consulta
+	// 	$result = $conexion -> query($consulta);
+	// 	$datosDelCiclo = mysqli_fetch_array($result);
+
+	// 	$inicio = $datosDelCiclo['fechaInicio'];
+	// 	$fin = $datosDelCiclo['fechaFin'];
+
+	// 	//Creo mi querry
+	// 	// $consulta = "SELECT Dia FROM fechas 
+	// 	// 				WHERE idCiclo = '$idCiclo' AND Habil = '1' AND 
+	// 	// 				Dia >= '$inicio' AND Dia <= '$fin'  ";
+	// 	// //Ejecuto la consulta
+	// 	// $result = $conexion -> query($consulta);	
+
+
+	// 	if($conexion->errno){
+	// 		$conexion -> close();
+			
+	// 		return FALSE;
+	// 	}
+		
+	// 	if(!$result->num_rows > 0)
+	// 		return FALSE;
+
+	// 	//regreso mi objeto de alumno
+	// 	return $result;
+
+	// 	//Procesamos el resultado para convertirlo en un array
+	// 	while ( $fila = $result -> fetch_assoc() )
+	// 		$ciclo[] = $fila;
+
+	// 	//regreso mi arreglo de alumno
+		
+	// 	return $ciclo;
+	// }
+
 	function listarfestivos(){
 			
 		include('db_data.inc');
