@@ -8,8 +8,8 @@ class cicloCtl{
 
 	function ejecutar(){
 			$file = file_get_contents('../vista/template.html');
-			include('../modelo/cicloMod.php');
-			$modelo = new cicloMod(); 
+			include('../modelo/usuarioMod.php');
+			$modelo = new usuarioMod(); 
 			$opcion = $_REQUEST['opcion'];
 			if(!isset($_SESSION['uid'])){
 						$file = str_ireplace('{cuerpo}' ,'Usted no ha iniciado sesion', $file);						
