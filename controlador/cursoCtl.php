@@ -58,13 +58,14 @@ class cursoCtl{
 										$table2 .= '</tr>';
 										$result = $modelo->listapormateria();
 										//var_dump($result);
+										$table3 = '';
 										while($row = mysqli_fetch_array($result)){
 											//$table3 = $row['nrc']." ".$row['nrc']."<br>";
 											//$table3 = $row['idciclo']." ".$row['idCiclo']."<br>";
-											$table2 .= str_ireplace('{alumno}' ,$row['nombreCompleto'], $table2);
+											$table3 .= str_ireplace('{alumno}' ,$row['nombreCompleto'], $table2);
 										}
-										$table2 .= '</table>';
-										$table .=$table2;
+										$table3 .= '</table>';
+										$table .=$table3;
 										$file = str_ireplace('{cuerpo}' , $table, $file);
 										break;
 									case 'insertar':
