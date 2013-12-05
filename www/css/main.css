@@ -191,8 +191,15 @@ input[type="submit"] {
     margin-top: 15px;
 }
 
-input[type="text"],input[type="password"], input[type="celect"]{
+input[type="text"],input[type="password"], input[type="select"]{
     padding-left: 10px;
+}
+
+input[type="select"]{
+    width: 10%;
+}
+input[type="time"]{
+    width: 20%;
 }
 /*********************************************/  
 .info {
@@ -260,7 +267,7 @@ input[type="text"],input[type="password"], input[type="celect"]{
 /*tabla ciclos*/
 
 .tablaCiclos {
-    width: 600px;
+    width: 90%;
     margin: 0 auto;
 }
 .tablaCiclos tbody tr th {
@@ -276,7 +283,7 @@ input[type="text"],input[type="password"], input[type="celect"]{
 /*tabla cursos*/
 
 .tablaCursos {
-    width: 600px;
+    width: 90%;
     margin: 0 auto;
 }
 .tablaCursos tbody tr th {
@@ -292,7 +299,7 @@ input[type="text"],input[type="password"], input[type="celect"]{
 /*tabla Calificacion*/
 
 .tablaCalificacion {
-    width: 600px;
+    width: 90%;
     margin: 0 auto;
 }
 .tablaCalificacion tbody tr th {
@@ -308,7 +315,7 @@ input[type="text"],input[type="password"], input[type="celect"]{
 /*tabla Asistencia*/
 
 .tablaAsistencia {
-    width: 600px;
+    width: 90%;
     margin: 0 auto;
 }
 .tablaAsistencia tbody tr th {
