@@ -2,9 +2,10 @@
 	<form action="index.php?accion=addal&hacer=editarCurso" method="post">
 		<section class="etiqueta">Ciclo Correspondiente:</section>
 		<select name="carreras" Required onChange="combo(this, 'theinput')">
-			<option>1</option>
-			<option>2</option>
-			<option>3</option>
+			<option disabled="" selected="">Selecciona el Ciclo</option>
+			<option>2013A</option>
+			<option>2013B</option>
+			<option>2014A</option>
 		</select>
 		<section class="etiqueta">Nombre del Curso:</section>
 		<input type="text" Required name="nombreCurso" autofocus>
@@ -14,6 +15,7 @@
 		<input type="text" name="nrc">
 		<section class="etiqueta">Academia Correspondiente:</section>
 		<select name="academia" Required onChange="combo(this, 'theinput')">
+			<option disabled="" selected="">Selecciona la academia correspondiente</option>
 			<option>Ciencias Computacionales</option>
 			<option>Ciencias Básicas</option>
 			<option>Ciencias Quimicas</option>

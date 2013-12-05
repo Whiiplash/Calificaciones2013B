@@ -191,12 +191,12 @@ input[type="submit"] {
     margin-top: 15px;
 }
 
-input[type="text"],input[type="password"] {
+input[type="text"],input[type="password"], input[type="celect"]{
     padding-left: 10px;
 }
 /*********************************************/  
 .info {
-    padding: 40px 0px 0px 0px;
+    padding: 20px 0px 0px 0px;
 }
 .etiqueta{
     margin: 10px 0px 10px 0px;
@@ -303,6 +303,25 @@ input[type="text"],input[type="password"] {
 .tablaCalificacion tbody tr td {
     background: #fff;
     border: none;
+}
+
+/*tabla Asistencia*/
+
+.tablaAsistencia {
+    width: 600px;
+    margin: 0 auto;
+}
+.tablaAsistencia tbody tr th {
+    background-color: #0099CC;
+    color: #fff;
+    border: none;
+}
+.tablaAsistencia tbody tr td {
+    background: #fff;
+    border: none;
+}
+tr{
+    border-bottom: 1px solid;
 }
 
 
