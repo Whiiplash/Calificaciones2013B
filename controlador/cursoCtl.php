@@ -58,6 +58,16 @@ class cursoCtl{
 
 										$file = str_ireplace('{cuerpo}' , $table, $file);
 										break;
+									case 'verlistaalumnos':
+										$result = $modelo->verlistaalumnos();
+										$table = '';
+										//var_dump($result);
+										while($row = mysqli_fetch_array($result)){
+											//var_dump($row);
+											$table .= "<th>".$row['DAYOFMONTH(Dia)']."/".$row['MONTH(Dia)']."</th>";
+										}
+										$file = str_ireplace('{cuerpo}' , $table, $file);
+										break;
 									case 'insertar':
 										$modelo->insertar();
 										break;

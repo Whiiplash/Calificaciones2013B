@@ -9,7 +9,7 @@ session_start();
 					else{
 						$file = file_get_contents('../vista/template.html');
 						$file = str_ireplace('Iniciar Sesion' ,'Cerrar Sesion', $file);
-						$file = str_ireplace('{cuerpo}' ,'Hola '.$_SESSION['usuario'], $file);	
+						$file = str_ireplace('{cuerpo}' ,'Hola '.$_SESSION['usuario'].' ¿Que deseas hacer?', $file);	
 						}
 						include('../controlador/menuCtl.php');
    						$vista2 = new menuCtl(); 

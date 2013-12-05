@@ -276,5 +276,58 @@ class cursoMod{
 		return $dias;
 	}
 
+	function verlistaalumnos(){
+			
+		include('db_data.inc');
+		$conexion = new mysqli($host,$user,$pass,$db);	
+		if($conexion -> connect_errno)
+			die('No hay conexion');
+		$iduser = $_SESSION['uid'];
+		$idCiclo = $_REQUEST['idciclo'];
+		$nrc = $_REQUEST['nrc'];
+
+		$consulta = "SELECT fechas.id, DAYOFWEEK(Dia) , Dia, DAYOFMONTH(Dia), MONTH(Dia)
+				FROM fechas
+				INNER JOIN horarios ON diaSemana +1 = DAYOFWEEK( Dia ) 
+				WHERE Habil =  '1'
+				AND Dia >= ( 
+				SELECT fechaInicio
+				FROM cicloescolar
+				WHERE idCiclo =  '$idCiclo' ) 
+				AND Dia <= ( 
+				SELECT (
+				fechafin
+				)
+				FROM cicloescolar
+				WHERE idCiclo =  '$idCiclo' ) 
+				AND nrc ='$nrc'";
+		//Ejecuto la consulta
+
+		$result = $conexion -> query($consulta);
+
+
+		if($conexion->errno){
+			$conexion -> close();
+			
+			return FALSE;
+		}
+		
+		if(!$result->num_rows > 0)
+			return FALSE;
+
+		//regreso mi objeto de alumno
+		
+
+		return $result;
+
+		//Procesamos el resultado para convertirlo en un array
+		while ( $fila = $result -> fetch_assoc() )
+			$ciclo[] = $fila;
+
+		//regreso mi arreglo de alumno
+		
+		return $ciclo;
+	}
+
 }
 ?>
