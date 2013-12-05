@@ -191,7 +191,9 @@ input[type="submit"] {
     height: 40px;
     margin-top: 15px;
 }
+.auxiliar{
 
+}
 input[type="text"],input[type="password"], input[type="select"]{
     padding-left: 10px;
 }
