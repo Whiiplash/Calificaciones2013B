@@ -49,11 +49,15 @@ class cursoCtl{
 										while($row = mysqli_fetch_array($result)){
 											//var_dump($row);
 											$table .= "<th>".$row['DAYOFMONTH(Dia)']."/".$row['MONTH(Dia)']."</th>";
+											$ids[] = $row['id'];
 										}
+										$nrc = $_REQUEST['nrc'];
+										var_dump($nrc);
 										$table .= '</tr>';
 										$table2 = '<tr><td>{alumno}</td>';
 										for ($i=0; $i < $result->num_rows; $i++) { 
 											$table2 .= file_get_contents('../vista/listaAsistenciarow.html');
+											$table2 = str_replace('{nombre}', 'check'.$nrc.'a'.$ids[$i], $table2);
 										}
 										$table2 .= '</tr>';
 										$result = $modelo->listapormateria();
