@@ -143,6 +143,7 @@ html, body {
 }
 #header img {
     float: right;
+    margin-right: 10px;
 }
 .menu{
     list-style: none;
