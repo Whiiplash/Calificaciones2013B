@@ -32,6 +32,19 @@ class usuarioCtl{
 										}
 										$file = str_replace('{carreras}', $dropdown, $file);
 									break;
+								case 'listarusuarios':
+										$result = $modelo->obtenerUsuarios();
+										$table = '';
+										while($row = mysqli_fetch_array($result)){
+											$table .= $row['codigo']." ".$row['nombreCompleto']." ".$row['correo'].
+											" <a href=index.php?accion=usuario&opcion=borrar&codigo=".$row['codigo'].">borrar</a><br>";
+										}
+										$file = str_ireplace('{cuerpo}' , $table, $file);
+										break;
+								case 'borrar':
+										$modelo->borrarUsuario();
+										header('location: ../www/index.php?accion=usuario&opcion=listarusuarios');
+										break;
 								default:
 									header('location: ../www/index.php');
 									break;
