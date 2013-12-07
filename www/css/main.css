@@ -148,12 +148,13 @@ html, body {
 .menu{
     list-style: none;
     float: left;
+    width: 40%;
 }
 .menu a {
     color: #1c75b6;
     text-decoration: none;
     float: left;
-    font-size: 30px;
+    font-size: 26px;
     margin: 5px;
 }
 .menu a :hover{
@@ -453,6 +454,9 @@ tr{
     #header{
         height: 80px;
     }
+    .menu a{
+        font-size: 22px;
+    }
 
 
 }
@@ -476,7 +480,7 @@ tr{
     }
 
     .menu a{
-        font-size: 20px;
+        font-size: 16px;
     }
 }
 
@@ -488,16 +492,16 @@ tr{
         height: 95%;
         width: 39%;
         float: right;
-        margin-right: 10px;
+        margin-right: 10px;display: none;
     }
     #header{
         height: 60px;
     }
 
-    .menu{
-        width: 42%;
-    }
-
+        .menu {
+        width: 44%;
+        margin: 0 auto;
+        }
     .menu a{
         font-size: 12px;
     }   
@@ -523,7 +527,7 @@ tr{
     }
 
     .menu a{
-        font-size: 17px;
+        font-size: 12px;
     }   
 }
 

@@ -3,9 +3,10 @@
 		<section class="etiqueta">Ciclo Correspondiente:</section>
 		<select name="ciclo" Required id="ciclo">
 			<option disabled="" selected="">Selecciona el Ciclo</option>
-			<option>2013A</option>
+			{ciclos}
+<!-- 			<option>2013A</option>
 			<option>2013B</option>
-			<option>2014A</option>
+			<option>2014A</option> -->
 		</select>
 		<section class="etiqueta">Nombre del Curso:</section>
 		<input type="text" Required name="nombreCurso" id="nombreCurso" autofocus>
@@ -16,26 +17,32 @@
 		<section class="etiqueta">Academia Correspondiente:</section>
 		<select name="academia" Required id="academia">
 			<option disabled="" selected="">Selecciona la academia correspondiente</option>
-			<option>Ciencias Computacionales</option>
+			{academia}
+<!-- 			<option>Ciencias Computacionales</option>
 			<option>Ciencias Básicas</option>
-			<option>Ciencias Quimicas</option>
+			<option>Ciencias Quimicas</option> -->
 		</select>
 		<section class="etiqueta">Días de Clase:</section>
 		<fieldset class="semana">
 			<section>
 				<input type="checkbox" name="lunes" value="lunes" />Lunes
+				<input type="time" name="horario" id="horario">
 			</section>
 			<section>
 				<input type="checkbox" name="martes" value="martes" />Martes
+				<input type="time" name="horario" id="horario">
 			</section>
 			<section>
 				<input type="checkbox" name="miercoles" value="miercoles" />Miercoles
+				<input type="time" name="horario" id="horario">
 			</section>
 			<section>
 				<input type="checkbox" name="jueves" value="jueves" />Jueves
+				<input type="time" name="horario" id="horario">
 			</section>
 			<section>
 				<input type="checkbox" name="viernes" value="viernes" />Viernes
+				<input type="time" name="horario" id="horario"/><!--Aqui hay pedos-->
 			</section>
 		</fieldset>
 		<section class="etiqueta">Cantidad de Horas Diarias:</section>

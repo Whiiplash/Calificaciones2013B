@@ -39,6 +39,108 @@ class cursoMod{
 	}
 
 
+	function obtenerAcademia(){
+			
+		include('db_data.inc');
+		$conexion = new mysqli($host,$user,$pass,$db);	
+		if($conexion -> connect_errno)
+			die('No hay conexion');
+		$iduser = $_SESSION['uid'];
+		//Creo mi querry
+		$consulta = "SELECT * FROM academia";
+		//Ejecuto la consulta
+		$result = $conexion -> query($consulta);	
+
+
+		if($conexion->errno){
+			$conexion -> close();
+			
+			return FALSE;
+		}
+		
+		if(!$result->num_rows > 0)
+			return FALSE;
+
+		//regreso mi objeto de alumno
+		return $result;
+
+		//Procesamos el resultado para convertirlo en un array
+		while ( $fila = $result -> fetch_assoc() )
+			$ciclo[] = $fila;
+
+		//regreso mi arreglo de alumno
+		
+		return $ciclo;
+	}
+
+	function obtenerCiclos(){
+			
+		include('db_data.inc');
+		$conexion = new mysqli($host,$user,$pass,$db);	
+		if($conexion -> connect_errno)
+			die('No hay conexion');
+		$iduser = $_SESSION['uid'];
+		//Creo mi querry
+		$consulta = "SELECT * FROM cicloescolar";
+		//Ejecuto la consulta
+		$result = $conexion -> query($consulta);	
+
+
+		if($conexion->errno){
+			$conexion -> close();
+			
+			return FALSE;
+		}
+		
+		if(!$result->num_rows > 0)
+			return FALSE;
+
+		//regreso mi objeto de alumno
+		return $result;
+
+		//Procesamos el resultado para convertirlo en un array
+		while ( $fila = $result -> fetch_assoc() )
+			$ciclo[] = $fila;
+
+		//regreso mi arreglo de alumno
+		
+		return $ciclo;
+	}
+
+	function obtenerCurso(){
+			
+		include('db_data.inc');
+		$conexion = new mysqli($host,$user,$pass,$db);	
+		if($conexion -> connect_errno)
+			die('No hay conexion');
+		$iduser = $_SESSION['uid'];
+		//Creo mi querry
+		$consulta = "SELECT * FROM curso";
+		//Ejecuto la consulta
+		$result = $conexion -> query($consulta);	
+
+
+		if($conexion->errno){
+			$conexion -> close();
+			
+			return FALSE;
+		}
+		
+		if(!$result->num_rows > 0)
+			return FALSE;
+
+		//regreso mi objeto de alumno
+		return $result;
+
+		//Procesamos el resultado para convertirlo en un array
+		while ( $fila = $result -> fetch_assoc() )
+			$ciclo[] = $fila;
+
+		//regreso mi arreglo de alumno
+		
+		return $ciclo;
+	}
+
 	function mostrar(){
 			
 		include('db_data.inc');
@@ -74,34 +176,6 @@ class cursoMod{
 		
 		return $ciclo;
 	}
-
-	// function tabla($result){
-	// 	$table = '';
-	// 	$table .= "<table border='1' class=\"tablaCursos\">
-	// 	<thead>
-	// 	<tr>
-	// 	<th>Ciclo Escolar</th>
-	// 	<th>Fecha Inicio</th>
-	// 	<th>Fecha Final</th>
-	// 	<th>Eliminar</th>
-	// 	</tr>
-	// 	</thead>";
-	// 	while($row = mysqli_fetch_array($result))
- //  		{
- //  			$table .= "<tbody>";
- //  			$table .= "<tr>";
- //  			$table .= "<td><a href=" . "../www/index.php?accion=curso&cescolar=". $row['nrc'] . ">" . $row['nrc'] . "</a></td>";
- //  			$table .= "<td>" . $row['idCiclo'] . "</td>";
- //  			$table .= "<td>" . $row['idCurso'] . "</td>";
- //  			$table .= "<td><a href=../www/index.php?accion=ciclodel&id=".$row['seccionCurso'] ."> X</td>";
- //  			$table .= "</tr>";
- //  			$table .= "</tbody>";
- //  		}
-	// 	$table .= "</table>";
-	// 	$table .= "<br><a href=../www/index.php?accion=cicloalta>Insertar Ciclo";
-	// 	return $table;
-
-	// }
 
 	function borrar(){
 		$nrc = $_REQUEST['nrc'];

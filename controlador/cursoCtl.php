@@ -25,7 +25,19 @@ class cursoCtl{
 							case '20':
 								switch ($opcion) {
 									case 'formulario':
+										$result = $modelo->obtenerAcademia();
 										$file = str_ireplace('{cuerpo}' ,file_get_contents('../vista/altacurso.html'), $file);
+										$dropdown = '';
+										while($academia = mysqli_fetch_array($result)){
+											$dropdown .= '<option>'.$academia['nombreAcademia'].'</option>';
+										}
+										$file = str_replace('{academia}', $dropdown, $file);
+										$result = $modelo->obtenerCiclos();
+										$dropdown = '';
+										while($ciclos = mysqli_fetch_array($result)){
+											$dropdown .= '<option>'.$ciclos['idCiclo'].'</option>';
+										}
+										$file = str_replace('{ciclos}', $dropdown, $file);
 										break;
 									case 'listar':
 										$result = $modelo->mostrar();
@@ -146,6 +158,8 @@ class cursoCtl{
 						$file = str_replace('{footer}', $vista2 -> menu() , $file);
 						echo $file;
 		}
+
+		
 }
 
 ?>

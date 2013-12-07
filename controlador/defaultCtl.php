@@ -2,12 +2,11 @@
 session_start();
 	class DefaultCtl{
 		function ejecutar(){
+			$file = file_get_contents('../vista/template.html');
 			if(!isset($_SESSION['uid'])){
-						$file = file_get_contents('../vista/template.html');
 						$file = str_ireplace('{cuerpo}' ,'!Revoluciona, expresate y construye!<br><section><img src="../vista/img/EUniversitarios.jpg"></section><br>', $file);						
 						}
 					else{
-						$file = file_get_contents('../vista/template.html');
 						$file = str_ireplace('Iniciar Sesion' ,'Cerrar Sesion', $file);
 						$file = str_ireplace('{cuerpo}' ,'Hola '.$_SESSION['usuario'].' ¿Que deseas hacer?', $file);	
 						}

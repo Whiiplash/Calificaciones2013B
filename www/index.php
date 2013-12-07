@@ -26,11 +26,16 @@
 		include('../controlador/msgCtl.php');
 		$controlador = new msgCtl();
 		break;
+	case 'usuario':
+		include('../controlador/usuarioCtl.php');
+		$controlador = new usuarioCtl();
+		break;
 	default:
 		include('../controlador/DefaultCtl.php');
 		$controlador = new DefaultCtl();
  }
 }
+var_dump($controlador);
  $controlador->ejecutar();
 
 

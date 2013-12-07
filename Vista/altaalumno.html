@@ -7,7 +7,7 @@
     });    
 </script>
 <section class="info">
-    <form action="index.php?accion=addal&hacer=agregarAlumno" method="post">
+    <form action="index.php?accion=usuario&opcion=insertar" method="post">
         <section class="etiqueta">Nombre:</section>
         <input type="text" Required name="nombre" autofocus id="nombre">
         <section class="etiqueta">Apellido Paterno:</section>
@@ -17,9 +17,10 @@
         <section class="etiqueta">Carrera:</section>
         <select name="carreras" Required onChange="combo(this, 'theinput')" id="carreras">
             <option disabled="" selected="">Elige una carrera...</option>
-            <option>Computación</option>
+            {carreras}
+<!--             <option>Computación</option>
             <option>Informática</option>
-            <option>Electrónica</option>
+            <option>Electrónica</option> -->
         </select>
         <section class="etiqueta">E-mail:</section>
         <input type="email" name="email" id="email">

@@ -1,6 +1,6 @@
 <?php
 session_start();
-class cicloCtl{
+class usuarioCtl{
 	
 	function __construct(){
 
@@ -22,6 +22,15 @@ class cicloCtl{
 								case 'insertar':
 									$modelo->insertarUsuario();
 									header('location: ../www/index.php?accion=msg&msgcode=4');
+									break;
+								case 'formanuevoalumno':
+									$file = str_replace('{cuerpo}', file_get_contents('../vista/altaalumno.html'), $file);
+									$result = $modelo->obtenerCarreras();
+										$dropdown = '';
+										while($carreras = mysqli_fetch_array($result)){
+											$dropdown .= '<option>'.$carreras['nombreCarrera'].'</option>';
+										}
+										$file = str_replace('{carreras}', $dropdown, $file);
 									break;
 								default:
 									header('location: ../www/index.php');
