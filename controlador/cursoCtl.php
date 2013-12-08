@@ -154,10 +154,20 @@ class cursoCtl{
 	function verlistaalumnos(){
 		$result = $this->modelo->verlistaalumnos();
 		$table = file_get_contents('../vista/listaAsistenciaheader.html');
+		$script = file_get_contents('../www/js/asistensia.js');
+		$script2 = '';
+		
 		while($row = mysqli_fetch_array($result)){
 			$table .= "<th>".$row['DAYOFMONTH(Dia)']."/".$row['MONTH(Dia)']."     </th>";
 			$ids[] = $row['id'];
 		}
+
+
+		for ($i=0; $i< $result->num_rows; $i++) { 
+			$script2 .= str_replace('{diaclass}', $ids[$i], $script);
+		}
+		$table = str_replace('{script}', $script2, $table);
+
 		$nrc = $_REQUEST['nrc'];
 		$table .= '</tr>';
 		$table .= '<tr><td>General</td>';
