@@ -160,10 +160,15 @@ class cursoCtl{
 		}
 		$nrc = $_REQUEST['nrc'];
 		$table .= '</tr>';
+		$table .= '<tr><td>General</td>';
+		for ($i=0; $i < $result->num_rows; $i++) { 
+			$table .= file_get_contents('../vista/listaAsistenciarow.html');
+			$table = str_replace(array('{valor}','{iddia}'), array('general','$ids[$i]'), $table);
+		}
 		$table2 = '<tr><td>{alumno}</td>';
 		for ($i=0; $i < $result->num_rows; $i++) { 
 			$table2 .= file_get_contents('../vista/listaAsistenciarow.html');
-			$table2 = str_replace('{valor}', $nrc.'_{alumnoCodigo}_'.$ids[$i], $table2);
+			$table2 = str_replace(array('{valor}','{iddia}'), array($nrc.'_{alumnoCodigo}_'.$ids[$i],$ids[$i]), $table2);
 		}
 		$table2 .= '</tr>';
 		$result = $this->modelo->listapormateria();
