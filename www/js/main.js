@@ -136,5 +136,9 @@ function validaAltaCiclo(){
 	}else return false
 }
 function asistenciaAlumnos(){
-	
+	for (var i = 0; i < 10; i++) {
+		$('.asis_G'+i).click(function(event) {
+			$('.asis_'+i).click();
+		});
+	};
 }

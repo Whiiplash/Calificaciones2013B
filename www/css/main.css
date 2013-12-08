@@ -195,7 +195,7 @@ input[type="submit"] {
 .auxiliar{
     width: 90%;
     margin: 0 auto;
-    overflow-x: scroll;
+    overflow: scroll;
 }
 input[type="text"],input[type="password"], input[type="select"]{
     padding-left: 10px;
