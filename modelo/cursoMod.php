@@ -344,9 +344,9 @@ class cursoMod{
 		if($conexion -> connect_errno)
 			die('No hay conexion');
 		//Creo mi querry
-		var_dump($nrc);
-		var_dump($codigo);
-		var_dump($idDia);
+		// var_dump($nrc);
+		// var_dump($codigo);
+		// var_dump($idDia);
 		$consulta = "INSERT INTO asistencia(nrc,asistio,idDia,codigo) VALUES
 										('$nrc',1,'$idDia','$codigo')";
 		//Ejecuto la consulta

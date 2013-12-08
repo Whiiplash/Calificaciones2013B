@@ -220,12 +220,14 @@ class cursoCtl{
 			$asistencias = $_REQUEST['asistencias'];
 			foreach ($asistencias as $token) {
 				$datos = explode('_', $token);
-				var_dump($datos);
+				//var_dump($datos);
 				$this->modelo->insertarCalificacion($datos[0],$datos[1],$datos[2]);
 			}
+			header('location: ../www/index.php?accion=msg&msgcode=5');
 		}else{
 			echo 'hola';
 		}
+
 	}
 }
 
