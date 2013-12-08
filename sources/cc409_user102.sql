@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Dec 05, 2013 at 09:51 AM
+-- Generation Time: Dec 08, 2013 at 03:39 PM
 -- Server version: 5.6.12-log
 -- PHP Version: 5.4.12
 
@@ -57,7 +57,10 @@ INSERT INTO `academia` (`idAcademia`, `nombreAcademia`) VALUES
 CREATE TABLE IF NOT EXISTS `asistencia` (
   `codigo` int(11) NOT NULL,
   `idDia` int(11) NOT NULL,
-  `asistio` tinyint(1) NOT NULL
+  `asistio` tinyint(1) NOT NULL,
+  `nrc` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 -- --------------------------------------------------------
@@ -111,8 +114,7 @@ CREATE TABLE IF NOT EXISTS `cicloescolar` (
 
 INSERT INTO `cicloescolar` (`idCiclo`, `fechaInicio`, `fechaFin`) VALUES
 ('2013B', '2013-08-19', '2013-12-14'),
-('2014A', '2014-01-01', '2014-03-31'),
-('2014B', '2014-08-01', '2014-12-15');
+('2014A', '2014-01-01', '2014-03-31');
 
 -- --------------------------------------------------------
 
@@ -962,14 +964,14 @@ CREATE TABLE IF NOT EXISTS `login` (
 --
 
 INSERT INTO `login` (`codigo`, `pass`) VALUES
-(100, '1234'),
-(200, '1234'),
-(300, '1234'),
-(301, '1234'),
-(302, '1234'),
-(303, '1234'),
-(304, '1234'),
-(305, '1234');
+(100, '7110eda4d09e062aa5e4a390b0a572ac0d2c0220'),
+(200, '7110eda4d09e062aa5e4a390b0a572ac0d2c0220'),
+(300, '7110eda4d09e062aa5e4a390b0a572ac0d2c0220'),
+(301, '7110eda4d09e062aa5e4a390b0a572ac0d2c0220'),
+(302, '7110eda4d09e062aa5e4a390b0a572ac0d2c0220'),
+(303, '7110eda4d09e062aa5e4a390b0a572ac0d2c0220'),
+(304, '7110eda4d09e062aa5e4a390b0a572ac0d2c0220'),
+(305, '7110eda4d09e062aa5e4a390b0a572ac0d2c0220');
 
 -- --------------------------------------------------------
 
@@ -1058,7 +1060,7 @@ INSERT INTO `roles` (`idRol`, `nombreRol`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `usuario` (
-  `codigo` int(11) NOT NULL,
+  `codigo` int(11) NOT NULL AUTO_INCREMENT,
   `nombreCompleto` varchar(250) COLLATE utf8_spanish2_ci NOT NULL,
   `idCarrera` int(11) NOT NULL,
   `correo` varchar(250) COLLATE utf8_spanish2_ci NOT NULL,
@@ -1068,7 +1070,7 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   `github` varchar(250) COLLATE utf8_spanish2_ci DEFAULT NULL,
   `paginaWeb` varchar(250) COLLATE utf8_spanish2_ci DEFAULT NULL,
   PRIMARY KEY (`codigo`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci AUTO_INCREMENT=314 ;
 
 --
 -- Dumping data for table `usuario`
