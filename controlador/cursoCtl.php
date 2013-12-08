@@ -163,12 +163,12 @@ class cursoCtl{
 		$table .= '<tr><td>General</td>';
 		for ($i=0; $i < $result->num_rows; $i++) { 
 			$table .= file_get_contents('../vista/listaAsistenciarow.html');
-			$table = str_replace(array('{valor}','{iddia}'), array('general','$ids[$i]'), $table);
+			$table = str_replace(array('{valor}','{iddia}'), array('general','G'.$ids[$i]), $table);
 		}
 		$table2 = '<tr><td>{alumno}</td>';
 		for ($i=0; $i < $result->num_rows; $i++) { 
 			$table2 .= file_get_contents('../vista/listaAsistenciarow.html');
-			$table2 = str_replace(array('{valor}','{iddia}'), array($nrc.'_{alumnoCodigo}_'.$ids[$i],$ids[$i]), $table2);
+			$table2 = str_replace(array('{valor}','{iddia}'), array($nrc.'_{alumnoCodigo}_'.$ids[$i], $ids[$i]), $table2);
 		}
 		$table2 .= '</tr>';
 		$result = $this->modelo->listapormateria();
@@ -226,6 +226,7 @@ class cursoCtl{
 			foreach ($asistencias as $token) {
 				$datos = explode('_', $token);
 				//var_dump($datos);
+				//if
 				$this->modelo->insertarCalificacion($datos[0],$datos[1],$datos[2]);
 			}
 			header('location: ../www/index.php?accion=msg&msgcode=5');
