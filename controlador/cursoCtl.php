@@ -171,6 +171,7 @@ class cursoCtl{
 		}
 		$table3 .= '</table></section>';
 		$table .=$table3;
+		$table.= '<input type="submit" value="Actualizar" id="botonActualizar">';
 		return $table;
 	}
 

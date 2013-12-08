@@ -65,7 +65,6 @@ class usuarioCtl{
 				$table .= $row['codigo']." ".$row['nombreCompleto']." ".$row['correo'].
 				" <a href=index.php?accion=usuario&opcion=borrar&codigo=".$row['codigo'].">borrar</a><br>";
 			}
-			$table.= '<input type="submit" value="enviar">';
 			return $table;
 		}
 
