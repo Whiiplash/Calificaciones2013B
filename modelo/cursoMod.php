@@ -135,6 +135,35 @@ class cursoMod{
 		return $ciclo;
 	}
 
+	function listarPorCiclo(){
+		include('db_data.inc');
+		$conexion = new mysqli($host,$user,$pass,$db);	
+		if($conexion -> connect_errno)
+			die('No hay conexion');
+		$iduser = $_SESSION['uid'];
+		$idciclo = $_REQUEST['idciclo'];
+		//Creo mi querry
+		$consulta = "SELECT * FROM nrc 
+						INNER JOIN curso ON nrc.idCurso = curso.idCurso
+						INNER JOIN academia ON academia.idAcademia = curso.idAcademia
+						AND idCiclo = '$idciclo'";
+		//Ejecuto la consulta
+		$result = $conexion -> query($consulta);	
+		if($conexion->errno){
+			$conexion -> close();
+			return FALSE;
+		}
+		if(!$result->num_rows > 0)
+			return FALSE;
+		//regreso mi objeto de alumno
+		return $result;
+		//Procesamos el resultado para convertirlo en un array
+		while ( $fila = $result -> fetch_assoc() )
+			$ciclo[] = $fila;
+		//regreso mi arreglo de alumno
+		return $ciclo;
+	}
+
 	function borrar(){
 		$nrc = $_REQUEST['nrc'];
 		//cargo los datos para la conexion

@@ -155,5 +155,25 @@ class cicloMod{
 		return $ciclo;
 	}
 
+	function borrarCiclo(){
+		$idCiclo = $_REQUEST['idciclo'];
+		//cargo los datos para la conexion
+		include('db_data.inc');		
+		$conexion = new mysqli($host,$user,$pass,$db);	
+		if($conexion -> connect_errno)
+			die('No hay conexion');
+		//Creo mi querry
+		$consulta = "DELETE FROM cicloescolar WHERE idCiclo = '$idCiclo'";
+		//Ejecuto la consulta
+		$result = $conexion -> query($consulta);
+		if($conexion->errno){
+			$conexion -> close();
+			die('No se pudo establacer el borrado '.$conexion->error);
+		}
+		else
+			echo "registro(s) borrado(s)";
+		$conexion -> close();
+	}
+
 }
 ?>

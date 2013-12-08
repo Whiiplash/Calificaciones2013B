@@ -33,6 +33,10 @@ class cicloCtl{
 								case 'listarfestivos':
 									$cuerpo = $this->listarfestivos();
 									break;
+								case 'borrar':
+										$this->modelo->borrarCiclo();
+										header('location: ../www/index.php?accion=ciclo&opcion=listar');
+										break;
 								default:
 									header('location: ../www/index.php');
 									break;

@@ -19,7 +19,17 @@ class cursoCtl{
 						$file = str_ireplace('Iniciar Sesion' ,'Cerrar Sesion', $file);
 						switch ($_SESSION['rol']) {
 							case '10':
-								// lalala
+								switch ($opcion) {
+									case 'listar':
+										$cuerpo = $this->listar();
+										break;
+									case 'listarporciclo':
+										$cuerpo = $this->listarPorCiclo();
+										break;
+									default:
+										header('location: ../www/index.php');
+										break;
+								}
 								break;
 							case '20':
 								switch ($opcion) {
@@ -102,6 +112,22 @@ class cursoCtl{
 
 	function listar(){
 		$result = $this->modelo->mostrar();
+		$table = file_get_contents('../vista/listacursosheader.html');
+		$table2 = file_get_contents('../vista/listacursosrow.html');
+		while($row = mysqli_fetch_array($result)){
+			$table2 = file_get_contents('../vista/listacursosrow.html');
+			$table2 = str_ireplace('{nrc}' ,$row['nrc'], $table2);
+			$table2 = str_ireplace('{nombre}' ,$row['nombreCurso'], $table2);
+			$table2 = str_ireplace('{seccion}' ,$row['seccionCurso'], $table2);
+			$table2 = str_ireplace('{academia}' ,$row['nombreAcademia'], $table2);
+			$table2 = str_ireplace('{idciclo}' ,$row['idCiclo'], $table2);
+			$table .= str_ireplace('{idcurso}' ,$row['idCurso'], $table2);
+		}$table .= '</tr></table> ';
+		return $table;
+	}
+
+	function listarPorCiclo(){
+		$result = $this->modelo->listarPorCiclo();
 		$table = file_get_contents('../vista/listacursosheader.html');
 		$table2 = file_get_contents('../vista/listacursosrow.html');
 		while($row = mysqli_fetch_array($result)){
