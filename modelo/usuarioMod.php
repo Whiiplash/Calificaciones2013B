@@ -13,7 +13,6 @@ class usuarioMod{
 				die('No hay conexion');
 	}
 	
-	
 	function autentificar(){
 		if((!isset($_SESSION)))
                 {
@@ -50,7 +49,6 @@ class usuarioMod{
 	}
 
 	function obtenerCarreras(){
-			
 		include('db_data.inc');
 		$conexion = new mysqli($host,$user,$pass,$db);	
 		if($conexion -> connect_errno)
@@ -93,9 +91,7 @@ class usuarioMod{
 			die('No hay conexion');
 		//Creo mi querry
 		$consulta = "INSERT INTO usuario(nombreCompleto,correo,estatus) VALUES
-			('$nombreCompleto',
-				'$email',
-				'1')";
+										('$nombreCompleto','$email','1')";
 		//Ejecuto la consulta
 		$conexion -> query($consulta);
 		if($conexion->errno){

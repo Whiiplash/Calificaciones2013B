@@ -32,6 +32,9 @@ class cursoCtl{
 									case 'verlistaalumnos':
 										$cuerpo = $this->verlistaalumnos();
 										break;
+									case 'pdfexport':
+										$this->pdfexport();
+										break;
 									case 'insertar':
 										$this->modelo->insertar();
 										break;
@@ -134,7 +137,7 @@ class cursoCtl{
 		$result = $this->modelo->verlistaalumnos();
 		$table = file_get_contents('../vista/listaAsistenciaheader.html');
 		while($row = mysqli_fetch_array($result)){
-			$table .= "<th>".$row['DAYOFMONTH(Dia)']."/".$row['MONTH(Dia)']."</th>";
+			$table .= "<th>".$row['DAYOFMONTH(Dia)']."/".$row['MONTH(Dia)']."     </th>";
 			$ids[] = $row['id'];
 		}
 		$nrc = $_REQUEST['nrc'];
@@ -180,6 +183,15 @@ class cursoCtl{
 			$table .= $row['codigo']." ".$row['nombreCompleto']."<br>";
 		}
 		return $table;
+	}
+	function pdfexport(){
+		require('../sources/fpdf17/fpdf.php');
+		$pdf = new FPDF();
+		$pdf->AddPage();
+		$pdf->SetFont('Arial','B',16);
+		$pdf->writehtml($this->verlistaalumnos());
+		$pdf->Output();
+
 	}
 }
 
