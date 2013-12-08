@@ -5,13 +5,13 @@ class cursoCtl{
 	public $modelo;
 	
 	function __construct(){
-		
+		include('../modelo/cursoMod.php');
+		$this->modelo = new cursoMod(); 
 	}
 
 	function ejecutar(){
 			$file = file_get_contents('../vista/template.html');
-			include('../modelo/cursoMod.php');
-			$modelo = new cursoMod(); 
+			
 			$opcion = $_REQUEST['opcion'];
 			if(!isset($_SESSION['uid'])){
 						$file = str_ireplace('{cuerpo}' ,'Usted no ha iniciado sesion', $file);						
@@ -25,64 +25,13 @@ class cursoCtl{
 							case '20':
 								switch ($opcion) {
 									case 'formulario':
-										$result = $modelo->obtenerAcademia();
-										$file = str_ireplace('{cuerpo}' ,file_get_contents('../vista/altacurso.html'), $file);
-										$dropdown = '';
-										while($academia = mysqli_fetch_array($result)){
-											$dropdown .= '<option>'.$academia['nombreAcademia'].'</option>';
-										}
-										$file = str_replace('{academia}', $dropdown, $file);
-										$result = $modelo->obtenerCiclos();
-										$dropdown = '';
-										while($ciclos = mysqli_fetch_array($result)){
-											$dropdown .= '<option>'.$ciclos['idCiclo'].'</option>';
-										}
-										$file = str_replace('{ciclos}', $dropdown, $file);
+										$cuerpo = $this->formulario();
 										break;
 									case 'listar':
-										$result = $modelo->mostrar();
-										$table = file_get_contents('../vista/listacursosheader.html');
-										$table2 = file_get_contents('../vista/listacursosrow.html');
-										while($row = mysqli_fetch_array($result)){
-											$table2 = file_get_contents('../vista/listacursosrow.html');
-											$table2 = str_ireplace('{nrc}' ,$row['nrc'], $table2);
-											$table2 = str_ireplace('{nombre}' ,$row['nombreCurso'], $table2);
-											$table2 = str_ireplace('{seccion}' ,$row['seccionCurso'], $table2);
-											$table2 = str_ireplace('{academia}' ,$row['nombreAcademia'], $table2);
-											$table2 = str_ireplace('{idciclo}' ,$row['idCiclo'], $table2);
-											$table .= str_ireplace('{idcurso}' ,$row['idCurso'], $table2);
-										}$table .= '</tr></table> ';
-										$file = str_ireplace('{cuerpo}' , $table, $file);
+										$cuerpo = $this->listar();
 										break;
 									case 'verlistaalumnos':
-										$result = $modelo->verlistaalumnos();
-										$table = file_get_contents('../vista/listaAsistenciaheader.html');
-										//var_dump($result->num_rows);
-										while($row = mysqli_fetch_array($result)){
-											//var_dump($row);
-											$table .= "<th>".$row['DAYOFMONTH(Dia)']."/".$row['MONTH(Dia)']."</th>";
-											$ids[] = $row['id'];
-										}
-										$nrc = $_REQUEST['nrc'];
-										//var_dump($nrc);
-										$table .= '</tr>';
-										$table2 = '<tr><td>{alumno}</td>';
-										for ($i=0; $i < $result->num_rows; $i++) { 
-											$table2 .= file_get_contents('../vista/listaAsistenciarow.html');
-											$table2 = str_replace('{nombre}', 'check'.$nrc.'a'.$ids[$i], $table2);
-										}
-										$table2 .= '</tr>';
-										$result = $modelo->listapormateria();
-										//var_dump($result);
-										$table3 = '';
-										while($row = mysqli_fetch_array($result)){
-											//$table3 = $row['nrc']." ".$row['nrc']."<br>";
-											//$table3 = $row['idciclo']." ".$row['idCiclo']."<br>";
-											$table3 .= str_ireplace('{alumno}' ,$row['nombreCompleto'], $table2);
-										}
-										$table3 .= '</table></section>';
-										$table .=$table3;
-										$file = str_ireplace('{cuerpo}' , $table, $file);
+										$cuerpo = $this->verlistaalumnos();
 										break;
 									case 'insertar':
 										$modelo->insertar();
@@ -92,40 +41,25 @@ class cursoCtl{
 										header('location: ../www/index.php?accion=curso&opcion=listar');
 										break;
 									case 'listardiasclase':
-										$result = $modelo->listardiasclase();
-										$table = '';
-										while($row = mysqli_fetch_array($result)){
-											$table .= $row['fechaClase']."<br>";
-										}
-										$file = str_ireplace('{cuerpo}' , $table, $file);
+										$cuerpo = $this->listardiasclase();
 										break;
 									case 'listarhorario':
-										$result = $modelo->listarhorario();
-										$table = '';
-										while($row = mysqli_fetch_array($result)){
-											$table .= $row['nombreDia']." ".$row['horaInicio']." ".$row['horaFin']."<br>";
-										}
-										$file = str_ireplace('{cuerpo}' , $table, $file);
+										$cuerpo = $this->listarhorario();
 										break;
-									case 'tabla':
-										$result = $modelo->listarhorario();
-										$table = '';
-										while($row = mysqli_fetch_array($result)){
-											$table .= $row['nombreDia']." ";
-										}
-										$result = $modelo->listapormateria();
-										while($row = mysqli_fetch_array($result)){
-											$table .= "<br>".$row['codigo']." ".$row['nombreCompleto'];
-										}
-										$file = str_ireplace('{cuerpo}' , $table, $file);
-										break;
+									// case 'tabla':
+									// 	$result = $modelo->listarhorario();
+									// 	$table = '';
+									// 	while($row = mysqli_fetch_array($result)){
+									// 		$table .= $row['nombreDia']." ";
+									// 	}
+									// 	$result = $modelo->listapormateria();
+									// 	while($row = mysqli_fetch_array($result)){
+									// 		$table .= "<br>".$row['codigo']." ".$row['nombreCompleto'];
+									// 	}
+									// 	$file = str_ireplace('{cuerpo}' , $table, $file);
+									// 	break;
 									case 'listapormateria':
-										$result = $modelo->listapormateria();
-										$table = '';
-										while($row = mysqli_fetch_array($result)){
-											$table .= $row['codigo']." ".$row['nombreCompleto']."<br>";
-										}
-										$file = str_ireplace('{cuerpo}' , $table, $file);
+										$cuerpo = $this->listapormateria();
 										break;
 									default:
 										header('location: ../www/index.php');
@@ -135,12 +69,7 @@ class cursoCtl{
 							case '30':
 								switch ($opcion) {
 									case 'listarmateriasalumno':
-										$result = $modelo->listarmateriasalumno();
-										$table = '';
-										while($row = mysqli_fetch_array($result)){
-											$table .= $row['idCurso']." ".$row['nombreCurso']."<br>";
-										}
-										$file = str_ireplace('{cuerpo}' , $table, $file);
+										$cuerpo = $this->listarmateriasalumno();
 										break;
 									default:
 										header('location: ../www/index.php');
@@ -154,12 +83,105 @@ class cursoCtl{
 						}
 						include('../controlador/menuCtl.php');
 						$vista2 = new menuCtl(); 
+						$file = str_ireplace('{cuerpo}' , $cuerpo, $file);
 						$file = str_replace('{menu}', $vista2 -> menu() , $file);
 						$file = str_replace('{footer}', $vista2 -> menu() , $file);
 						echo $file;
 		}
 
-		
+	function listarmateriasalumno(){
+		$result = $this->modelo->listarmateriasalumno();
+		$table = '';
+		while($row = mysqli_fetch_array($result)){
+			$table .= $row['idCurso']." ".$row['nombreCurso']."<br>";
+		}
+		return $table;
+	}
+
+	function listar(){
+		$result = $this->modelo->mostrar();
+		$table = file_get_contents('../vista/listacursosheader.html');
+		$table2 = file_get_contents('../vista/listacursosrow.html');
+		while($row = mysqli_fetch_array($result)){
+			$table2 = file_get_contents('../vista/listacursosrow.html');
+			$table2 = str_ireplace('{nrc}' ,$row['nrc'], $table2);
+			$table2 = str_ireplace('{nombre}' ,$row['nombreCurso'], $table2);
+			$table2 = str_ireplace('{seccion}' ,$row['seccionCurso'], $table2);
+			$table2 = str_ireplace('{academia}' ,$row['nombreAcademia'], $table2);
+			$table2 = str_ireplace('{idciclo}' ,$row['idCiclo'], $table2);
+			$table .= str_ireplace('{idcurso}' ,$row['idCurso'], $table2);
+		}$table .= '</tr></table> ';
+		return $table;
+	}
+
+	function formulario(){
+		$result = $this->modelo->obtenerAcademia();
+		$file = file_get_contents('../vista/altacurso.html');
+		$dropdown = '';
+		while($academia = mysqli_fetch_array($result)){
+			$dropdown .= '<option>'.$academia['nombreAcademia'].'</option>';
+		}
+		$file = str_replace('{academia}', $dropdown, $file);
+		$result = $this->modelo->obtenerCiclos();
+		$dropdown = '';
+		while($ciclos = mysqli_fetch_array($result)){
+			$dropdown .= '<option>'.$ciclos['idCiclo'].'</option>';
+		}
+		$file = str_replace('{ciclos}', $dropdown, $file);
+		return $file;
+	}
+
+	function verlistaalumnos(){
+		$result = $this->modelo->verlistaalumnos();
+		$table = file_get_contents('../vista/listaAsistenciaheader.html');
+		while($row = mysqli_fetch_array($result)){
+			$table .= "<th>".$row['DAYOFMONTH(Dia)']."/".$row['MONTH(Dia)']."</th>";
+			$ids[] = $row['id'];
+		}
+		$nrc = $_REQUEST['nrc'];
+		$table .= '</tr>';
+		$table2 = '<tr><td>{alumno}</td>';
+		for ($i=0; $i < $result->num_rows; $i++) { 
+			$table2 .= file_get_contents('../vista/listaAsistenciarow.html');
+			$table2 = str_replace('{nombre}', 'check'.$nrc.'a'.$ids[$i], $table2);
+		}
+		$table2 .= '</tr>';
+		$result = $this->modelo->listapormateria();
+		$table3 = '';
+		while($row = mysqli_fetch_array($result)){
+			$table3 .= str_ireplace('{alumno}' ,$row['nombreCompleto'], $table2);
+		}
+		$table3 .= '</table></section>';
+		$table .=$table3;
+		return $table;
+	}
+
+	function listardiasclase(){
+		$result = $this->modelo->listardiasclase();
+		$table = '';
+		while($row = mysqli_fetch_array($result)){
+			$table .= $row['fechaClase']."<br>";
+		}
+		return $table;
+	}
+
+	function listarhorario(){
+		$result = $this->modelo->listarhorario();
+		$table = '';
+		while($row = mysqli_fetch_array($result)){
+			$table .= $row['nombreDia']." ".$row['horaInicio']." ".$row['horaFin']."<br>";
+		}
+		return $table;
+	}
+
+	function listarpormateria(){
+		$result = $this->modelo->listapormateria();
+		$table = '';
+		while($row = mysqli_fetch_array($result)){
+			$table .= $row['codigo']." ".$row['nombreCompleto']."<br>";
+		}
+		return $table;
+	}
 }
 
 ?>

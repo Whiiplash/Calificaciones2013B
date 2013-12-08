@@ -35,7 +35,7 @@
 		$controlador = new DefaultCtl();
  }
 }
-var_dump($controlador);
+//var_dump($controlador);
  $controlador->ejecutar();
 
 

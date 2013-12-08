@@ -2,14 +2,15 @@
 session_start();
 class usuarioCtl{
 	
-	function __construct(){
+	private $modelo;
 
+	function __construct(){
+		include('../modelo/usuarioMod.php');
+		$this->modelo = new usuarioMod(); 
 	}
 
 	function ejecutar(){
 			$file = file_get_contents('../vista/template.html');
-			include('../modelo/usuarioMod.php');
-			$modelo = new usuarioMod(); 
 			$opcion = $_REQUEST['opcion'];
 			if(!isset($_SESSION['uid'])){
 						$file = str_ireplace('{cuerpo}' ,'Usted no ha iniciado sesion', $file);						
@@ -24,22 +25,10 @@ class usuarioCtl{
 									header('location: ../www/index.php?accion=msg&msgcode=4');
 									break;
 								case 'formanuevoalumno':
-									$file = str_replace('{cuerpo}', file_get_contents('../vista/altaalumno.html'), $file);
-									$result = $modelo->obtenerCarreras();
-										$dropdown = '';
-										while($carreras = mysqli_fetch_array($result)){
-											$dropdown .= '<option>'.$carreras['nombreCarrera'].'</option>';
-										}
-										$file = str_replace('{carreras}', $dropdown, $file);
+									$cuerpo = $this->formanuevoalumno();
 									break;
 								case 'listarusuarios':
-										$result = $modelo->obtenerUsuarios();
-										$table = '';
-										while($row = mysqli_fetch_array($result)){
-											$table .= $row['codigo']." ".$row['nombreCompleto']." ".$row['correo'].
-											" <a href=index.php?accion=usuario&opcion=borrar&codigo=".$row['codigo'].">borrar</a><br>";
-										}
-										$file = str_ireplace('{cuerpo}' , $table, $file);
+										$cuerpo = $this->listar();
 										break;
 								case 'borrar':
 										$modelo->borrarUsuario();
@@ -57,15 +46,37 @@ class usuarioCtl{
 							# code...
 							break;
 						default:
-							$file = str_ireplace('{cuerpo}' ,'Usted no tiene privilegios suficientes para realizar esta acción', $file);
+							$cuerpo = 'Usted no tiene privilegios suficientes para realizar esta acción';
 							break;
 					}
 				}
 				include('../controlador/menuCtl.php');
 				$vista2 = new menuCtl(); 
+				$file = str_ireplace('{cuerpo}' , $cuerpo, $file);
 				$file = str_replace('{menu}', $vista2 -> menu() , $file);
 				$file = str_replace('{footer}', $vista2 -> menu() , $file);
 				echo $file;
+		}
+
+		function listar(){
+			$result = $this->modelo->obtenerUsuarios();
+			$table = '';
+			while($row = mysqli_fetch_array($result)){
+				$table .= $row['codigo']." ".$row['nombreCompleto']." ".$row['correo'].
+				" <a href=index.php?accion=usuario&opcion=borrar&codigo=".$row['codigo'].">borrar</a><br>";
+			}
+			return $table;
+		}
+
+		function formanuevoalumno(){
+			$file = file_get_contents('../vista/altaalumno.html');
+			$result = $this->modelo->obtenerCarreras();
+			$dropdown = '';
+			while($carreras = mysqli_fetch_array($result)){
+				$dropdown .= '<option>'.$carreras['nombreCarrera'].'</option>';
+			}
+			$file = str_replace('{carreras}', $dropdown, $file);
+			return $file;
 		}
 }
 
