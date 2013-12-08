@@ -176,17 +176,26 @@ class cursoCtl{
 			$table = str_replace(array('{valor}','{iddia}'), array('general','G'.$ids[$i]), $table);
 		}
 		$table2 = '<tr><td>{alumno}</td>';
+		$asistenciasGuardadas = $this->modelo->listarAsistencia();
+		
 		for ($i=0; $i < $result->num_rows; $i++) { 
 			$table2 .= file_get_contents('../vista/listaAsistenciarow.html');
 			$table2 = str_replace(array('{valor}','{iddia}'), array($nrc.'_{alumnoCodigo}_'.$ids[$i], $ids[$i]), $table2);
+			//if
 		}
+		
 		$table2 .= '</tr>';
 		$result = $this->modelo->listapormateria();
 		$table3 = '';
 		while($row = mysqli_fetch_array($result)){
 			$table3 .= str_ireplace(array('{alumno}','{alumnoCodigo}'),
 									array($row['nombreCompleto'],$row['codigo']), $table2);
-			//$table3 .= str_ireplace('{alumnoCodigo}' ,$row['codigo'], $table3);
+		}
+		while ($row = mysqli_fetch_array($asistenciasGuardadas)) {
+			$table3 = str_replace(	$row['codigo'].'_'.
+									$row['idDia'].'"', 
+									$row['codigo'].'_'.
+									$row['idDia'].'" checked', $table3);
 		}
 		$table3 .= '</table></section>';
 		$table .=$table3;
@@ -236,8 +245,10 @@ class cursoCtl{
 			foreach ($asistencias as $token) {
 				$datos = explode('_', $token);
 				//var_dump($datos);
-				//if
-				$this->modelo->insertarCalificacion($datos[0],$datos[1],$datos[2]);
+				if($datos[0]!=0&&
+					$datos[1]!=0&&
+					$datos[2]!=0)
+				$this->modelo->insertarAsistencias($datos[0],$datos[1],$datos[2]);
 			}
 			header('location: ../www/index.php?accion=msg&msgcode=5');
 		}else{
