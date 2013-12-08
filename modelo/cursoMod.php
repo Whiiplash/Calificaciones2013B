@@ -337,5 +337,31 @@ class cursoMod{
 		return $ciclo;
 	}
 
+	function insertarCalificacion($nrc,$codigo,$idDia){
+		//cargo los datos para la conexion
+		include('db_data.inc');		
+		$conexion = new mysqli($host,$user,$pass,$db);	
+		if($conexion -> connect_errno)
+			die('No hay conexion');
+		//Creo mi querry
+		var_dump($nrc);
+		var_dump($codigo);
+		var_dump($idDia);
+		$consulta = "INSERT INTO asistencia(nrc,asistio,idDia,codigo) VALUES
+										('$nrc',1,'$idDia','$codigo')";
+		//Ejecuto la consulta
+		$result = $conexion -> query($consulta);
+		if($conexion->errno){
+			$conexion -> close();
+			die('No se pudo establacer la insercion '.$conexion->error);
+		}
+		else{
+			//echo "1 registro agregado"
+			$conexion -> close();
+			//header('location: ../www/index.php?accion=msg&msgcode=2');
+		}
+		$conexion -> close();
+	}
+
 }
 ?>

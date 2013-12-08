@@ -11,6 +11,7 @@ class cursoCtl{
 
 	function ejecutar(){
 			$file = file_get_contents('../vista/template.html');
+			$cuerpo = '';
 			$opcion = $_REQUEST['opcion'];
 			if(!isset($_SESSION['uid'])){
 						$file = str_ireplace('{cuerpo}' ,'Usted no ha iniciado sesion', $file);						
@@ -47,6 +48,9 @@ class cursoCtl{
 										break;
 									case 'insertar':
 										$this->modelo->insertar();
+										break;
+									case 'insertarAsistencias':
+										$this->insertarAsistencias();
 										break;
 									case 'borrar':
 										$this->modelo->borrar();
@@ -171,7 +175,8 @@ class cursoCtl{
 		}
 		$table3 .= '</table></section>';
 		$table .=$table3;
-		$table.= '<input type="submit" value="Actualizar" id="botonActualizar">';
+		$table.= '<input type="submit" name="Actualizar" value="Actualizar" id="botonActualizar">';
+		$table.= '</form>';
 		return $table;
 	}
 
@@ -208,7 +213,19 @@ class cursoCtl{
 		$pdf->SetFont('Arial','B',16);
 		$pdf->writehtml($this->verlistaalumnos());
 		$pdf->Output();
+	}
 
+	function insertarAsistencias(){
+		if($_REQUEST['Actualizar']){
+			$asistencias = $_REQUEST['asistencias'];
+			foreach ($asistencias as $token) {
+				$datos = explode('_', $token);
+				var_dump($datos);
+				$this->modelo->insertarCalificacion($datos[0],$datos[1],$datos[2]);
+			}
+		}else{
+			echo 'hola';
+		}
 	}
 }
 
