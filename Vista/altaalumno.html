@@ -1,9 +1,8 @@
 <script type="text/javascript" src="../www/js/main.js"></script>
 <script type="text/javascript" src="../www/js/jquery-1.10.2.min.js"></script>
-
 <script type="text/javascript">
     $( document ).ready(function() {
-        //alert("tas bien pendejo");
+        validaAltaAlumno();
     });    
 </script>
 <section class="info">
@@ -14,13 +13,12 @@
         <input type="text" Required name="apellidop" id="apellidop">
         <section class="etiqueta">Apellido Materno:</section>
         <input type="text" Required name="apellidom" id="apellidom">
+        <section class="etiqueta">Password:</section>
+        <input class="contrasena" type="password" Required name="password" id="contrasena">
         <section class="etiqueta">Carrera:</section>
-        <select name="carreras" Required onChange="combo(this, 'theinput')" id="carreras">
+        <select name="carreras" Required id="carreras">
             <option disabled="" selected="">Elige una carrera...</option>
             {carreras}
-<!--             <option>Computación</option>
-            <option>Informática</option>
-            <option>Electrónica</option> -->
         </select>
         <section class="etiqueta">E-mail:</section>
         <input type="email" name="email" id="email">
@@ -30,8 +28,20 @@
         <input type="text" name="github" id="github">
         <section class="etiqueta">Web:</section>
          <input type="text" name="web" id="web">
+         <section class="zonaValidacion">
+            <section class="valiNombre">Escribe tu nombre(s)</section>
+            <section class="valiApellidop">Escribe tu apellido paterno</section>
+            <section class="valiApellidom">Escribe tu apellido materno</section>
+            <section class="valiContrasena">Escribe tu contraseña</section>
+            <section class="valiCarrera">Selecciona tu carrera</section>
+            <section class="valiEmail">Escribe tu correo electronico</section>
+            <section class="valiCelular">Escribe tu numero de celular(opcional)</section>
+            <section class="valiGithub">Escribe tu cuenta de github(opcional)</section>
+            <section class="valiWeb">Escribe tu pagina web(opcional)</section>
+        </section>
         <section class="enviar">
             <input type="submit" value="Finalizar"> 
         </section>
+
     </form>
 </section>

@@ -135,10 +135,55 @@ function validaAltaCiclo(){
 		return true;
 	}else return false
 }
-function asistenciaAlumnos(){
-	for (var i = 0; i < 10; i++) {
-		$('.asis_G'+i).click(function(event) {
-			$('.asis_'+i).click();
-		});
+
+function valiAltaUsuario(){
+	$('.zonaValidacion').css('display', 'none');
+	$('.valiNombre').css('display', 'none');
+	$('.valiApellidop').css('display', 'none');
+	$('.valiApellidom').css('display', 'none');
+	$('.valiContrasena').css('display', 'none');
+	$('.valiCarrera').css('display', 'none');
+	$('.valiEmail').css('display', 'none');
+	eval=0;
+
+	if ($('#nombre').val()=='') {
+		$('.zonaValidacion').css('display', 'block');
+		$('.valiNombre').css('display', 'block');
+		eval++;
+	}
+
+	if ($('#apellidop').val()=='') {
+		$('.zonaValidacion').css('display', 'block');
+		$('.valiApellidop').css('display', 'block');
+		eval++;
+	}
+
+	if ($('#apellidom').val()=='') {
+		$('.zonaValidacion').css('display', 'block');
+		$('.valiApellidom').css('display', 'block');
+		eval++;
+	}
+
+	if ($('#contrasena').val()=='') {
+		$('.zonaValidacion').css('display', 'block');
+		$('.valiContrasena').css('display', 'block');
+		eval++;
 	};
+	if ($("#carreras:contains('Elige')")) {
+		$('.zonaValidacion').css('display', 'block');
+		$('.valiCarrera').css('display', 'block');
+		eval++;
+	};
+	if ($('#email').val()=='') {
+		$('.zonaValidacion').css('display', 'block');
+		$('.valiEmail').css('display', 'block');
+		eval++;
+	};
+	if(eval==0){
+		return true;
+	}else 
+		return false;
 }
+	
+
+	

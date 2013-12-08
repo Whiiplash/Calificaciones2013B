@@ -77,6 +77,7 @@ class usuarioMod{
 		$nombre = $_REQUEST['nombre'];
 		$apellidop = $_REQUEST['apellidop'];
 		$apellidom = $_REQUEST['apellidom'];
+		$contrasena = $_POST['contrasena'];
 		$carreras = $_REQUEST['carreras'];
 		$email = $_REQUEST['email'];
 		$celular = $_REQUEST['celular'];
