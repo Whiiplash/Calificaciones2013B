@@ -135,3 +135,6 @@ function validaAltaCiclo(){
 		return true;
 	}else return false
 }
+function asistenciaAlumnos(){
+	
+}

@@ -329,11 +329,11 @@ input[type="time"]{
 .tablaAsistencia tbody tr th {
     background-color: #0099CC;
     color: #fff;
-    border: none;
+    border: 1px solid;
 }
 .tablaAsistencia tbody tr td {
     background: #fff;
-    border: none;
+    border: 1px solid;
 }
 tr{
     border-bottom: 1px solid;
