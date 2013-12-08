@@ -171,13 +171,15 @@ class cursoCtl{
 		$table2 = '<tr><td>{alumno}</td>';
 		for ($i=0; $i < $result->num_rows; $i++) { 
 			$table2 .= file_get_contents('../vista/listaAsistenciarow.html');
-			$table2 = str_replace('{nombre}', 'check'.$nrc.'a'.$ids[$i], $table2);
+			$table2 = str_replace('{nombre}', 'check_'.$nrc.'_{alumnoCodigo}_'.$ids[$i], $table2);
 		}
 		$table2 .= '</tr>';
 		$result = $this->modelo->listapormateria();
 		$table3 = '';
 		while($row = mysqli_fetch_array($result)){
-			$table3 .= str_ireplace('{alumno}' ,$row['nombreCompleto'], $table2);
+			$table3 .= str_ireplace(array('{alumno}','{alumnoCodigo}'),
+									array($row['nombreCompleto'],$row['codigo']), $table2);
+			//$table3 .= str_ireplace('{alumnoCodigo}' ,$row['codigo'], $table3);
 		}
 		$table3 .= '</table></section>';
 		$table .=$table3;
