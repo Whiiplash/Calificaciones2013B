@@ -58,18 +58,6 @@ class cursoCtl{
 									case 'listarhorario':
 										$cuerpo = $this->listarhorario();
 										break;
-									// case 'tabla':
-									// 	$result = $modelo->listarhorario();
-									// 	$table = '';
-									// 	while($row = mysqli_fetch_array($result)){
-									// 		$table .= $row['nombreDia']." ";
-									// 	}
-									// 	$result = $modelo->listapormateria();
-									// 	while($row = mysqli_fetch_array($result)){
-									// 		$table .= "<br>".$row['codigo']." ".$row['nombreCompleto'];
-									// 	}
-									// 	$file = str_ireplace('{cuerpo}' , $table, $file);
-									// 	break;
 									case 'listapormateria':
 										$cuerpo = $this->listapormateria();
 										break;
@@ -171,7 +159,7 @@ class cursoCtl{
 		$table2 = '<tr><td>{alumno}</td>';
 		for ($i=0; $i < $result->num_rows; $i++) { 
 			$table2 .= file_get_contents('../vista/listaAsistenciarow.html');
-			$table2 = str_replace('{nombre}', 'check_'.$nrc.'_{alumnoCodigo}_'.$ids[$i], $table2);
+			$table2 = str_replace('{valor}', $nrc.'_{alumnoCodigo}_'.$ids[$i], $table2);
 		}
 		$table2 .= '</tr>';
 		$result = $this->modelo->listapormateria();
