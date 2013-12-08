@@ -21,7 +21,7 @@ class usuarioCtl{
 						case '10':
 							switch ($opcion) {
 								case 'insertar':
-									$modelo->insertarUsuario();
+									$this->modelo->insertarUsuario();
 									header('location: ../www/index.php?accion=msg&msgcode=4');
 									break;
 								case 'formanuevoalumno':
@@ -31,7 +31,7 @@ class usuarioCtl{
 										$cuerpo = $this->listar();
 										break;
 								case 'borrar':
-										$modelo->borrarUsuario();
+										$this->modelo->borrarUsuario();
 										header('location: ../www/index.php?accion=usuario&opcion=listarusuarios');
 										break;
 								default:

@@ -9,21 +9,17 @@ class cursoMod{
 	function insertar(){
 		$nrc = $_REQUEST['nrc'];
 		$seccion = $_REQUEST['seccion'];
-		
 		//cargo los datos para la conexion
 		include('db_data.inc');		
 		$conexion = new mysqli($host,$user,$pass,$db);	
 		if($conexion -> connect_errno)
 			die('No hay conexion');
-
 		//Creo mi querry
 		$consulta = "INSERT INTO nrc(nrc,seccionCurso) VALUES
 			('$nrc',
 				'$seccion')";
-
 		//Ejecuto la consulta
 		$result = $conexion -> query($consulta);
-		//var_dump($conexion);
 		if($conexion->errno){
 			$conexion -> close();
 			die('No se pudo establacer la insercion '.$conexion->error);
@@ -33,14 +29,11 @@ class cursoMod{
 			$conexion -> close();
 			header('location: ../www/index.php?accion=msg&msgcode=1');
 		}
-			
 		$conexion -> close();
-		
 	}
 
 
 	function obtenerAcademia(){
-			
 		include('db_data.inc');
 		$conexion = new mysqli($host,$user,$pass,$db);	
 		if($conexion -> connect_errno)
@@ -50,31 +43,22 @@ class cursoMod{
 		$consulta = "SELECT * FROM academia";
 		//Ejecuto la consulta
 		$result = $conexion -> query($consulta);	
-
-
 		if($conexion->errno){
 			$conexion -> close();
-			
 			return FALSE;
 		}
-		
 		if(!$result->num_rows > 0)
 			return FALSE;
-
 		//regreso mi objeto de alumno
 		return $result;
-
 		//Procesamos el resultado para convertirlo en un array
 		while ( $fila = $result -> fetch_assoc() )
 			$ciclo[] = $fila;
-
 		//regreso mi arreglo de alumno
-		
 		return $ciclo;
 	}
 
 	function obtenerCiclos(){
-			
 		include('db_data.inc');
 		$conexion = new mysqli($host,$user,$pass,$db);	
 		if($conexion -> connect_errno)
@@ -84,31 +68,22 @@ class cursoMod{
 		$consulta = "SELECT * FROM cicloescolar";
 		//Ejecuto la consulta
 		$result = $conexion -> query($consulta);	
-
-
 		if($conexion->errno){
 			$conexion -> close();
-			
 			return FALSE;
 		}
-		
 		if(!$result->num_rows > 0)
 			return FALSE;
-
 		//regreso mi objeto de alumno
 		return $result;
-
 		//Procesamos el resultado para convertirlo en un array
 		while ( $fila = $result -> fetch_assoc() )
 			$ciclo[] = $fila;
-
 		//regreso mi arreglo de alumno
-		
 		return $ciclo;
 	}
 
 	function obtenerCurso(){
-			
 		include('db_data.inc');
 		$conexion = new mysqli($host,$user,$pass,$db);	
 		if($conexion -> connect_errno)
@@ -118,31 +93,22 @@ class cursoMod{
 		$consulta = "SELECT * FROM curso";
 		//Ejecuto la consulta
 		$result = $conexion -> query($consulta);	
-
-
 		if($conexion->errno){
 			$conexion -> close();
-			
 			return FALSE;
 		}
-		
 		if(!$result->num_rows > 0)
 			return FALSE;
-
 		//regreso mi objeto de alumno
 		return $result;
-
 		//Procesamos el resultado para convertirlo en un array
 		while ( $fila = $result -> fetch_assoc() )
 			$ciclo[] = $fila;
-
 		//regreso mi arreglo de alumno
-		
 		return $ciclo;
 	}
 
 	function mostrar(){
-			
 		include('db_data.inc');
 		$conexion = new mysqli($host,$user,$pass,$db);	
 		if($conexion -> connect_errno)
@@ -154,57 +120,42 @@ class cursoMod{
 						INNER JOIN academia ON academia.idAcademia = curso.idAcademia";
 		//Ejecuto la consulta
 		$result = $conexion -> query($consulta);	
-
-
 		if($conexion->errno){
 			$conexion -> close();
-			
 			return FALSE;
 		}
-		
 		if(!$result->num_rows > 0)
 			return FALSE;
-
 		//regreso mi objeto de alumno
 		return $result;
-
 		//Procesamos el resultado para convertirlo en un array
 		while ( $fila = $result -> fetch_assoc() )
 			$ciclo[] = $fila;
-
 		//regreso mi arreglo de alumno
-		
 		return $ciclo;
 	}
 
 	function borrar(){
 		$nrc = $_REQUEST['nrc'];
-
 		//cargo los datos para la conexion
 		include('db_data.inc');		
 		$conexion = new mysqli($host,$user,$pass,$db);	
 		if($conexion -> connect_errno)
 			die('No hay conexion');
-
 		//Creo mi querry
 		$consulta = "DELETE FROM nrc WHERE nrc = '$nrc'";
-
 		//Ejecuto la consulta
 		$result = $conexion -> query($consulta);
-		//var_dump($conexion);
 		if($conexion->errno){
 			$conexion -> close();
 			die('No se pudo establacer el borrado '.$conexion->error);
 		}
 		else
 			echo "registro(s) borrado(s)";
-			
 		$conexion -> close();
-		
 	}
 
 	function listardiasclase(){
-			
 		include('db_data.inc');
 		$nrc = $_REQUEST['nrc'];
 		$conexion = new mysqli($host,$user,$pass,$db);	
@@ -216,31 +167,22 @@ class cursoMod{
 						WHERE nrc ='$nrc'";
 		//Ejecuto la consulta
 		$result = $conexion -> query($consulta);	
-
-
 		if($conexion->errno){
 			$conexion -> close();
-			
 			return FALSE;
 		}
-		
 		if(!$result->num_rows > 0)
 			return FALSE;
-
 		//regreso mi objeto de alumno
 		return $result;
-
 		//Procesamos el resultado para convertirlo en un array
 		while ( $fila = $result -> fetch_assoc() )
 			$dias[] = $fila;
-
 		//regreso mi arreglo de alumno
-		
 		return $dias;
 	}
 
 	function listarhorario(){
-			
 		include('db_data.inc');
 		$nrc = $_REQUEST['nrc'];
 		$conexion = new mysqli($host,$user,$pass,$db);	
@@ -254,30 +196,22 @@ class cursoMod{
 						AND nrc ='$nrc'";
 		//Ejecuto la consulta
 		$result = $conexion -> query($consulta);	
-
-
 		if($conexion->errno){
 			$conexion -> close();
-			
 			return FALSE;
 		}
-		
 		if(!$result->num_rows > 0)
 			return FALSE;
-
 		//regreso mi objeto de alumno
 		return $result;
-
 		//Procesamos el resultado para convertirlo en un array
 		while ( $fila = $result -> fetch_assoc() )
 			$dias[] = $fila;
-
 		//regreso mi arreglo de alumno
-		
 		return $dias;
 	}
+
 	function listapormateria(){
-			
 		include('db_data.inc');
 		$nrc = $_REQUEST['nrc'];
 		$conexion = new mysqli($host,$user,$pass,$db);	
@@ -290,30 +224,22 @@ class cursoMod{
 						WHERE nrc ='$nrc'";
 		//Ejecuto la consulta
 		$result = $conexion -> query($consulta);	
-
-
 		if($conexion->errno){
 			$conexion -> close();
-			
 			return FALSE;
 		}
-		
 		if(!$result->num_rows > 0)
 			return FALSE;
-
 		//regreso mi objeto de alumno
 		return $result;
-
 		//Procesamos el resultado para convertirlo en un array
 		while ( $fila = $result -> fetch_assoc() )
 			$dias[] = $fila;
-
 		//regreso mi arreglo de alumno
-		
 		return $dias;
 	}
+
 	function listarmateriasalumno(){
-			
 		include('db_data.inc');
 		$conexion = new mysqli($host,$user,$pass,$db);	
 		if($conexion -> connect_errno)
@@ -327,31 +253,22 @@ class cursoMod{
 						AND  codigo ='$iduser'
 						INNER JOIN curso ON nrc.idCurso = curso.idCurso";
 		$result = $conexion -> query($consulta);	
-
-
 		if($conexion->errno){
 			$conexion -> close();
-			
 			return FALSE;
 		}
-		
 		if(!$result->num_rows > 0)
 			return FALSE;
-
 		//regreso mi objeto de alumno
 		return $result;
-
 		//Procesamos el resultado para convertirlo en un array
 		while ( $fila = $result -> fetch_assoc() )
 			$dias[] = $fila;
-
 		//regreso mi arreglo de alumno
-		
 		return $dias;
 	}
 
 	function verlistaalumnos(){
-			
 		include('db_data.inc');
 		$conexion = new mysqli($host,$user,$pass,$db);	
 		if($conexion -> connect_errno)
@@ -359,7 +276,6 @@ class cursoMod{
 		$iduser = $_SESSION['uid'];
 		$idCiclo = $_REQUEST['idciclo'];
 		$nrc = $_REQUEST['nrc'];
-
 		$consulta = "SELECT fechas.id, DAYOFWEEK(Dia) , Dia, DAYOFMONTH(Dia), MONTH(Dia)
 				FROM fechas
 				INNER JOIN horarios ON diaSemana +1 = DAYOFWEEK( Dia ) 
@@ -376,30 +292,19 @@ class cursoMod{
 				WHERE idCiclo =  '$idCiclo' ) 
 				AND nrc ='$nrc'";
 		//Ejecuto la consulta
-
 		$result = $conexion -> query($consulta);
-
-
 		if($conexion->errno){
 			$conexion -> close();
-			
 			return FALSE;
 		}
-		
 		if(!$result->num_rows > 0)
 			return FALSE;
-
 		//regreso mi objeto de alumno
-		
-
 		return $result;
-
 		//Procesamos el resultado para convertirlo en un array
 		while ( $fila = $result -> fetch_assoc() )
 			$ciclo[] = $fila;
-
 		//regreso mi arreglo de alumno
-		
 		return $ciclo;
 	}
 

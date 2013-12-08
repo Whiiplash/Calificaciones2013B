@@ -11,7 +11,6 @@ class cursoCtl{
 
 	function ejecutar(){
 			$file = file_get_contents('../vista/template.html');
-			
 			$opcion = $_REQUEST['opcion'];
 			if(!isset($_SESSION['uid'])){
 						$file = str_ireplace('{cuerpo}' ,'Usted no ha iniciado sesion', $file);						
@@ -34,10 +33,10 @@ class cursoCtl{
 										$cuerpo = $this->verlistaalumnos();
 										break;
 									case 'insertar':
-										$modelo->insertar();
+										$this->modelo->insertar();
 										break;
 									case 'borrar':
-										$modelo->borrar();
+										$this->modelo->borrar();
 										header('location: ../www/index.php?accion=curso&opcion=listar');
 										break;
 									case 'listardiasclase':
