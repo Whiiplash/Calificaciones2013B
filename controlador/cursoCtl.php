@@ -135,19 +135,29 @@ class cursoCtl{
 	}
 
 	function formulario(){
-		$result = $this->modelo->obtenerAcademia();
 		$file = file_get_contents('../vista/altacurso.html');
+		
+		$result = $this->modelo->obtenerAcademia();
 		$dropdown = '';
 		while($academia = mysqli_fetch_array($result)){
 			$dropdown .= '<option value="'.$academia['idAcademia'].'"">'.$academia['nombreAcademia'].'</option>';
 		}
 		$file = str_replace('{academia}', $dropdown, $file);
+
 		$result = $this->modelo->obtenerCiclos();
 		$dropdown = '';
 		while($ciclos = mysqli_fetch_array($result)){
 			$dropdown .= '<option>'.$ciclos['idCiclo'].'</option>';
 		}
 		$file = str_replace('{ciclos}', $dropdown, $file);
+
+		$result = $this->modelo->obtenerMaterias();
+		$dropdown = '';
+		while($materias = mysqli_fetch_array($result)){
+			$dropdown .= '<option>'.$materias['idCurso'].' '.$materias['nombreCurso'].'</option>';
+		}
+		$file = str_replace('{materia}', $dropdown, $file);
+
 		return $file;
 	}
 
