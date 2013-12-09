@@ -337,7 +337,7 @@ class cursoMod{
 		return $ciclo;
 	}
 
-	function insertarAsistencias($nrc,$codigo,$idDia){
+	function insertarAsistencias($nrc,$codigo,$idDia,$asistio){
 		//cargo los datos para la conexion
 		include('db_data.inc');		
 		$conexion = new mysqli($host,$user,$pass,$db);	
@@ -348,7 +348,7 @@ class cursoMod{
 		// var_dump($codigo);
 		// var_dump($idDia);
 		$consulta = "INSERT INTO asistencia(nrc,asistio,idDia,codigo) VALUES
-										('$nrc',1,'$idDia','$codigo')";
+										('$nrc','$asistio','$idDia','$codigo')";
 		//Ejecuto la consulta
 		$result = $conexion -> query($consulta);
 		if($conexion->errno){
