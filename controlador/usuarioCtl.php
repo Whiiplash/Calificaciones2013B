@@ -73,7 +73,7 @@ class usuarioCtl{
 			$result = $this->modelo->obtenerCarreras();
 			$dropdown = '';
 			while($carreras = mysqli_fetch_array($result)){
-				$dropdown .= '<option>'.$carreras['nombreCarrera'].'</option>';
+				$dropdown .= '<option value="'.$carreras['idCarrera'].'">'.$carreras['nombreCarrera'].'</option>';
 			}
 			$file = str_replace('{carreras}', $dropdown, $file);
 			return $file;

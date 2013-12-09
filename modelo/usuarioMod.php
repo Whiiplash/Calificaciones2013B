@@ -107,10 +107,12 @@ class usuarioMod{
 		if($conexion -> connect_errno)
 			die('No hay conexion');
 		//Creo mi querry
-		$consulta = "INSERT INTO usuario(nombreCompleto,correo,estatus) VALUES
-										('$nombreCompleto','$email','1') RETURNING ";
+		$consulta = "INSERT INTO usuario(nombreCompleto,correo,estatus,idCarrera,idRol) VALUES
+										('$nombreCompleto','$email','1','$carreras',30)";
 		//Ejecuto la consulta
 		$conexion -> query($consulta);
+		var_dump($conexion->insert_id);
+		$lastId = $conexion->insert_id;
 		if($conexion->errno){
 			$conexion -> close();
 			die('No se pudo establacer la insercion '.$conexion->error);
@@ -118,8 +120,9 @@ class usuarioMod{
 		else
 			echo "1 registro agregado";
 
-		$consulta = "INSERT INTO login(codigo,pass,estatus) VALUES
-										('3','$contrasena')";
+		$consulta = "INSERT INTO login(codigo,pass) VALUES
+										('$lastId','$contrasena')";
+		var_dump($consulta);
 		//Ejecuto la consulta
 		$conexion -> query($consulta);
 		if($conexion->errno){
