@@ -43,9 +43,8 @@ function validaAltaCurso(){
 	*****************************/
 	$('.zonaValidacion').css('display', 'none');
 	$('.valiCiclo').css('display', 'none');
-	$('.valiCurso').css('display', 'none');
+	$('.valiMateria').css('display', 'none');
 	$('.valiSeccion').css('display', 'none');
-	$('.valiNrc').css('display', 'none');
 	$('.valiAcademia').css('display', 'none');
 	$('.valiHoras').css('display', 'none');
 	$('.valiHorario').css('display', 'none');
@@ -57,9 +56,9 @@ function validaAltaCurso(){
 		eval++;
 	} 
 
-	if ($('#nombreCurso').val()=='') {
+	if ($('#nombreMateria').val()==null) {
 		$('.zonaValidacion').css('display', 'block');
-		$('.valiCurso').css('display', 'block');
+		$('.valiMateria').css('display', 'block');
 		eval++;
 	};
 	if ($('#seccion').val()=='') {
@@ -67,12 +66,7 @@ function validaAltaCurso(){
 		$('.valiSeccion').css('display', 'block');
 		eval++;
 	};
-	if ($('#nrc').val()=='') {
-		$('.zonaValidacion').css('display', 'block');
-		$('.valiNrc').css('display', 'block');
-		eval++;
-	};
-	if ($('#academia').val()=='Selecciona la academia correspondiente') {
+	if ($('#academia').val()==null) {
 		$('.zonaValidacion').css('display', 'block');
 		$('.valiAcademia').css('display', 'block');
 		eval++;

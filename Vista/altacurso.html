@@ -4,24 +4,21 @@
 		<select name="ciclo" Required id="ciclo">
 			<option disabled="" selected="">Selecciona el Ciclo</option>
 			{ciclos}
-<!-- 			<option>2013A</option>
-			<option>2013B</option>
-			<option>2014A</option> -->
 		</select>
-		<section class="etiqueta">Nombre del Curso:</section>
-		<input type="text" Required name="nombreCurso" id="nombreCurso" autofocus>
-		<section class="etiqueta">Sección:</section>
-		<input type="text" name="seccion" id="seccion">
-		<section class="etiqueta">NRC:</section>
-		<input type="text" name="nrc" id="nrc">
 		<section class="etiqueta">Academia Correspondiente:</section>
 		<select name="academia" Required id="academia">
 			<option disabled="" selected="">Selecciona la academia correspondiente</option>
 			{academia}
-<!-- 			<option>Ciencias Computacionales</option>
-			<option>Ciencias Básicas</option>
-			<option>Ciencias Quimicas</option> -->
 		</select>
+		<section class="etiqueta">Materia:</section>
+		<select name="nombreMateria" id="nombreMateria" Required>
+			<option disabled="" selected="">Selecciona la materia correspondiente</option>
+			{materia}
+		</select>
+		<section class="etiqueta">Sección:</section>
+		<input type="text" name="seccion" id="seccion">
+		
+		
 		<section class="etiqueta">Días de Clase:</section>
 		<fieldset class="semana">
 			<section>
@@ -51,10 +48,9 @@
 		<input type="time" name="horario" id="horario">
 		<section class="zonaValidacion">
 			<section class="valiCiclo">Selecciona el ciclo</section>
-			<section class="valiCurso">Escribe el nombre del curso</section>
-			<section class="valiSeccion">Escribe el nombre de la sección</section>
-			<section class="valiNrc">Escribe el NRC</section>
 			<section class="valiAcademia">Selecciona la academia</section>
+			<section class="valiMateria">Selecciona la materia</section>
+			<section class="valiSeccion">Escribe el nombre de la sección</section>
 			<section class="valiHoras">Escribe la cantidad de horas diarias</section>
 			<section class="valiHorario">Escribe la hora de inicio de curso</section>
 		</section>
