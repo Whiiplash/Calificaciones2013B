@@ -154,7 +154,10 @@ class cursoCtl{
 		$result = $this->modelo->obtenerMaterias();
 		$dropdown = '';
 		while($materias = mysqli_fetch_array($result)){
-			$dropdown .= '<option>'.$materias['idCurso'].' '.$materias['nombreCurso'].'</option>';
+			$dropdown .= '<option value="'.$materias['idCurso'].
+			'" class="Academia'.$materias['idAcademia'].'">'.
+			$materias['idCurso'].' '.
+			$materias['nombreCurso'].'</option>';
 		}
 		$file = str_replace('{materia}', $dropdown, $file);
 
