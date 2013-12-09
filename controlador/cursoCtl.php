@@ -43,6 +43,9 @@ class cursoCtl{
 									case 'verlistaalumnos':
 										$cuerpo = $this->verlistaalumnos();
 										break;
+									case 'vercalificaciones':
+										$cuerpo = $this->vercalificaciones();
+										break;
 									case 'pdfexport':
 										$this->pdfexport();
 										break;
@@ -302,7 +305,72 @@ class cursoCtl{
 		}else{
 			echo 'hola';
 		}
+	}
 
+
+	function vercalificaciones(){
+		$result = $this->modelo->verlistaalumnos();
+		$table = file_get_contents('../vista/listaCalificacionesHeader.html');
+		$script = file_get_contents('../www/js/asistensia.js');
+		//
+		$script2 = '';
+		
+		while($row = mysqli_fetch_array($result)){
+			$table .= "<th>".$row['DAYOFMONTH(Dia)']."/".$row['MONTH(Dia)']."     </th>";
+			$ids[] = $row['id'];
+		}
+
+
+		for ($i=0; $i< $result->num_rows; $i++) { 
+			$script2 .= str_replace('{diaclass}', $ids[$i], $script);
+		}
+		$table = str_replace('{script}', $script2, $table);
+
+		$nrc = $_REQUEST['nrc'];
+		$table .= '</tr>';
+		$table .= '<tr><td>General</td>';
+		for ($i=0; $i < $result->num_rows; $i++) { 
+			$table .= file_get_contents('../vista/listaCalificacionesRow.html');
+			$table = str_replace(array('{valor}','{iddia}'), array('general','G'.$ids[$i]), $table);
+		}
+		$table2 = '<tr><td>{alumno}</td>';
+		$scriptFaltas = '';
+		$asistenciasGuardadas = $this->modelo->listarAsistencia();
+		
+		for ($i=0; $i < $result->num_rows; $i++) { 
+			$table2 .= file_get_contents('../vista/listaCalificacionesRow.html');
+			$scriptFaltas .= file_get_contents('../www/js/faltas.js');
+			$table2 = str_replace(array('{valor}','{iddia}'), array($nrc.'_{alumnoCodigo}_'.$ids[$i], $ids[$i]), $table2);
+			$scriptFaltas = str_replace('{valor}', $nrc.'_{alumnoCodigo}_'.$ids[$i], $scriptFaltas);
+		}
+		
+		$table2 .= '</tr>';
+		$result = $this->modelo->listapormateria();
+		$table3 = '';
+		$script3 = '';
+		while($row = mysqli_fetch_array($result)){
+			$table3 .= str_ireplace(array('{alumno}','{alumnoCodigo}'),
+									array($row['nombreCompleto'],$row['codigo']), $table2);
+			$script3 .= str_replace('{alumnoCodigo}', $row['codigo'], $scriptFaltas);
+		}
+		while ($row = mysqli_fetch_array($asistenciasGuardadas)) {
+			//var_dump(expression)
+			if($row['asistio']==1)
+			$table3 = str_replace(	$row['codigo'].'_'.
+									$row['idDia'].'_X"', 
+									$row['codigo'].'_'.
+									$row['idDia'].'_'.$row['id'].'" ', $table3);
+			else$table3 = str_replace(	$row['codigo'].'_'.
+									$row['idDia'].'_X"', 
+									$row['codigo'].'_'.
+									$row['idDia'].'_'.$row['id'].'"', $table3);
+		}
+		$table = str_replace('{script2}', $script3, $table);
+		$table3 .= '</table></section>';
+		$table .=$table3;
+		$table.= '<input type="submit" name="Actualizar" value="Actualizar" id="botonActualizar" onclick="return validarfaltas()">';
+		$table.= '</form>';
+		return $table;
 	}
 }
 
