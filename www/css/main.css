@@ -325,6 +325,10 @@ input[type="time"]{
     width: 90%;
     margin: 0 auto;
 }
+
+.tablaAsistencia tbody tr td input{
+    width: 50px;
+}
 .tablaCalificacion tbody tr th {
     background-color: #0099CC;
     color: #fff;
