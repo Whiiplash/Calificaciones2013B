@@ -77,7 +77,7 @@ class usuarioMod{
 		$nombre = $_REQUEST['nombre'];
 		$apellidop = $_REQUEST['apellidop'];
 		$apellidom = $_REQUEST['apellidom'];
-		$contrasena = $_POST['contrasena'];
+		$contrasena = sha1($_REQUEST['password']);
 		$carreras = $_REQUEST['carreras'];
 		$email = $_REQUEST['email'];
 		$celular = $_REQUEST['celular'];
@@ -108,7 +108,7 @@ class usuarioMod{
 			die('No hay conexion');
 		//Creo mi querry
 		$consulta = "INSERT INTO usuario(nombreCompleto,correo,estatus) VALUES
-										('$nombreCompleto','$email','1')";
+										('$nombreCompleto','$email','1') RETURNING ";
 		//Ejecuto la consulta
 		$conexion -> query($consulta);
 		if($conexion->errno){
@@ -117,6 +117,18 @@ class usuarioMod{
 		}
 		else
 			echo "1 registro agregado";
+
+		$consulta = "INSERT INTO login(codigo,pass,estatus) VALUES
+										('3','$contrasena')";
+		//Ejecuto la consulta
+		$conexion -> query($consulta);
+		if($conexion->errno){
+			$conexion -> close();
+			die('No se pudo establacer la insercion '.$conexion->error);
+		}
+		else
+			echo "1 registro agregado";
+
 		$conexion -> close();
 	}
 
