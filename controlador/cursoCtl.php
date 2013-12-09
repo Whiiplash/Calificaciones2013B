@@ -139,7 +139,7 @@ class cursoCtl{
 		$file = file_get_contents('../vista/altacurso.html');
 		$dropdown = '';
 		while($academia = mysqli_fetch_array($result)){
-			$dropdown .= '<option>'.$academia['nombreAcademia'].'</option>';
+			$dropdown .= '<option value="'.$academia['idAcademia'].'"">'.$academia['nombreAcademia'].'</option>';
 		}
 		$file = str_replace('{academia}', $dropdown, $file);
 		$result = $this->modelo->obtenerCiclos();
