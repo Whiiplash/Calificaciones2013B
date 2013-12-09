@@ -167,6 +167,9 @@ class cursoCtl{
 		return $file;
 	}
 
+
+/// Querido futuro yo, por favor perdoname
+/// Este codigo es basura pero son las 3am. 
 	function verlistaalumnos(){
 		$result = $this->modelo->verlistaalumnos();
 		$table = file_get_contents('../vista/listaAsistenciaheader.html');
