@@ -85,6 +85,22 @@ class usuarioMod{
 		$web = $_REQUEST['web'];
 		$diasfestivos =array();
 		$nombreCompleto = $nombre.' '.$apellidop.' '.$apellidom;
+
+		if(!isset($celular)){
+		    $celular = "No necesario";
+		}
+
+		if(!isset($github)){
+		    $github = "No necesario";
+		}
+
+		if(!isset($web)){
+		    $web = "No necesario";
+		}
+
+		if(!(isset($nombre)))
+		    header ("Location: index.php");
+
 		//cargo los datos para la conexion
 		include('db_data.inc');		
 		$conexion = new mysqli($host,$user,$pass,$db);	

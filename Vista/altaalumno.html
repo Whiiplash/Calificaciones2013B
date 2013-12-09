@@ -2,7 +2,7 @@
 <script type="text/javascript" src="../www/js/jquery-1.10.2.min.js"></script>
 <script type="text/javascript">
     $( document ).ready(function() {
-        validaAltaAlumno();
+        //validaAltaAlumno();
     });    
 </script>
 <section class="info">
@@ -35,12 +35,9 @@
             <section class="valiContrasena">Escribe tu contraseña</section>
             <section class="valiCarrera">Selecciona tu carrera</section>
             <section class="valiEmail">Escribe tu correo electronico</section>
-            <section class="valiCelular">Escribe tu numero de celular(opcional)</section>
-            <section class="valiGithub">Escribe tu cuenta de github(opcional)</section>
-            <section class="valiWeb">Escribe tu pagina web(opcional)</section>
         </section>
         <section class="enviar">
-            <input type="submit" value="Finalizar"> 
+            <input type="submit" value="Finalizar" onClick="return validaAltaAlumno()"> 
         </section>
 
     </form>

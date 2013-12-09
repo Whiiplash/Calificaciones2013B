@@ -101,6 +101,8 @@ function validaAltaCiclo(){
 	$('.valiFeInicio').css('display', 'none');
 	$('.valiFeFin').css('display', 'none');
 	$('.valiDiaFestivo').css('display', 'none');
+	$('.valiDiaFestivoRango').css('display', 'none');
+	$('.valiDiferenciaCiclo').css('display', 'none');
 	eval=0;
 
 	if ($('#nombre').val()=='') {
@@ -120,13 +122,24 @@ function validaAltaCiclo(){
 		eval++;
 	};
 
+	if ($('#fechafin').val()<$('#fechainicio').val()) {
+		$('.zonaValidacion').css('display', 'block');
+		$('.valiDiferenciaCiclo').css('display', 'block');
+	}
+
 	for (var i = 1; i <= contadorDias; i++) {
 		enT = 'diasf'+i;
 		if ($(enT).val()=='') {
 			$('.zonaValidacion').css('display', 'block');
 			$('.valiDiaFestivo').css('display', 'block');
 			eval++;
-	};
+		};
+
+		/*if ($(enT).val()<$('#fechainicio').val()||$(enT).val()>$('#fechafin').val()) {
+			$('.zonaValidacion').css('display', 'block');
+			$('.valiDiaFestivo').css('display', 'block');
+			eval++;
+		};*/
 
 	};
 	
@@ -136,7 +149,13 @@ function validaAltaCiclo(){
 	}else return false
 }
 
-function valiAltaUsuario(){
+function enviarFaltaAlumno(){
+	if(document.getElementById("testName").checked){
+  document.getElementById('testNameHidden').disabled = true;
+}
+}
+
+function validaAltaAlumno(){
 	$('.zonaValidacion').css('display', 'none');
 	$('.valiNombre').css('display', 'none');
 	$('.valiApellidop').css('display', 'none');
@@ -169,7 +188,7 @@ function valiAltaUsuario(){
 		$('.valiContrasena').css('display', 'block');
 		eval++;
 	};
-	if ($("#carreras:contains('Elige')")) {
+	if ($("#carreras").val()==null) {
 		$('.zonaValidacion').css('display', 'block');
 		$('.valiCarrera').css('display', 'block');
 		eval++;
