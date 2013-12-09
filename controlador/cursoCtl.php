@@ -155,7 +155,7 @@ class cursoCtl{
 		$dropdown = '';
 		while($materias = mysqli_fetch_array($result)){
 			$dropdown .= '<option value="'.$materias['idCurso'].
-			'" class="Academia'.$materias['idAcademia'].'">'.
+			'" class="academia'.$materias['idAcademia'].'">'.
 			$materias['idCurso'].' '.
 			$materias['nombreCurso'].'</option>';
 		}
