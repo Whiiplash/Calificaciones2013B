@@ -1,3 +1,3 @@
-if($('.asis_{diaclass}').checked){
-  $('.asis_h_{diaclass}').disabled = true;
+if(document.getElementById("{valor}").checked){
+  document.getElementById('h_{valor}').disabled = true;
 }

@@ -155,9 +155,8 @@ class cursoCtl{
 		$result = $this->modelo->verlistaalumnos();
 		$table = file_get_contents('../vista/listaAsistenciaheader.html');
 		$script = file_get_contents('../www/js/asistensia.js');
-		$scriptFaltas = file_get_contents('../www/js/faltas.js');
+		//
 		$script2 = '';
-		$script3 = '';
 		
 		while($row = mysqli_fetch_array($result)){
 			$table .= "<th>".$row['DAYOFMONTH(Dia)']."/".$row['MONTH(Dia)']."     </th>";
@@ -167,9 +166,8 @@ class cursoCtl{
 
 		for ($i=0; $i< $result->num_rows; $i++) { 
 			$script2 .= str_replace('{diaclass}', $ids[$i], $script);
-			$script3 .= str_replace('{diaclass}', $ids[$i], $scriptFaltas);
 		}
-		$table = str_replace(array('{script}','{script2}'), array($script2,$script3), $table);
+		$table = str_replace('{script}', $script2, $table);
 
 		$nrc = $_REQUEST['nrc'];
 		$table .= '</tr>';
@@ -179,20 +177,24 @@ class cursoCtl{
 			$table = str_replace(array('{valor}','{iddia}'), array('general','G'.$ids[$i]), $table);
 		}
 		$table2 = '<tr><td>{alumno}</td>';
+		$scriptFaltas = '';
 		$asistenciasGuardadas = $this->modelo->listarAsistencia();
 		
 		for ($i=0; $i < $result->num_rows; $i++) { 
 			$table2 .= file_get_contents('../vista/listaAsistenciarow.html');
+			$scriptFaltas .= file_get_contents('../www/js/faltas.js');
 			$table2 = str_replace(array('{valor}','{iddia}'), array($nrc.'_{alumnoCodigo}_'.$ids[$i], $ids[$i]), $table2);
-			//if
+			$scriptFaltas = str_replace('{valor}', $nrc.'_{alumnoCodigo}_'.$ids[$i], $scriptFaltas);
 		}
 		
 		$table2 .= '</tr>';
 		$result = $this->modelo->listapormateria();
 		$table3 = '';
+		$script3 = '';
 		while($row = mysqli_fetch_array($result)){
 			$table3 .= str_ireplace(array('{alumno}','{alumnoCodigo}'),
 									array($row['nombreCompleto'],$row['codigo']), $table2);
+			$script3 .= str_replace('{alumnoCodigo}', $row['codigo'], $scriptFaltas);
 		}
 		while ($row = mysqli_fetch_array($asistenciasGuardadas)) {
 			$table3 = str_replace(	$row['codigo'].'_'.
@@ -200,6 +202,7 @@ class cursoCtl{
 									$row['codigo'].'_'.
 									$row['idDia'].'_'.$row['id'].'" checked', $table3);
 		}
+		$table = str_replace('{script2}', $script3, $table);
 		$table3 .= '</table></section>';
 		$table .=$table3;
 		$table.= '<input type="submit" name="Actualizar" value="Actualizar" id="botonActualizar" onclick="return validarfaltas()">';
@@ -245,7 +248,7 @@ class cursoCtl{
 	function insertarAsistencias(){
 		if($_REQUEST['Actualizar']){
 			$asistencias = $_REQUEST['asistencias'];
-			var_dump($_REQUEST['faltas']);
+			$faltas = $_REQUEST['faltas'];
 			foreach ($asistencias as $token) {
 				$datos = explode('_', $token);
 				//var_dump($datos);
@@ -253,7 +256,16 @@ class cursoCtl{
 					$datos[1]!=0&&
 					$datos[2]!=0&&
 					$datos[3]=='X')
-				$this->modelo->insertarAsistencias($datos[0],$datos[1],$datos[2]);
+				$this->modelo->insertarAsistencias($datos[0],$datos[1],$datos[2],1);
+			}
+			foreach ($asistencias as $token) {
+				$datos = explode('_', $token);
+				//var_dump($datos);
+				if($datos[0]!=0&&
+					$datos[1]!=0&&
+					$datos[2]!=0&&
+					$datos[3]=='X')
+				$this->modelo->insertarAsistencias($datos[0],$datos[1],$datos[2],0);
 			}
 			//header('location: ../www/index.php?accion=msg&msgcode=5');
 		}else{
