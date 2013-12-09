@@ -1,3 +1,26 @@
+<script type="text/javascript">
+	$(document).ready(function(){
+        $( "#academia" ).change(function () {
+            if($('#academia').val()!="a"){
+                $('#nombreMateria').css("display","block");
+                $('.etiMateria').css("display","block");
+                 /*switch () {
+                    case :
+                        alert('10');
+                        break;
+                    case (cnt >= 21 && cnt <= 30):
+                       alert('21');
+                        break;
+                    case (cnt >= 31 && cnt <= 40):
+               alert('31');
+                        break;
+                    default:
+                        alert('error');*/
+            }
+        });
+    });
+</script>
+
 <section class="info">
 	<form action="index.php?accion=curso&opcion=insertar" method="post">
 		<section class="etiqueta">Ciclo Correspondiente:</section>
@@ -10,9 +33,9 @@
 			<option disabled="" selected="">Selecciona la academia correspondiente</option>
 			{academia}
 		</select>
-		<section class="etiqueta">Materia:</section>
+		<section class="etiqueta etiMateria">Materia:</section>
 		<select name="nombreMateria" id="nombreMateria" Required>
-			<option disabled="" selected="">Selecciona la materia correspondiente</option>
+			<option disabled="" selected="" value="a">Selecciona la materia correspondiente</option>
 			{materia}
 		</select>
 		<section class="etiqueta">Sección:</section>

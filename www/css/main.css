@@ -265,6 +265,13 @@ input[type="time"]{
 .valiApellidop, .valiApellidom, .valiContrasena, .valiCarrera, .valiEmail, .valiGithub, .valiWeb, .valiCelular{
     color: red;
 }
+#nombreMateria {
+    width: 85%;
+    display: none;
+}
+.etiMateria{
+    display: none;
+}
 #agregaDia{
     font-size: 30px;
     border: solid 1px #000;
