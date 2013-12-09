@@ -363,6 +363,32 @@ class cursoMod{
 		$conexion -> close();
 	}
 
+	function actualizarAsistencias($nrc,$codigo,$idDia,$asistio,$id){
+		//cargo los datos para la conexion
+		include('db_data.inc');		
+		$conexion = new mysqli($host,$user,$pass,$db);	
+		if($conexion -> connect_errno)
+			die('No hay conexion');
+		//Creo mi querry
+		// var_dump($nrc);
+		// var_dump($codigo);
+		// var_dump($idDia);
+		$consulta = "UPDATE asistencia SET asistio='$asistio' WHERE id='$id'";
+		//Ejecuto la consulta
+		$result = $conexion -> query($consulta);
+		if($conexion->errno){
+			$conexion -> close();
+			die('No se pudo establacer la insercion '.$conexion->error);
+		}
+		else{
+			//echo "1 registro agregado"
+			$conexion -> close();
+			//header('location: ../www/index.php?accion=msg&msgcode=2');
+		}
+		$conexion -> close();
+	}
+
+
 	function listarAsistencia(){
 		include('db_data.inc');
 		$nrc = $_REQUEST['nrc'];

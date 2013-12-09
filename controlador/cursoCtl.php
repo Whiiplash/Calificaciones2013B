@@ -197,10 +197,16 @@ class cursoCtl{
 			$script3 .= str_replace('{alumnoCodigo}', $row['codigo'], $scriptFaltas);
 		}
 		while ($row = mysqli_fetch_array($asistenciasGuardadas)) {
+			//var_dump(expression)
+			if($row['asistio']==1)
 			$table3 = str_replace(	$row['codigo'].'_'.
 									$row['idDia'].'_X"', 
 									$row['codigo'].'_'.
 									$row['idDia'].'_'.$row['id'].'" checked', $table3);
+			else$table3 = str_replace(	$row['codigo'].'_'.
+									$row['idDia'].'_X"', 
+									$row['codigo'].'_'.
+									$row['idDia'].'_'.$row['id'].'"', $table3);
 		}
 		$table = str_replace('{script2}', $script3, $table);
 		$table3 .= '</table></section>';
@@ -249,6 +255,8 @@ class cursoCtl{
 		if($_REQUEST['Actualizar']){
 			$asistencias = $_REQUEST['asistencias'];
 			$faltas = $_REQUEST['faltas'];
+			var_dump($asistencias);
+			var_dump($faltas);
 			foreach ($asistencias as $token) {
 				$datos = explode('_', $token);
 				//var_dump($datos);
@@ -257,8 +265,13 @@ class cursoCtl{
 					$datos[2]!=0&&
 					$datos[3]=='X')
 				$this->modelo->insertarAsistencias($datos[0],$datos[1],$datos[2],1);
+				elseif($datos[0]!=0&&
+					$datos[1]!=0&&
+					$datos[2]!=0&&
+					$datos[3]!='X')
+					$this->modelo->actualizarAsistencias($datos[0],$datos[1],$datos[2],1,$datos[3]);
 			}
-			foreach ($asistencias as $token) {
+			foreach ($faltas as $token) {
 				$datos = explode('_', $token);
 				//var_dump($datos);
 				if($datos[0]!=0&&
@@ -266,8 +279,13 @@ class cursoCtl{
 					$datos[2]!=0&&
 					$datos[3]=='X')
 				$this->modelo->insertarAsistencias($datos[0],$datos[1],$datos[2],0);
+				elseif($datos[0]!=0&&
+					$datos[1]!=0&&
+					$datos[2]!=0&&
+					$datos[3]!='X')
+					$this->modelo->actualizarAsistencias($datos[0],$datos[1],$datos[2],0,$datos[3]);
 			}
-			//header('location: ../www/index.php?accion=msg&msgcode=5');
+			header('location: ../www/index.php?accion=msg&msgcode=5');
 		}else{
 			echo 'hola';
 		}
