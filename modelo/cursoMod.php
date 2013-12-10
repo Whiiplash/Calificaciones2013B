@@ -13,6 +13,8 @@ class cursoMod{
 		$dia = $_REQUEST['dia'];
 		$idCiclo = $_REQUEST['ciclo'];
 		$idCurso = $_REQUEST['nombreMateria'];
+
+		
 		//cargo los datos para la conexion
 		include('db_data.inc');		
 		$conexion = new mysqli($host,$user,$pass,$db);	
@@ -34,7 +36,26 @@ class cursoMod{
 								var_dump($consulta);
 			$conexion -> query($consulta);
 		}
-		
+
+		$cantidad = $_REQUEST['nExamenes'];
+		$porcentaje = $_REQUEST['caliExamenes'];
+		$consulta = "INSERT INTO criterioevaluacion(nrc,idRubro,cantidad,porcentaje) VALUES
+											('$nuevoNrc','500','$cantidad','$porcentaje')";
+											$conexion -> query($consulta);
+var_dump($consulta);
+		$cantidad = $_REQUEST['nTareas'];
+		$porcentaje = $_REQUEST['caliTareas'];
+		$consulta = "INSERT INTO criterioevaluacion(nrc,idRubro,cantidad,porcentaje) VALUES
+											('$nuevoNrc','501','$cantidad','$porcentaje')";
+											$conexion -> query($consulta);
+var_dump($consulta);
+
+		$cantidad = $_REQUEST['nProyectos'];
+		$porcentaje = $_REQUEST['caliProyectos'];
+		$consulta = "INSERT INTO criterioevaluacion(nrc,idRubro,cantidad,porcentaje) VALUES
+											('$nuevoNrc','504','$cantidad','$porcentaje')";
+											$conexion -> query($consulta);
+var_dump($consulta);
 		if($conexion->errno){
 			$conexion -> close();
 			die('No se pudo establacer la insercion '.$conexion->error);

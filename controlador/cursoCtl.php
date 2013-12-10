@@ -53,8 +53,8 @@ class cursoCtl{
 										$this->pdfexport();
 										break;
 									case 'insertar':
-										//$this->modelo->insertar();
-									$this->insertar();
+										$this->modelo->insertar();
+									//$this->insertar();
 										break;
 									case 'insertarAsistencias':
 										$this->insertarAsistencias();
@@ -104,7 +104,12 @@ class cursoCtl{
 		}
 
 	function insertar(){
+		var_dump($_REQUEST['nExamenes']);
+		var_dump($_REQUEST['caliExamenes']);
+		var_dump($_REQUEST['nTareas']);
+		var_dump($_REQUEST['caliTareas']);
 		var_dump($_REQUEST['nProyectos']);
+		var_dump($_REQUEST['caliProyectos']);
 	}
 	function listarmateriasalumno(){
 		$result = $this->modelo->listarmateriasalumno();
@@ -354,6 +359,7 @@ class cursoCtl{
 		$rubro = $_REQUEST['rubro'];
 		$table = file_get_contents('../vista/listaCalificacionesHeader.html');
 		//
+		
 		$table = str_replace('{rubro}', $this->modelo->obtenerRubro() , $table);
 		$row = mysqli_fetch_array($result);
 		for ($i=0; $i < $row['cantidad']; $i++) { 
@@ -371,6 +377,7 @@ class cursoCtl{
 		$table2 .= '</tr>';
 		$result = $this->modelo->listapormateria();
 		$table3 = '';
+		if ($result)
 		while($row = mysqli_fetch_array($result)){
 			$table3 .= str_ireplace(array('{alumno}','{alumnoCodigo}'),
 									array($row['nombreCompleto'],$row['codigo']), $table2);
