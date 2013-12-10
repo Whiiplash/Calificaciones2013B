@@ -234,6 +234,7 @@ class cursoCtl{
 											array($row['nombreCompleto'],$row['codigo']), $table2);
 					$script3 .= str_replace('{alumnoCodigo}', $row['codigo'], $scriptFaltas);
 				}
+				if($asistenciasGuardadas)
 				while ($row = mysqli_fetch_array($asistenciasGuardadas)) {
 					//var_dump(expression)
 					if($row['asistio']==1)

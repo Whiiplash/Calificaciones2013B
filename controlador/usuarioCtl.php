@@ -40,7 +40,17 @@ class usuarioCtl{
 							}
 							break;
 						case '20':
-							# code...
+							switch ($opcion) {
+								case 'todosalumnos':
+									$cuerpo = $this->todosalumnos();
+									break;
+								case 'matricular':
+									$this->modelo->matricular();
+									break;
+								default:
+									header('location: ../www/index.php');
+									break;
+							}
 							break;
 						case '30':
 							# code...
@@ -64,6 +74,18 @@ class usuarioCtl{
 			while($row = mysqli_fetch_array($result)){
 				$table .= $row['codigo']." ".$row['nombreCompleto']." ".$row['correo'].
 				" <a href=index.php?accion=usuario&opcion=borrar&codigo=".$row['codigo'].">borrar</a><br>";
+			}
+			return $table;
+		}
+
+
+		function todosalumnos(){
+			$result = $this->modelo->todosalumnos();
+			$table = '';
+			$nrc = $_REQUEST['nrc'];
+			while($row = mysqli_fetch_array($result)){
+				$table .= $row['codigo']." ".$row['nombreCompleto']." ".$row['correo'].
+				" <a href=index.php?accion=usuario&opcion=matricular&codigo=".$row['codigo']."&nrc=".$nrc.">Matricular</a><br>";
 			}
 			return $table;
 		}

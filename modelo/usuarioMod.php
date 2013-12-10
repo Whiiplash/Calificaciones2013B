@@ -160,6 +160,31 @@ class usuarioMod{
 		return $ciclo;
 	}
 
+	function todosalumnos(){
+		include('db_data.inc');
+		$conexion = new mysqli($host,$user,$pass,$db);	
+		if($conexion -> connect_errno)
+			die('No hay conexion');
+		$iduser = $_SESSION['uid'];
+		//Creo mi querry
+		$consulta = "SELECT * FROM usuario WHERE idRol='30'";
+		//Ejecuto la consulta
+		$result = $conexion -> query($consulta);	
+		if($conexion->errno){
+			$conexion -> close();
+			return FALSE;
+		}
+		if(!$result->num_rows > 0)
+			return FALSE;
+		//regreso mi objeto de alumno
+		return $result;
+		//Procesamos el resultado para convertirlo en un array
+		while ( $fila = $result -> fetch_assoc() )
+			$ciclo[] = $fila;
+		//regreso mi arreglo de alumno
+		return $ciclo;
+	}
+
 	function borrarUsuario(){
 		$codigo = $_REQUEST['codigo'];
 		//cargo los datos para la conexion
@@ -177,6 +202,26 @@ class usuarioMod{
 		}
 		else
 			echo "registro(s) borrado(s)";
+		$conexion -> close();
+	}
+
+	function matricular(){
+		$codigo = $_REQUEST['codigo'];
+		$nrc = $_REQUEST['nrc'];
+		//cargo los datos para la conexion
+		include('db_data.inc');		
+		$conexion = new mysqli($host,$user,$pass,$db);	
+		if($conexion -> connect_errno)
+			die('No hay conexion');
+		//Creo mi querry
+		$consulta = "INSERT INTO materiasalumno(codigo,nrc) VALUES('$codigo','$nrc')";
+		$conexion -> query($consulta);
+		if($conexion->errno){
+			$conexion -> close();
+			die('No se pudo establacer el borrado '.$conexion->error);
+		}
+		else
+			header('location: ../www/index.php?accion=msg&msgcode=7');
 		$conexion -> close();
 	}
 
