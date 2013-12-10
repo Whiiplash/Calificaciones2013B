@@ -53,8 +53,8 @@ class cursoCtl{
 										$this->pdfexport();
 										break;
 									case 'insertar':
-										$this->modelo->insertar();
-									//$this->insertar();
+										//$this->modelo->insertar();
+									$this->insertar();
 										break;
 									case 'insertarAsistencias':
 										$this->insertarAsistencias();
@@ -104,12 +104,7 @@ class cursoCtl{
 		}
 
 	function insertar(){
-		var_dump($_REQUEST['ciclo']);
-		var_dump($_REQUEST['academia']);
-		var_dump($_REQUEST['nombreMateria']);
-		var_dump($_REQUEST['seccion']);
-		var_dump($_REQUEST['dia']);
-		var_dump($_REQUEST['horario']);
+		var_dump($_REQUEST['nProyectos']);
 	}
 	function listarmateriasalumno(){
 		$result = $this->modelo->listarmateriasalumno();
