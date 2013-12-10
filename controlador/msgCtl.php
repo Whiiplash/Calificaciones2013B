@@ -21,6 +21,9 @@ class msgCtl {
         case '5':
             $cuerpo = '<strong style="color:green;">Asistencias Actualizadas con exito</strong>';
             break;
+        case '6':
+            $cuerpo = '<strong style="color:green;">Calificaciones Actualizadas con exito</strong>';
+            break;
         default:
             $cuerpo = '<strong style="color:red;">El Usuario o Password son incorrectos</strong>';
             break;

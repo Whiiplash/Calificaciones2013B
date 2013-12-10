@@ -31,6 +31,10 @@ class cicloMod{
 							WHERE Dia = '$diafestivo'";
 		//Ejecuto la consulta
 		$conexion -> query($consulta);
+		$consulta = "INSERT INTO diasfestivos(idCiclo,diaFestivo)
+							VALUES ('$idciclo','$diafestivo')";
+		//Ejecuto la consulta
+		$conexion -> query($consulta);
 		}
 		if($conexion->errno){
 			$conexion -> close();

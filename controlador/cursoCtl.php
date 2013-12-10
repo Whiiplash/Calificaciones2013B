@@ -46,11 +46,15 @@ class cursoCtl{
 									case 'vercalificaciones':
 										$cuerpo = $this->vercalificaciones();
 										break;
+									case 'insertarCalificaciones':
+										$this->insertarCalificaciones();
+										break;
 									case 'pdfexport':
 										$this->pdfexport();
 										break;
 									case 'insertar':
 										$this->modelo->insertar();
+									//$this->insertar();
 										break;
 									case 'insertarAsistencias':
 										$this->insertarAsistencias();
@@ -67,6 +71,9 @@ class cursoCtl{
 										break;
 									case 'listapormateria':
 										$cuerpo = $this->listapormateria();
+										break;
+									case 'verRubros':
+										$cuerpo = $this->verRubros();
 										break;
 									default:
 										header('location: ../www/index.php');
@@ -96,6 +103,14 @@ class cursoCtl{
 						echo $file;
 		}
 
+	function insertar(){
+		var_dump($_REQUEST['ciclo']);
+		var_dump($_REQUEST['academia']);
+		var_dump($_REQUEST['nombreMateria']);
+		var_dump($_REQUEST['seccion']);
+		var_dump($_REQUEST['dia']);
+		var_dump($_REQUEST['horario']);
+	}
 	function listarmateriasalumno(){
 		$result = $this->modelo->listarmateriasalumno();
 		$table = '';
@@ -125,15 +140,18 @@ class cursoCtl{
 		$result = $this->modelo->listarPorCiclo();
 		$table = file_get_contents('../vista/listacursosheader.html');
 		$table2 = file_get_contents('../vista/listacursosrow.html');
-		while($row = mysqli_fetch_array($result)){
-			$table2 = file_get_contents('../vista/listacursosrow.html');
-			$table2 = str_ireplace('{nrc}' ,$row['nrc'], $table2);
-			$table2 = str_ireplace('{nombre}' ,$row['nombreCurso'], $table2);
-			$table2 = str_ireplace('{seccion}' ,$row['seccionCurso'], $table2);
-			$table2 = str_ireplace('{academia}' ,$row['nombreAcademia'], $table2);
-			$table2 = str_ireplace('{idciclo}' ,$row['idCiclo'], $table2);
-			$table .= str_ireplace('{idcurso}' ,$row['idCurso'], $table2);
-		}$table .= '</tr></table> ';
+		if($result){
+				while($row = mysqli_fetch_array($result)){
+					$table2 = file_get_contents('../vista/listacursosrow.html');
+					$table2 = str_ireplace('{nrc}' ,$row['nrc'], $table2);
+					$table2 = str_ireplace('{nombre}' ,$row['nombreCurso'], $table2);
+					$table2 = str_ireplace('{seccion}' ,$row['seccionCurso'], $table2);
+					$table2 = str_ireplace('{academia}' ,$row['nombreAcademia'], $table2);
+					$table2 = str_ireplace('{idciclo}' ,$row['idCiclo'], $table2);
+					$table .= str_ireplace('{idcurso}' ,$row['idCurso'], $table2);
+				}
+			}else $table = 'Este ciclo no contiene cursos';
+		$table .= '</tr></table> ';
 		return $table;
 	}
 
@@ -210,23 +228,24 @@ class cursoCtl{
 		$result = $this->modelo->listapormateria();
 		$table3 = '';
 		$script3 = '';
-		while($row = mysqli_fetch_array($result)){
-			$table3 .= str_ireplace(array('{alumno}','{alumnoCodigo}'),
-									array($row['nombreCompleto'],$row['codigo']), $table2);
-			$script3 .= str_replace('{alumnoCodigo}', $row['codigo'], $scriptFaltas);
-		}
-		while ($row = mysqli_fetch_array($asistenciasGuardadas)) {
-			//var_dump(expression)
-			if($row['asistio']==1)
-			$table3 = str_replace(	$row['codigo'].'_'.
-									$row['idDia'].'_X"', 
-									$row['codigo'].'_'.
-									$row['idDia'].'_'.$row['id'].'" checked', $table3);
-			else$table3 = str_replace(	$row['codigo'].'_'.
-									$row['idDia'].'_X"', 
-									$row['codigo'].'_'.
-									$row['idDia'].'_'.$row['id'].'"', $table3);
-		}
+		if($result)
+		{while($row = mysqli_fetch_array($result)){
+					$table3 .= str_ireplace(array('{alumno}','{alumnoCodigo}'),
+											array($row['nombreCompleto'],$row['codigo']), $table2);
+					$script3 .= str_replace('{alumnoCodigo}', $row['codigo'], $scriptFaltas);
+				}
+				while ($row = mysqli_fetch_array($asistenciasGuardadas)) {
+					//var_dump(expression)
+					if($row['asistio']==1)
+					$table3 = str_replace(	$row['codigo'].'_'.
+											$row['idDia'].'_X"', 
+											$row['codigo'].'_'.
+											$row['idDia'].'_'.$row['id'].'" checked', $table3);
+					else$table3 = str_replace(	$row['codigo'].'_'.
+											$row['idDia'].'_X"', 
+											$row['codigo'].'_'.
+											$row['idDia'].'_'.$row['id'].'"', $table3);
+				}}else $table3 = 'No hay alumnos matriculados en esta materia';
 		$table = str_replace('{script2}', $script3, $table);
 		$table3 .= '</table></section>';
 		$table .=$table3;
@@ -310,69 +329,88 @@ class cursoCtl{
 		}
 	}
 
+	function insertarCalificaciones(){
+		if($_REQUEST['ActualizarCalif']){
+				$calificaciones = $_REQUEST['calificaciones'];
+				$coordenada = $_REQUEST['lugarcalif'];
+				var_dump(array_combine($coordenada,$calificaciones));
+				foreach (array_combine($coordenada,$calificaciones) as $coord => $valor) {
+					var_dump($coord);
+					$datos = explode('_', $coord);
+					if($datos[0]!=0&&
+					$datos[1]!=0&&
+					$datos[2]!=0&&
+					$datos[3]!=0&&
+					$datos[4]=='X')
+						$this->modelo->insertarCalificacion($datos[0],$datos[1],$datos[2],$datos[3],$valor);
+					elseif($datos[0]!=0&&
+					$datos[1]!=0&&
+					$datos[2]!=0&&
+					$datos[3]!=0&&
+					$datos[4]!='X')
+						$this->modelo->actualizarCalificacion($datos[0],$datos[1],$datos[2],$datos[3],$valor,$datos[4]);
+				}
+				header('location: ../www/index.php?accion=msg&msgcode=6');
+			}
+	}
 
 	function vercalificaciones(){
-		$result = $this->modelo->verlistaalumnos();
+		$result = $this->modelo->listardetallesrubro();
+		$rubro = $_REQUEST['rubro'];
 		$table = file_get_contents('../vista/listaCalificacionesHeader.html');
-		$script = file_get_contents('../www/js/asistensia.js');
 		//
-		$script2 = '';
-		
-		while($row = mysqli_fetch_array($result)){
-			$table .= "<th>".$row['DAYOFMONTH(Dia)']."/".$row['MONTH(Dia)']."     </th>";
-			$ids[] = $row['id'];
+		$table = str_replace('{rubro}', $this->modelo->obtenerRubro() , $table);
+		$row = mysqli_fetch_array($result);
+		for ($i=0; $i < $row['cantidad']; $i++) { 
+			$table .= '<th>'.($i+1).'</th>';
 		}
-
-
-		for ($i=0; $i< $result->num_rows; $i++) { 
-			$script2 .= str_replace('{diaclass}', $ids[$i], $script);
-		}
-		$table = str_replace('{script}', $script2, $table);
-
 		$nrc = $_REQUEST['nrc'];
 		$table .= '</tr>';
-		$table .= '<tr><td>General</td>';
-		for ($i=0; $i < $result->num_rows; $i++) { 
-			$table .= file_get_contents('../vista/listaCalificacionesRow.html');
-			$table = str_replace(array('{valor}','{iddia}'), array('general','G'.$ids[$i]), $table);
-		}
 		$table2 = '<tr><td>{alumno}</td>';
-		$scriptFaltas = '';
-		$asistenciasGuardadas = $this->modelo->listarAsistencia();
+		$calificacionesGuardadas = $this->modelo->listarCalificaciones();
 		
-		for ($i=0; $i < $result->num_rows; $i++) { 
+		for ($i=0; $i < $row['cantidad']; $i++) { 
 			$table2 .= file_get_contents('../vista/listaCalificacionesRow.html');
-			$scriptFaltas .= file_get_contents('../www/js/faltas.js');
-			$table2 = str_replace(array('{valor}','{iddia}'), array($nrc.'_{alumnoCodigo}_'.$ids[$i], $ids[$i]), $table2);
-			$scriptFaltas = str_replace('{valor}', $nrc.'_{alumnoCodigo}_'.$ids[$i], $scriptFaltas);
+			$table2 = str_replace('{valor}',$rubro.'_'.$nrc.'_{alumnoCodigo}_'.($i+1), $table2);
 		}
-		
 		$table2 .= '</tr>';
 		$result = $this->modelo->listapormateria();
 		$table3 = '';
-		$script3 = '';
 		while($row = mysqli_fetch_array($result)){
 			$table3 .= str_ireplace(array('{alumno}','{alumnoCodigo}'),
 									array($row['nombreCompleto'],$row['codigo']), $table2);
-			$script3 .= str_replace('{alumnoCodigo}', $row['codigo'], $scriptFaltas);
 		}
-		while ($row = mysqli_fetch_array($asistenciasGuardadas)) {
-			//var_dump(expression)
-			if($row['asistio']==1)
-			$table3 = str_replace(	$row['codigo'].'_'.
-									$row['idDia'].'_X"', 
+		if($calificacionesGuardadas)
+		while ($row = mysqli_fetch_array($calificacionesGuardadas)) {
+			$table3 = str_replace(	'type="number" value="'.
+									$row['rubro'].'_'.
+									$row['nrc'].'_'.
 									$row['codigo'].'_'.
-									$row['idDia'].'_'.$row['id'].'" ', $table3);
-			else$table3 = str_replace(	$row['codigo'].'_'.
-									$row['idDia'].'_X"', 
+									$row['iteracion'].'_X"', 
 									$row['codigo'].'_'.
-									$row['idDia'].'_'.$row['id'].'"', $table3);
+									$row['iteracion'].'_'.$row['id'].'" value="'.$row['calificacion'].'"', $table3);
+			$table3 = str_replace(	$row['rubro'].'_'.
+									$row['nrc'].'_'.
+									$row['codigo'].'_'.
+									$row['iteracion'].'_X"', 
+									$row['rubro'].'_'.
+									$row['nrc'].'_'.
+									$row['codigo'].'_'.
+									$row['iteracion'].'_'.$row['id'].'" value="'.$row['calificacion'].'"', $table3);
 		}
-		$table = str_replace('{script2}', $script3, $table);
 		$table3 .= '</table></section>';
 		$table .=$table3;
-		$table.= '<input type="submit" name="Actualizar" value="Actualizar" id="botonActualizar" onclick="return validarfaltas()">';
+		$table.= '<input type="submit" name="ActualizarCalif" value="Actualizar" id="botonActualizar" onclick="return validarfaltas()">';
 		$table.= '</form>';
+		return $table;
+	}
+
+	function verRubros(){
+		$result = $this->modelo->listarRubros();
+		$table = '';
+		while($row = mysqli_fetch_array($result)){
+			$table .= $row['rubro'].'<a href="index.php?accion=curso&opcion=vercalificaciones&idciclo='.$_REQUEST['idciclo'].'&nrc='.$_REQUEST['nrc'].'&rubro='.$row['idRubro'].'">Ver</a><br>';
+		}
 		return $table;
 	}
 }

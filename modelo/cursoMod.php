@@ -7,19 +7,34 @@ class cursoMod{
 	*/	
 
 	function insertar(){
-		$nrc = $_REQUEST['nrc'];
+		//$nrc = $_REQUEST['nrc'];
 		$seccion = $_REQUEST['seccion'];
+		$horario = $_REQUEST['horario'];
+		$dia = $_REQUEST['dia'];
+		$idCiclo = $_REQUEST['ciclo'];
+		$idCurso = $_REQUEST['nombreMateria'];
 		//cargo los datos para la conexion
 		include('db_data.inc');		
 		$conexion = new mysqli($host,$user,$pass,$db);	
 		if($conexion -> connect_errno)
 			die('No hay conexion');
 		//Creo mi querry
-		$consulta = "INSERT INTO nrc(nrc,seccionCurso) VALUES
-			('$nrc',
-				'$seccion')";
+		$consulta = "INSERT INTO nrc(seccionCurso,idCiclo,idCurso) VALUES
+									('$seccion','$idCiclo','$idCurso')";
 		//Ejecuto la consulta
-		$result = $conexion -> query($consulta);
+		//$result = $conexion -> query($consulta);
+		$conexion -> query($consulta);
+		$nuevoNrc = $conexion->insert_id;
+		foreach ($dia as $token) {
+			var_dump($horario[($token*2)-2]);
+			$horaInicio = $horario[($token*2)-2];
+			$horaFin = $horario[($token*2)-1];
+			$consulta = "INSERT INTO horarios(nrc,diaSemana,horaInicio,horaFin) VALUES
+											('$nuevoNrc','$token','$horaInicio','$horaFin')";
+								var_dump($consulta);
+			$conexion -> query($consulta);
+		}
+		
 		if($conexion->errno){
 			$conexion -> close();
 			die('No se pudo establacer la insercion '.$conexion->error);
@@ -369,9 +384,6 @@ class cursoMod{
 		if($conexion -> connect_errno)
 			die('No hay conexion');
 		//Creo mi querry
-		// var_dump($nrc);
-		// var_dump($codigo);
-		// var_dump($idDia);
 		$consulta = "INSERT INTO asistencia(nrc,asistio,idDia,codigo) VALUES
 										('$nrc','$asistio','$idDia','$codigo')";
 		//Ejecuto la consulta
@@ -394,10 +406,6 @@ class cursoMod{
 		$conexion = new mysqli($host,$user,$pass,$db);	
 		if($conexion -> connect_errno)
 			die('No hay conexion');
-		//Creo mi querry
-		// var_dump($nrc);
-		// var_dump($codigo);
-		// var_dump($idDia);
 		$consulta = "UPDATE asistencia SET asistio='$asistio' WHERE id='$id'";
 		//Ejecuto la consulta
 		$result = $conexion -> query($consulta);
@@ -439,6 +447,155 @@ class cursoMod{
 			$dias[] = $fila;
 		//regreso mi arreglo de alumno
 		return $dias;
+	}
+
+	function listarCalificaciones(){
+		include('db_data.inc');
+		$nrc = $_REQUEST['nrc'];
+		$idRubro = $_REQUEST['rubro'];
+		$conexion = new mysqli($host,$user,$pass,$db);	
+		if($conexion -> connect_errno)
+			die('No hay conexion');
+		$iduser = $_SESSION['uid'];
+		//Creo mi querry
+		$consulta = "SELECT * FROM calificaciones
+						WHERE nrc ='$nrc' AND rubro='$idRubro'";
+		//Ejecuto la consulta
+		$result = $conexion -> query($consulta);	
+		if($conexion->errno){
+			$conexion -> close();
+			return FALSE;
+		}
+		if(!$result->num_rows > 0)
+			return FALSE;
+		//regreso mi objeto de alumno
+		return $result;
+		//Procesamos el resultado para convertirlo en un array
+		while ( $fila = $result -> fetch_assoc() )
+			$dias[] = $fila;
+		//regreso mi arreglo de alumno
+		return $dias;
+	}
+
+	function listarRubros(){
+		include('db_data.inc');
+		$conexion = new mysqli($host,$user,$pass,$db);	
+		if($conexion -> connect_errno)
+			die('No hay conexion');
+		$iduser = $_SESSION['uid'];
+		//Creo mi querry
+		$consulta = "SELECT * FROM rubros";
+		//Ejecuto la consulta
+		$result = $conexion -> query($consulta);	
+		if($conexion->errno){
+			$conexion -> close();
+			return FALSE;
+		}
+		if(!$result->num_rows > 0)
+			return FALSE;
+		//regreso mi objeto de alumno
+		return $result;
+		//Procesamos el resultado para convertirlo en un array
+		while ( $fila = $result -> fetch_assoc() )
+			$dias[] = $fila;
+		//regreso mi arreglo de alumno
+		return $dias;
+	}
+
+	function obtenerRubro(){
+		include('db_data.inc');
+		$conexion = new mysqli($host,$user,$pass,$db);	
+		if($conexion -> connect_errno)
+			die('No hay conexion');
+		$idRubro = $_REQUEST['rubro'];
+		//Creo mi querry
+		$consulta = "SELECT * FROM rubros WHERE idRubro='$idRubro'";
+		//Ejecuto la consulta
+		$result = $conexion -> query($consulta);	
+		if($conexion->errno){
+			$conexion -> close();
+			return FALSE;
+		}
+		if(!$result->num_rows > 0)
+			return FALSE;
+		//regreso mi objeto de alumno
+		$row = mysqli_fetch_array($result);
+		return $row['rubro'];
+		//Procesamos el resultado para convertirlo en un array
+		while ( $fila = $result -> fetch_assoc() )
+			$dias[] = $fila;
+		//regreso mi arreglo de alumno
+		return $dias;
+	}
+
+	function listardetallesrubro(){
+		include('db_data.inc');
+		$conexion = new mysqli($host,$user,$pass,$db);	
+		if($conexion -> connect_errno)
+			die('No hay conexion');
+		$nrc = $_REQUEST['nrc'];
+		$idRubro = $_REQUEST['rubro'];
+		//Creo mi querry
+		$consulta = "SELECT * FROM criterioevaluacion WHERE nrc='$nrc' AND idRubro='$idRubro'";
+		//Ejecuto la consulta
+		$result = $conexion -> query($consulta);	
+		if($conexion->errno){
+			$conexion -> close();
+			return FALSE;
+		}
+		if(!$result->num_rows > 0)
+			return FALSE;
+		//regreso mi objeto de alumno
+		return $result;
+		//Procesamos el resultado para convertirlo en un array
+		while ( $fila = $result -> fetch_assoc() )
+			$dias[] = $fila;
+		//regreso mi arreglo de alumno
+		return $dias;
+	}
+
+	function insertarCalificacion($idRubro,$nrc,$codigo,$iteracion,$calif){
+		//cargo los datos para la conexion
+		include('db_data.inc');
+		//$idRubro = $_REQUEST['rubro'];
+		$conexion = new mysqli($host,$user,$pass,$db);	
+		if($conexion -> connect_errno)
+			die('No hay conexion');
+		$consulta = "INSERT INTO calificaciones(nrc,calificacion,rubro,codigo,iteracion) VALUES
+										('$nrc','$calif','$idRubro','$codigo','$iteracion')";
+		//Ejecuto la consulta
+		$result = $conexion -> query($consulta);
+		if($conexion->errno){
+			$conexion -> close();
+			die('No se pudo establacer la insercion '.$conexion->error);
+		}
+		else{
+			//echo "1 registro agregado"
+			$conexion -> close();
+			//header('location: ../www/index.php?accion=msg&msgcode=2');
+		}
+		$conexion -> close();
+	}
+
+	function actualizarCalificacion($idRubro,$nrc,$codigo,$iteracion,$calif,$id){
+		//cargo los datos para la conexion
+		include('db_data.inc');		
+		$conexion = new mysqli($host,$user,$pass,$db);	
+		if($conexion -> connect_errno)
+			die('No hay conexion');
+		$consulta = "UPDATE calificaciones SET calificacion='$calif' WHERE id='$id'";
+		//Ejecuto la consulta
+		$result = $conexion -> query($consulta);
+		if($conexion->errno){
+			$conexion -> close();
+			die('No se pudo establacer la insercion '.$conexion->error);
+		}
+		else{
+			//echo "1 registro agregado"
+			$conexion -> close();
+			//header('location: ../www/index.php?accion=msg&msgcode=2');
+		}
+		$conexion -> close();
 	}
 
 }
