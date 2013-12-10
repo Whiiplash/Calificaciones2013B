@@ -388,7 +388,9 @@ class cursoCtl{
 									$row['codigo'].'_'.
 									$row['iteracion'].'_X"', 
 									$row['codigo'].'_'.
-									$row['iteracion'].'_'.$row['id'].'" value="'.$row['calificacion'].'"', $table3);
+									$row['iteracion'].'_'.$row['id'].
+									'" value="'.
+									$row['calificacion'].'"', $table3);
 			$table3 = str_replace(	$row['rubro'].'_'.
 									$row['nrc'].'_'.
 									$row['codigo'].'_'.
@@ -396,7 +398,8 @@ class cursoCtl{
 									$row['rubro'].'_'.
 									$row['nrc'].'_'.
 									$row['codigo'].'_'.
-									$row['iteracion'].'_'.$row['id'].'" value="'.$row['calificacion'].'"', $table3);
+									$row['iteracion'].'_'.$row['id'].
+									'" value="'.$row['calificacion'].'"', $table3);
 		}
 		$table3 .= '</table></section>';
 		$table .=$table3;
